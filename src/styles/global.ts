@@ -3,7 +3,7 @@ import { theme } from "./theme";
 
 export const GlobalStyles = createGlobalStyle`
   * {
-    font-family: var(--gotham);
+    font-family: var(--font-inter);
     box-sizing: border-box;
     padding: 0;
     margin: 0;
