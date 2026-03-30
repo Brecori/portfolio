@@ -36,12 +36,12 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang="pt-BR" className={`${inter.variable}`} data-theme="dark">
       <body>
         <StyledComponentsRegistry>
-          <AppThemeProvider>
-            <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={messages}>
+            <AppThemeProvider>
               <GlobalStyles />
               {children}
-            </NextIntlClientProvider>
-          </AppThemeProvider>
+            </AppThemeProvider>
+          </NextIntlClientProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
