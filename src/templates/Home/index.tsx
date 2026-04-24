@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Header } from "./Header";
+import { Spacer } from "@/components/Spacer";
 
 export const HomeTemplate: FC = () => {
   const t = useTranslations("header");
@@ -21,6 +22,8 @@ export const HomeTemplate: FC = () => {
     <>
       <Navbar />
       <S.HomeContainer>
+        <Header />
+        <Spacer />
         <Header />
       </S.HomeContainer>
     </>

@@ -8,12 +8,11 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   background-color: ${({ $hasScrolled }) =>
-    $hasScrolled
-      ? "var(--color-background-secondary)"
-      : "var(--color-background-primary)"};
+    $hasScrolled ? "var(--color-background-secondary)" : "transparent"};
   padding: 0 10rem;
   align-items: center;
   position: fixed;
+  z-index: 30;
   transition:
     background-color ${transitionDuration} ease-in-out,
     height ${transitionDuration} ease-in-out;

@@ -3,33 +3,31 @@ import styled, { css } from "styled-components";
 const transitionDuration = "0.4s";
 
 export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
-  height: 7rem;
+  height: 10rem;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.6rem;
-  padding: 0 2rem;
-  background-color: ${({ $hasScrolled }) =>
-    $hasScrolled
-      ? "var(--color-background-secondary)"
-      : "var(--color-background-primary)"};
+  padding: 0 2.4rem;
+  background-color: ${({ theme }) => theme.background};
   position: fixed;
+  z-index: 30;
 `;
 
 export const LeftGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  gap: 2rem;
 `;
 
 const iconButtonStyles = css`
-  width: 4.2rem;
-  height: 4.2rem;
+  width: 5rem;
+  height: 5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 0.1rem solid var(--color-borders);
+  border: 0.1rem solid ${({ theme }) => theme.borders};
   border-radius: 100%;
   color: ${({ theme }) => theme.textSecondary};
   background: transparent;
@@ -55,8 +53,6 @@ export const HamburgerButton = styled.button<{ $isOpen: boolean }>`
     $isOpen ? theme.primary : theme.textSecondary};
   border-color: ${({ $isOpen, theme }) =>
     $isOpen ? theme.primary : theme.borders};
-  background-color: ${({ $isOpen, theme }) =>
-    $isOpen ? `${theme.primary}10` : "transparent"};
 `;
 
 export const IconButton = styled.button`
@@ -89,7 +85,7 @@ export const CloseToggleIcon = styled.span<{ $isOpen: boolean }>`
 `;
 
 export const Logo = styled.div`
-  font-size: 1.7rem;
+  font-size: 2.4rem;
   font-weight: 700;
   color: ${({ theme }) => theme.textPrimary};
 
@@ -108,26 +104,26 @@ export const MenuDrawer = styled.aside<{ $isOpen: boolean }>`
   position: fixed;
   left: 0;
   width: 100%;
-  height: calc(100% - 7rem);
+  height: calc(100% - 10rem);
   bottom: 0;
-  padding: 2.4rem 2rem 3.2rem;
+  padding: 3.2rem 2.4rem;
   display: flex;
-  background-color: var(--color-background-secondary);
-  border-right: 0.1rem solid var(--color-borders);
+  background-color: ${({ theme }) => theme.background};
+  border-right: 0.1rem solid ${({ theme }) => theme.borders};
   transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   transition: transform ${transitionDuration} ease;
-  z-index: 10;
+  z-index: 31;
 `;
 
 export const Menu = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 3rem;
 `;
 
 export const MenuItem = styled.li`
   color: ${({ theme }) => theme.textSecondary};
-  font-size: 1.6rem;
+  font-size: 2.6rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;

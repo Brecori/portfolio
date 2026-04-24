@@ -42,6 +42,31 @@ export const GlobalStyles = createGlobalStyle`
     transition: background-color 0.4s ease-in-out;
   }
 
+  body {
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.055;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  [data-theme="light"] body::before {
+    opacity: 0.25;
+  }
+
+  .app-shell {
+    position: relative;
+    z-index: 1;
+  }
+
   html {
     font-size: calc(100vw / 1920 * 10);
     text-size-adjust: none;
@@ -82,5 +107,17 @@ export const GlobalStyles = createGlobalStyle`
     appearance: none;
     border: none;
     outline: none;
+  }
+
+  @media (pointer: fine) {
+    html,
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    [role="button"] {
+      cursor: none !important;
+    }
   }
 `;

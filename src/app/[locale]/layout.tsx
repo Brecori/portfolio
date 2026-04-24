@@ -1,3 +1,4 @@
+import { MouseGlow } from "@/components/MouseGlow";
 import { AppThemeProvider } from "@/contexts/theme-provider";
 import type { ThemeMode } from "@/contexts/theme-provider/props";
 import StyledComponentsRegistry from "@/lib/registry";
@@ -47,7 +48,8 @@ export default async function LocaleLayout({ children, params }: Props) {
           <NextIntlClientProvider messages={messages}>
             <AppThemeProvider initialMode={initialMode}>
               <GlobalStyles />
-              {children}
+              <MouseGlow />
+              <div className="app-shell">{children}</div>
             </AppThemeProvider>
           </NextIntlClientProvider>
         </StyledComponentsRegistry>

@@ -1,7 +1,7 @@
 export default {
   title: (
     <>
-      BRENOTOSI.<span>DEV</span>
+      <span>&#10094;</span> BRENOTOSI.DEV<span> / &#10095;</span>
     </>
   ),
 };
