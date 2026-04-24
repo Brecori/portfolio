@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@/styles/theme";
 import { ThemeContextType, ThemeMode } from "./props";
@@ -13,38 +19,48 @@ const DEFAULT_STATE = {
 
 const ThemeContext = createContext<ThemeContextType>(DEFAULT_STATE);
 
-export const AppThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [mode, setMode] = useState<ThemeMode>(() => {
-    if (typeof window === "undefined") {
-      return "dark";
-    }
+const getPreferredTheme = (): ThemeMode => {
+  const stored = localStorage.getItem("theme") as ThemeMode | null;
 
-    const stored = localStorage.getItem("theme") as ThemeMode | null;
+  if (stored) {
+    return stored;
+  }
 
-    if (stored) {
-      document.documentElement.dataset.theme = stored;
-      return stored;
-    }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
 
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
+type AppThemeProviderProps = {
+  children: ReactNode;
+  initialMode?: ThemeMode;
+};
 
-    const systemTheme = prefersDark ? "dark" : "light";
+export const AppThemeProvider = ({
+  children,
+  initialMode = "dark",
+}: AppThemeProviderProps) => {
+  const [mode, setMode] = useState<ThemeMode>(initialMode);
 
-    document.documentElement.dataset.theme = systemTheme;
-    return systemTheme;
-  });
+  useEffect(() => {
+    setMode((currentMode) => {
+      const preferredTheme = getPreferredTheme();
+      return preferredTheme === currentMode ? currentMode : preferredTheme;
+    });
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = mode;
+    localStorage.setItem("theme", mode);
+    document.cookie = `theme=${mode}; path=/; max-age=31536000; samesite=lax`;
+  }, [mode]);
 
   const setTheme = (newTheme: ThemeMode) => {
     setMode(newTheme);
-    document.documentElement.dataset.theme = newTheme;
-    localStorage.setItem("theme", newTheme);
   };
 
   const toggleTheme = () => {
-    const next = mode === "dark" ? "light" : "dark";
-    setTheme(next);
+    setMode((currentMode) => (currentMode === "dark" ? "light" : "dark"));
   };
 
   return (

@@ -1,0 +1,112 @@
+import { LanguagesIcon } from "lucide-react";
+import styled from "styled-components";
+
+const transitionDuration = "0.4s";
+
+export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
+  height: 8rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  background-color: ${({ $hasScrolled }) =>
+    $hasScrolled
+      ? "var(--color-background-secondary)"
+      : "var(--color-background-primary)"};
+  padding: 0 10rem;
+  align-items: center;
+
+  @media (max-width: 1024px) {
+    padding: 0 5rem;
+    height: 7rem;
+  }
+`;
+
+export const Logo = styled.div`
+  justify-self: start;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.textPrimary};
+
+  span {
+    color: ${({ theme }) => theme.primary};
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 1.8rem;
+  }
+`;
+
+export const Menu = styled.ul`
+  display: flex;
+  gap: 2rem;
+  justify-self: center;
+`;
+
+export const MenuItem = styled.li`
+  color: ${({ theme }) => theme.textSecondary};
+  font-size: 1.4rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    color ${transitionDuration} ease-in-out,
+    transform ${transitionDuration} ease-in-out;
+
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    transform: translateY(-0.2rem);
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const TogglesContainer = styled.div`
+  display: flex;
+  gap: 2rem;
+  justify-self: end;
+`;
+
+export const LanguageToggleText = styled.span`
+  font-size: 1rem;
+  font-weight: 700;
+  color: ${({ theme }) => theme.textSecondary};
+  transition: color ${transitionDuration} ease-in-out;
+  text-transform: uppercase;
+
+  @media (max-width: 1024px) {
+    font-size: 0.85rem;
+  }
+`;
+
+export const LanguageToggleButton = styled.button`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+
+  svg {
+    color: ${({ theme }) => theme.textSecondary};
+    transition: color ${transitionDuration} ease-in-out;
+  }
+
+  &:hover {
+    svg {
+      color: ${({ theme }) => theme.textPrimary};
+    }
+
+    ${LanguageToggleText} {
+      color: ${({ theme }) => theme.textPrimary};
+    }
+  }
+
+  @media (max-width: 1024px) {
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+`;
+
+export const ThemeToggleButton = styled(LanguageToggleButton)``;

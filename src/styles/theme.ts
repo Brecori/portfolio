@@ -1,7 +1,7 @@
 import "styled-components";
 
 export const theme = {
-  primary: "var(--color-primary)",
+  primary: "var(--color-featured)",
   background: "var(--color-background-primary)",
   backgroundSecondary: "var(--color-background-secondary)",
   textPrimary: "var(--color-text-primary)",

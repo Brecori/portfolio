@@ -1,4 +1,5 @@
 import { AppThemeProvider } from "@/contexts/theme-provider";
+import type { ThemeMode } from "@/contexts/theme-provider/props";
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyles } from "@/styles/global";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -7,7 +8,7 @@ import { Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
-// import { getMessages } from "next-intl/server";
+import { cookies } from "next/headers";
 
 type Props = {
   children: React.ReactNode;
@@ -27,17 +28,24 @@ export const metadata: Metadata = {
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   const messages = await getMessages();
+  const cookieStore = await cookies();
+  const cookieTheme = cookieStore.get("theme")?.value;
+  const initialMode: ThemeMode = cookieTheme === "light" ? "light" : "dark";
 
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   return (
-    <html lang="pt-BR" className={`${inter.variable}`} data-theme="dark">
+    <html
+      lang={locale}
+      className={`${inter.variable}`}
+      data-theme={initialMode}
+    >
       <body>
         <StyledComponentsRegistry>
           <NextIntlClientProvider messages={messages}>
-            <AppThemeProvider>
+            <AppThemeProvider initialMode={initialMode}>
               <GlobalStyles />
               {children}
             </AppThemeProvider>

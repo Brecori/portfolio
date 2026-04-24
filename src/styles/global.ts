@@ -10,21 +10,21 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --color-primary: #6366F1;
-    --color-background-primary: #020617;
-    --color-background-secondary: #0F172A;
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #94a3b8;
-    --color-borders: #1e293b;
+    --color-featured: #00F0FF;
+    --color-background-primary: #101010;
+    --color-background-secondary: #0b0b0b;
+    --color-text-primary: #f5f5f5;
+    --color-text-secondary: #b9cacb;
+    --color-borders: #f5f5f510;
   }
 
   [data-theme="light"] {
-    --color-primary: #4f46e5;
-    --color-background-primary: #f8fafc;
+    --color-featured: #2e3141;
+    --color-background-primary: #f5f5f5;
     --color-background-secondary: #fff;
-    --color-text-primary: #0F172A;
-    --color-text-secondary: #64748B;
-    --color-borders: #e2e8f0;
+    --color-text-primary: #101010;
+    --color-text-secondary: #494551;
+    --color-borders: #10101010;
   }
 
   ::-webkit-scrollbar {

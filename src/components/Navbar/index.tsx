@@ -1,6 +1,15 @@
+"use client";
+
 import { FC } from "react";
-import * as S from "./styles";
+import { ResponsiveElement } from "@/lib/ResponsiveElement";
+import { NavbarDesktop } from "./Desktop";
+import { NavbarMobile } from "./Mobile";
 
 export const Navbar: FC = () => {
-  return <S.NavbarContainer $hasScrolled={true}></S.NavbarContainer>;
+  return (
+    <ResponsiveElement
+      content={<NavbarDesktop />}
+      breakpoints={{ mobile: <NavbarMobile /> }}
+    />
+  );
 };
