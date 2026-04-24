@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 const transitionDuration = "0.4s";
 
-export const NavbarContainer = styled.nav`
+export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   height: 7rem;
   width: 100%;
   display: flex;
@@ -10,7 +10,11 @@ export const NavbarContainer = styled.nav`
   justify-content: space-between;
   gap: 1.6rem;
   padding: 0 2rem;
-  background-color: var(--color-background-secondary);
+  background-color: ${({ $hasScrolled }) =>
+    $hasScrolled
+      ? "var(--color-background-secondary)"
+      : "var(--color-background-primary)"};
+  position: fixed;
 `;
 
 export const LeftGroup = styled.div`
@@ -25,8 +29,8 @@ const iconButtonStyles = css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-borders);
-  border-radius: 999px;
+  border: 0.1rem solid var(--color-borders);
+  border-radius: 100%;
   color: ${({ theme }) => theme.textSecondary};
   background: transparent;
   transition:
@@ -41,17 +45,47 @@ const iconButtonStyles = css`
 
   &:hover {
     color: ${({ theme }) => theme.textPrimary};
-    border-color: ${({ theme }) => theme.primary};
-    background-color: ${({ theme }) => `${theme.primary}10`};
   }
 `;
 
-export const HamburgerButton = styled.button`
+export const HamburgerButton = styled.button<{ $isOpen: boolean }>`
   ${iconButtonStyles}
+  position: relative;
+  color: ${({ $isOpen, theme }) =>
+    $isOpen ? theme.primary : theme.textSecondary};
+  border-color: ${({ $isOpen, theme }) =>
+    $isOpen ? theme.primary : theme.borders};
+  background-color: ${({ $isOpen, theme }) =>
+    $isOpen ? `${theme.primary}10` : "transparent"};
 `;
 
 export const IconButton = styled.button`
   ${iconButtonStyles}
+`;
+
+const toggleIconStyles = css<{ $isOpen: boolean }>`
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.24s ease,
+    transform 0.24s ease;
+`;
+
+export const MenuToggleIcon = styled.span<{ $isOpen: boolean }>`
+  ${toggleIconStyles}
+  opacity: ${({ $isOpen }) => ($isOpen ? 0 : 1)};
+  transform: ${({ $isOpen }) => ($isOpen ? "rotate(90deg) " : "rotate(0deg) ")};
+`;
+
+export const CloseToggleIcon = styled.span<{ $isOpen: boolean }>`
+  ${toggleIconStyles}
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  transform: ${({ $isOpen }) =>
+    $isOpen ? "rotate(0deg) " : "rotate(-90deg) "};
+  color: ${({ theme }) => theme.primary};
 `;
 
 export const Logo = styled.div`
@@ -70,40 +104,19 @@ export const TogglesContainer = styled.div`
   gap: 1rem;
 `;
 
-export const MenuOverlay = styled.button<{ $isOpen: boolean }>`
-  position: fixed;
-  inset: 0;
-  border: 0;
-  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
-  pointer-events: ${({ $isOpen }) => ($isOpen ? "auto" : "none")};
-  background: rgba(0, 0, 0, 0.45);
-  transition: opacity ${transitionDuration} ease-in-out;
-  z-index: 19;
-`;
-
 export const MenuDrawer = styled.aside<{ $isOpen: boolean }>`
   position: fixed;
-  top: 0;
   left: 0;
-  width: min(30rem, 82vw);
-  height: 100dvh;
+  width: 100%;
+  height: calc(100% - 7rem);
+  bottom: 0;
   padding: 2.4rem 2rem 3.2rem;
   display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
   background-color: var(--color-background-secondary);
-  border-right: 1px solid var(--color-borders);
+  border-right: 0.1rem solid var(--color-borders);
   transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
-  transition: transform ${transitionDuration} ease-in-out;
-  z-index: 20;
-`;
-
-export const DrawerHeader = styled.div`
-  padding-top: 0.4rem;
-`;
-
-export const DrawerLogo = styled(Logo)`
-  font-size: 1.8rem;
+  transition: transform ${transitionDuration} ease;
+  z-index: 10;
 `;
 
 export const Menu = styled.ul`
@@ -114,7 +127,7 @@ export const Menu = styled.ul`
 
 export const MenuItem = styled.li`
   color: ${({ theme }) => theme.textSecondary};
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;

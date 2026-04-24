@@ -5,38 +5,45 @@ import { LanguagesIcon, MoonIcon, SunIcon } from "lucide-react";
 import useHelpers from "../helpers";
 import useAnimation from "./animation";
 import C from "../constants";
+import { useTranslations } from "next-intl";
 
 export const NavbarDesktop: FC = () => {
+  const t = useTranslations("navbar");
   const { mode, toggleTheme } = useThemeContext();
   const { themeIconRef, themeTextRef } = useAnimation(mode);
-  const { changeLanguage, currentLocale, nextLocale } = useHelpers();
+  const { changeLanguage, currentLocale, nextLocale, hasScrolled } = useHelpers();
 
   return (
-    <S.NavbarContainer $hasScrolled={true}>
+    <S.NavbarContainer $hasScrolled={hasScrolled}>
       <S.Logo>{C.title}</S.Logo>
       <S.Menu>
         <S.MenuItem>
-          <a href="#">Home</a>
+          <a href="#">{t("items.home")}</a>
         </S.MenuItem>
         <S.MenuItem>
-          <a href="#">Projects</a>
+          <a href="#">{t("items.projects")}</a>
         </S.MenuItem>
         <S.MenuItem>
-          <a href="#">Contact</a>
+          <a href="#">{t("items.contact")}</a>
         </S.MenuItem>
       </S.Menu>
       <S.TogglesContainer>
-        <S.LanguageToggleButton onClick={() => changeLanguage(nextLocale)}>
+        <S.LanguageToggleButton
+          type="button"
+          onClick={() => changeLanguage(nextLocale)}
+        >
           <LanguagesIcon />
           <S.LanguageToggleText>{currentLocale}</S.LanguageToggleText>
         </S.LanguageToggleButton>
-        <S.ThemeToggleButton onClick={toggleTheme}>
+        <S.ThemeToggleButton type="button" onClick={toggleTheme}>
           {mode === "dark" ? (
             <MoonIcon ref={themeIconRef} />
           ) : (
             <SunIcon ref={themeIconRef} />
           )}
-          <S.LanguageToggleText ref={themeTextRef}>{mode}</S.LanguageToggleText>
+          <S.LanguageToggleText ref={themeTextRef}>
+            {t(`theme.${mode}`)}
+          </S.LanguageToggleText>
         </S.ThemeToggleButton>
       </S.TogglesContainer>
     </S.NavbarContainer>

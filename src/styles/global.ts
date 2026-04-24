@@ -19,11 +19,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   [data-theme="light"] {
-    --color-featured: #2e3141;
+    --color-featured: #0066CC;
     --color-background-primary: #f5f5f5;
-    --color-background-secondary: #fff;
+    --color-background-secondary: #ebebeb;
     --color-text-primary: #101010;
-    --color-text-secondary: #494551;
+    --color-text-secondary: #393939;
     --color-borders: #10101010;
   }
 
@@ -38,8 +38,8 @@ export const GlobalStyles = createGlobalStyle`
 
   html, body, #__next {
     height: 100%;
-    overflow: hidden !important;
     background-color: ${theme.background};
+    transition: background-color 0.4s ease-in-out;
   }
 
   html {

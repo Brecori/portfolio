@@ -1,0 +1,15 @@
+{
+  "items": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "theme": {
+    "light": "light",
+    "dark": "dark"
+  },
+  "aria": {
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu"
+  }
+}

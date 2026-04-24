@@ -1,10 +1,9 @@
-import { LanguagesIcon } from "lucide-react";
 import styled from "styled-components";
 
 const transitionDuration = "0.4s";
 
 export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
-  height: 8rem;
+  height: ${({ $hasScrolled }) => ($hasScrolled ? "6rem" : "8rem")};
   width: 100%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -14,6 +13,10 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
       : "var(--color-background-primary)"};
   padding: 0 10rem;
   align-items: center;
+  position: fixed;
+  transition:
+    background-color ${transitionDuration} ease-in-out,
+    height ${transitionDuration} ease-in-out;
 
   @media (max-width: 1024px) {
     padding: 0 5rem;
@@ -85,6 +88,7 @@ export const LanguageToggleButton = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 0.3rem;
+  width: 3.5rem;
 
   svg {
     color: ${({ theme }) => theme.textSecondary};
@@ -109,4 +113,6 @@ export const LanguageToggleButton = styled.button`
   }
 `;
 
-export const ThemeToggleButton = styled(LanguageToggleButton)``;
+export const ThemeToggleButton = styled(LanguageToggleButton)`
+  width: 3.5rem;
+`;

@@ -5,6 +5,7 @@ import * as S from "./styles";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { Navbar } from "@/components/Navbar";
+import { Header } from "./Header";
 
 export const HomeTemplate: FC = () => {
   const t = useTranslations("header");
@@ -20,14 +21,7 @@ export const HomeTemplate: FC = () => {
     <>
       <Navbar />
       <S.HomeContainer>
-        <h1>
-          {t.rich("title", {
-            highlight: (chunks) => <strong>{chunks}</strong>,
-          })}
-        </h1>
-
-        <button onClick={() => changeLanguage("en")}>English</button>
-        <button onClick={() => changeLanguage("pt-BR")}>Português</button>
+        <Header />
       </S.HomeContainer>
     </>
   );
