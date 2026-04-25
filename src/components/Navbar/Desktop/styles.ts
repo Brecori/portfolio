@@ -1,3 +1,4 @@
+import { mediaMaxDesktop1024 } from "@/lib/media-query";
 import styled from "styled-components";
 
 const transitionDuration = "0.4s";
@@ -17,10 +18,10 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
     background-color ${transitionDuration} ease-in-out,
     height ${transitionDuration} ease-in-out;
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     padding: 0 7.5rem;
     height: 7rem;
-  }
+  `}
 `;
 
 export const Logo = styled.div`
@@ -33,9 +34,9 @@ export const Logo = styled.div`
     color: ${({ theme }) => theme.primary};
   }
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     font-size: 1.8rem;
-  }
+  `}
 `;
 
 export const Menu = styled.ul`
@@ -59,9 +60,9 @@ export const MenuItem = styled.li`
     transform: translateY(-0.2rem);
   }
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     font-size: 1.2rem;
-  }
+  `}
 `;
 
 export const TogglesContainer = styled.div`
@@ -77,9 +78,9 @@ export const LanguageToggleText = styled.span`
   transition: color ${transitionDuration} ease-in-out;
   text-transform: uppercase;
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     font-size: 0.85rem;
-  }
+  `}
 `;
 
 export const LanguageToggleButton = styled.button`
@@ -104,12 +105,12 @@ export const LanguageToggleButton = styled.button`
     }
   }
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     svg {
       width: 2rem;
       height: 2rem;
     }
-  }
+  `}
 `;
 
 export const ThemeToggleButton = styled(LanguageToggleButton)`

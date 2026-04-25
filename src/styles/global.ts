@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
+import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
 
 export const GlobalStyles = createGlobalStyle`
   * {
@@ -74,13 +75,13 @@ export const GlobalStyles = createGlobalStyle`
     -ms-text-size-adjust: none;
     -webkit-text-size-adjust: none;
 
-    @media (max-width: 1024px) {
+    ${mediaMaxDesktop1024`
       font-size: calc(100vw / 1024 * 10);
-    }
+    `}
 
-    @media (max-width: 599px) {
+    ${mediaMaxMobile`
       font-size: calc(100vw / 599 * 10);
-    }
+    `}
   }
 
   #smooth-wrapper {

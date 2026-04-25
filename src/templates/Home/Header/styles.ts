@@ -1,4 +1,5 @@
 import AnimatedContent from "@/components/AnimatedContent";
+import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
 import styled, { keyframes } from "styled-components";
 
 const pdfButtonShine = keyframes`
@@ -18,14 +19,14 @@ export const HeaderContainer = styled.header`
   padding: 0 15rem;
   justify-content: space-between;
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     min-height: auto;
     padding: 15rem 7.5rem 10rem;
-  }
+  `}
 
-  @media (max-width: 599px) {
+  ${mediaMaxMobile`
     padding: 20rem 2.4rem 10rem;
-  }
+  `}
 `;
 
 export const LeftGroup = styled(AnimatedContent)`
@@ -33,13 +34,13 @@ export const LeftGroup = styled(AnimatedContent)`
   flex-direction: column;
   gap: 3.5rem;
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     gap: 2rem;
-  }
+  `}
 
-  @media (max-width: 599px) {
+  ${mediaMaxMobile`
     gap: 3rem;
-  }
+  `}
 `;
 
 export const Title = styled.h1`
@@ -48,13 +49,13 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.textPrimary};
   letter-spacing: -0.05em;
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     font-size: 6rem;
-  }
+  `}
 
-  @media (max-width: 599px) {
-    font-size: 7rem;
-  }
+  ${mediaMaxMobile`
+    font-size: 5rem;
+  `}
 `;
 
 export const SpanTitle = styled.span<{ $purple: boolean }>`
@@ -69,14 +70,14 @@ export const Description = styled.p`
   letter-spacing: 0.02em;
   line-height: 1.5;
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     font-size: 1.2rem;
-  }
+  `}
 
-  @media (max-width: 599px) {
+  ${mediaMaxMobile`
     font-size: 1.8rem;
     max-width: 80%;
-  }
+  `}
 `;
 
 export const ButtonsContainer = styled.div`
@@ -84,14 +85,14 @@ export const ButtonsContainer = styled.div`
   gap: 2rem;
   margin-top: 2rem;
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     margin-top: 1.5rem;
-  }
+  `}
 
-  @media (max-width: 599px) {
+  ${mediaMaxMobile`
     flex-direction: column;
     gap: 3rem;
-  }
+  `}
 `;
 
 export const Button = styled.a`
@@ -114,17 +115,17 @@ export const Button = styled.a`
     box-shadow: 0rem 0rem 0.5rem ${({ theme }) => theme.primary};
   }
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     padding: 0.8rem 2.4rem;
     font-size: 1.2rem;
-  }
+  `}
 
-  @media (max-width: 599px) {
+  ${mediaMaxMobile`
     padding: 1.6rem 2.4rem;
     font-size: 2rem;
     text-align: center;
     width: 100%;
-  }
+  `}
 `;
 
 export const PdfButton = styled.button`
@@ -170,15 +171,15 @@ export const PdfButton = styled.button`
     }
   }
 
-  @media (max-width: 1024px) {
+  ${mediaMaxDesktop1024`
     padding: 0.8rem 2.4rem;
     font-size: 1.2rem;
-  }
+  `}
 
-  @media (max-width: 599px) {
+  ${mediaMaxMobile`
     padding: 1.6rem 2.4rem;
     font-size: 2rem;
     text-align: center;
     width: 100%;
-  }
+  `}
 `;

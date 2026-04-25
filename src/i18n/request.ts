@@ -11,10 +11,11 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   const header = (await import(`../messages/header/${locale}.json`)).default;
   const navbar = (await import(`../messages/navbar/${locale}.json`)).default;
+  const stacks = (await import(`../messages/stacks/${locale}.json`)).default;
 
   return {
     locale,
-    messages: { header, navbar },
+    messages: { header, navbar, stacks },
     // ...
   };
 });

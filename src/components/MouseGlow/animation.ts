@@ -11,6 +11,21 @@ const FOLLOW_SPEED = 0.14;
 const CURSOR_RING_FOLLOW_SPEED = 0.22;
 const VISIBLE_OPACITY = "0.16";
 const HIDDEN_OPACITY = "0";
+const CURSOR_DOT_DEFAULT_SIZE = "0.4rem";
+const CURSOR_DOT_HOVER_SIZE = "1rem";
+const CURSOR_DOT_CLICK_SIZE = "1.6rem";
+const INTERACTIVE_ELEMENT_SELECTOR = [
+  "a",
+  "button",
+  "input",
+  "select",
+  "textarea",
+  "summary",
+  '[role="button"]',
+  '[role="link"]',
+  '[tabindex]:not([tabindex="-1"])',
+  "[data-cursor-hover]",
+].join(",");
 
 const getViewportCenter = (): Position => ({
   x: window.innerWidth / 2,
@@ -28,6 +43,8 @@ export default () => {
   const targetPositionRef = useRef<Position>({ x: 0, y: 0 });
   const glowPositionRef = useRef<Position>({ x: 0, y: 0 });
   const cursorRingPositionRef = useRef<Position>({ x: 0, y: 0 });
+  const isHoveringInteractiveElementRef = useRef(false);
+  const isPointerDownRef = useRef(false);
 
   useEffect(() => {
     const glow = glowRef.current;
@@ -37,6 +54,24 @@ export default () => {
     if (!glow || !cursorRing || !cursorDot) {
       return;
     }
+
+    const setCursorDotSize = () => {
+      const dotSize = isPointerDownRef.current
+        ? CURSOR_DOT_CLICK_SIZE
+        : isHoveringInteractiveElementRef.current
+          ? CURSOR_DOT_HOVER_SIZE
+          : CURSOR_DOT_DEFAULT_SIZE;
+
+      cursorDot.style.setProperty("--cursor-dot-size", dotSize);
+    };
+
+    const updateInteractiveElementHover = (target: EventTarget | null) => {
+      isHoveringInteractiveElementRef.current =
+        target instanceof Element &&
+        Boolean(target.closest(INTERACTIVE_ELEMENT_SELECTOR));
+
+      setCursorDotSize();
+    };
 
     const updatePosition = () => {
       const glowDx = targetPositionRef.current.x - glowPositionRef.current.x;
@@ -48,11 +83,15 @@ export default () => {
 
       glowPositionRef.current.x += glowDx * FOLLOW_SPEED;
       glowPositionRef.current.y += glowDy * FOLLOW_SPEED;
-      cursorRingPositionRef.current.x += cursorRingDx * CURSOR_RING_FOLLOW_SPEED;
-      cursorRingPositionRef.current.y += cursorRingDy * CURSOR_RING_FOLLOW_SPEED;
+      cursorRingPositionRef.current.x +=
+        cursorRingDx * CURSOR_RING_FOLLOW_SPEED;
+      cursorRingPositionRef.current.y +=
+        cursorRingDy * CURSOR_RING_FOLLOW_SPEED;
 
       glow.style.transform = getTransformValue(glowPositionRef.current);
-      cursorRing.style.transform = getTransformValue(cursorRingPositionRef.current);
+      cursorRing.style.transform = getTransformValue(
+        cursorRingPositionRef.current,
+      );
       cursorDot.style.transform = getTransformValue(targetPositionRef.current);
 
       animationFrameRef.current = window.requestAnimationFrame(updatePosition);
@@ -64,6 +103,7 @@ export default () => {
         y: event.clientY,
       };
 
+      updateInteractiveElementHover(event.target);
       glow.style.opacity = VISIBLE_OPACITY;
       cursorRing.style.opacity = "1";
       cursorDot.style.opacity = "1";
@@ -76,9 +116,24 @@ export default () => {
     };
 
     const handlePointerLeave = () => {
+      isPointerDownRef.current = false;
+      isHoveringInteractiveElementRef.current = false;
+      setCursorDotSize();
       glow.style.opacity = HIDDEN_OPACITY;
       cursorRing.style.opacity = HIDDEN_OPACITY;
       cursorDot.style.opacity = HIDDEN_OPACITY;
+    };
+
+    const handlePointerDown = (event: PointerEvent) => {
+      isPointerDownRef.current = true;
+      updateInteractiveElementHover(event.target);
+      setCursorDotSize();
+    };
+
+    const handlePointerUp = (event: PointerEvent) => {
+      isPointerDownRef.current = false;
+      updateInteractiveElementHover(event.target);
+      setCursorDotSize();
     };
 
     const viewportCenter = getViewportCenter();
@@ -92,6 +147,7 @@ export default () => {
     cursorRing.style.transform = getTransformValue(viewportCenter);
     cursorDot.style.opacity = "1";
     cursorDot.style.transform = getTransformValue(viewportCenter);
+    setCursorDotSize();
     animationFrameRef.current = window.requestAnimationFrame(updatePosition);
 
     window.addEventListener("pointermove", handlePointerMove, {
@@ -103,6 +159,15 @@ export default () => {
     window.addEventListener("pointerleave", handlePointerLeave, {
       passive: true,
     });
+    window.addEventListener("pointerdown", handlePointerDown, {
+      passive: true,
+    });
+    window.addEventListener("pointerup", handlePointerUp, {
+      passive: true,
+    });
+    window.addEventListener("pointercancel", handlePointerUp, {
+      passive: true,
+    });
 
     return () => {
       if (animationFrameRef.current !== null) {
@@ -112,6 +177,9 @@ export default () => {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerenter", handlePointerEnter);
       window.removeEventListener("pointerleave", handlePointerLeave);
+      window.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointercancel", handlePointerUp);
     };
   }, []);
 

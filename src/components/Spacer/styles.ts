@@ -1,3 +1,4 @@
+import { mediaMaxMobile } from "@/lib/media-query";
 import styled from "styled-components";
 
 export const Spacer = styled.div`
@@ -10,7 +11,7 @@ export const Spacer = styled.div`
     transparent 100%
   );
 
-  @media (max-width: 599px) {
+  ${mediaMaxMobile`
     height: 0.2rem;
-  }
+  `}
 `;

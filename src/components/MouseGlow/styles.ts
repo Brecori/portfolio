@@ -28,7 +28,10 @@ const cursorLayerStyles = `
   border-radius: 50%;
   pointer-events: none;
   transform: translate3d(-50%, -50%, 0);
-  transition: opacity 0.3s ease-in-out;
+  transition:
+    opacity 0.3s ease-in-out,
+    width 0.18s ease-out,
+    height 0.18s ease-out;
   will-change: transform;
   z-index: 40;
 
@@ -48,8 +51,8 @@ export const CursorRing = styled.div`
 
 export const CursorDot = styled.div`
   ${cursorLayerStyles}
-  width: 0.4rem;
-  height: 0.4rem;
+  width: var(--cursor-dot-size, 0.4rem);
+  height: var(--cursor-dot-size, 0.4rem);
   background-color: ${({ theme }) => theme.primary};
   z-index: 41;
 `;

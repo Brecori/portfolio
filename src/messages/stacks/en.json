@@ -1,0 +1,34 @@
+{
+  "title": "STACKS",
+  "cards": {
+    "frontend": {
+      "title": "Front-End",
+      "stacks": {
+        "react": "ReactJs",
+        "next": "NextJs",
+        "angular": "AngularJS",
+        "styledComponents": "Styled Components",
+        "sass": "Sass",
+        "typescript": "Typescript"
+      }
+    },
+    "animations": {
+      "title": "Animations",
+      "stacks": {
+        "gsap": "GSAP"
+      }
+    },
+    "design": {
+      "title": "Design",
+      "stacks": {
+        "figma": "Figma"
+      }
+    },
+    "mobile": {
+      "title": "Mobile",
+      "stacks": {
+        "reactNative": "React Native"
+      }
+    }
+  }
+}

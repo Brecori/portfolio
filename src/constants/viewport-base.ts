@@ -1,12 +1,12 @@
 export const viewportsBase = {
   mobile: {
-    width: 500,
+    width: 600,
   },
   mobileVerticalHorizontal: {
-    width: 500,
+    width: 600,
   },
   mobileHorizontal: {
-    width: 500,
+    width: 600,
   },
   tablet: {
     width: 768,
@@ -38,7 +38,7 @@ export const viewportsBase = {
 };
 
 export const aspectRatioBase = {
-  ultrawide: '18/9',
+  ultrawide: "18/9",
 };
 
 export type ViewportBaseProps = keyof typeof viewportsBase;
