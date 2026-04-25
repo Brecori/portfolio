@@ -1,3 +1,17 @@
 {
-  "title": "Hi, I'm <highlight>Breno Tosi</highlight>."
+  "titles": [
+    {
+      "main": "Breno Tosi",
+      "highlight": "Frontend Developer"
+    },
+    {
+      "main": "Modern interfaces",
+      "highlight": "Memorable experiences"
+    }
+  ],
+  "description": "I build responsive, well-structured interfaces focused on user experience, performance, and attention to detail. I enjoy turning ideas into clear, functional, and visually consistent digital products.",
+  "actions": {
+    "github": "GitHub",
+    "resume": "Resume"
+  }
 }

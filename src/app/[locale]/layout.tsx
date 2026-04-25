@@ -1,4 +1,6 @@
 import { MouseGlow } from "@/components/MouseGlow";
+import { Navbar } from "@/components/Navbar";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { AppThemeProvider } from "@/contexts/theme-provider";
 import type { ThemeMode } from "@/contexts/theme-provider/props";
 import StyledComponentsRegistry from "@/lib/registry";
@@ -49,7 +51,10 @@ export default async function LocaleLayout({ children, params }: Props) {
             <AppThemeProvider initialMode={initialMode}>
               <GlobalStyles />
               <MouseGlow />
-              <div className="app-shell">{children}</div>
+              <Navbar />
+              <SmoothScroll>
+                <div className="app-shell">{children}</div>
+              </SmoothScroll>
             </AppThemeProvider>
           </NextIntlClientProvider>
         </StyledComponentsRegistry>

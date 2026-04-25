@@ -10,7 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   :root {
-    --color-featured: #00F0FF;
+    --color-featured: #A855F7;
     --color-background-primary: #101010;
     --color-background-secondary: #0b0b0b;
     --color-text-primary: #f5f5f5;
@@ -19,9 +19,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   [data-theme="light"] {
-    --color-featured: #0066CC;
+    --color-featured: #6D28D9;
     --color-background-primary: #f5f5f5;
-    --color-background-secondary: #ebebeb;
+    --color-background-secondary: #dedede;
     --color-text-primary: #101010;
     --color-text-secondary: #393939;
     --color-borders: #10101010;
@@ -83,6 +83,15 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
+  #smooth-wrapper {
+    overflow: hidden;
+  }
+
+  #smooth-content {
+    min-height: 100%;
+    will-change: transform;
+  }
+
   li {
     list-style-type: none;
   }
@@ -120,4 +129,5 @@ export const GlobalStyles = createGlobalStyle`
       cursor: none !important;
     }
   }
+
 `;

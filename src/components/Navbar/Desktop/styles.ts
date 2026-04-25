@@ -9,7 +9,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   grid-template-columns: 1fr auto 1fr;
   background-color: ${({ $hasScrolled }) =>
     $hasScrolled ? "var(--color-background-secondary)" : "transparent"};
-  padding: 0 10rem;
+  padding: 0 15rem;
   align-items: center;
   position: fixed;
   z-index: 30;
@@ -18,7 +18,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
     height ${transitionDuration} ease-in-out;
 
   @media (max-width: 1024px) {
-    padding: 0 5rem;
+    padding: 0 7.5rem;
     height: 7rem;
   }
 `;

@@ -9,4 +9,8 @@ export const Spacer = styled.div`
     ${({ theme }) => theme.borders} 50%,
     transparent 100%
   );
+
+  @media (max-width: 599px) {
+    height: 0.2rem;
+  }
 `;
