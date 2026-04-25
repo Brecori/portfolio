@@ -10,7 +10,7 @@ export const Stacks: FC = () => {
   const t = useTranslations("stacks");
 
   return (
-    <S.StacksContainer>
+    <S.StacksContainer id="stacks">
       <AnimatedContent>
         <SectionTitle>{t("title")}</SectionTitle>
       </AnimatedContent>

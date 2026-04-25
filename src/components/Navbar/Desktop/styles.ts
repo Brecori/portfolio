@@ -46,22 +46,28 @@ export const Menu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  color: ${({ theme }) => theme.textSecondary};
-  font-size: 1.4rem;
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition:
-    color ${transitionDuration} ease-in-out,
-    transform ${transitionDuration} ease-in-out;
+  button {
+    color: ${({ theme }) => theme.textSecondary};
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+      color ${transitionDuration} ease-in-out,
+      transform ${transitionDuration} ease-in-out;
+  }
 
   &:hover {
-    color: ${({ theme }) => theme.primary};
-    transform: translateY(-0.2rem);
+    button {
+      color: ${({ theme }) => theme.primary};
+      transform: translateY(-0.2rem);
+    }
   }
 
   ${mediaMaxDesktop1024`
-    font-size: 1.2rem;
+    button {
+      font-size: 1.2rem;
+    }
   `}
 `;
 

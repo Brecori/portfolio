@@ -6,6 +6,7 @@ import useHelpers from "../helpers";
 import useAnimation from "./animation";
 import C from "../constants";
 import { useTranslations } from "next-intl";
+import { scrollToElement } from "@/lib/smooth-scroll";
 
 export const NavbarDesktop: FC = () => {
   const t = useTranslations("navbar");
@@ -14,18 +15,16 @@ export const NavbarDesktop: FC = () => {
   const { changeLanguage, currentLocale, nextLocale, hasScrolled } = useHelpers();
 
   return (
-    <S.NavbarContainer $hasScrolled={hasScrolled}>
+    <S.NavbarContainer data-navbar $hasScrolled={hasScrolled}>
       <S.Logo>{C.title}</S.Logo>
       <S.Menu>
-        <S.MenuItem>
-          <a href="#">{t("items.home")}</a>
-        </S.MenuItem>
-        <S.MenuItem>
-          <a href="#">{t("items.projects")}</a>
-        </S.MenuItem>
-        <S.MenuItem>
-          <a href="#">{t("items.contact")}</a>
-        </S.MenuItem>
+        {C.menuItems.map(({ labelKey, targetId }) => (
+          <S.MenuItem key={targetId}>
+            <button type="button" onClick={() => scrollToElement(targetId)}>
+              {t(labelKey)}
+            </button>
+          </S.MenuItem>
+        ))}
       </S.Menu>
       <S.TogglesContainer>
         <S.LanguageToggleButton

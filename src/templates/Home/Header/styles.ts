@@ -13,6 +13,7 @@ const pdfButtonShine = keyframes`
 `;
 
 export const HeaderContainer = styled.header`
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -25,6 +26,8 @@ export const HeaderContainer = styled.header`
   `}
 
   ${mediaMaxMobile`
+    flex-direction: column;
+    align-items: flex-start;
     padding: 20rem 2.4rem 10rem;
   `}
 `;
@@ -33,6 +36,8 @@ export const LeftGroup = styled(AnimatedContent)`
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
+  position: relative;
+  z-index: 1;
 
   ${mediaMaxDesktop1024`
     gap: 2rem;
@@ -40,6 +45,27 @@ export const LeftGroup = styled(AnimatedContent)`
 
   ${mediaMaxMobile`
     gap: 3rem;
+  `}
+`;
+
+export const RightVisual = styled.div`
+  width: 62rem;
+  aspect-ratio: 1;
+  flex: 0 0 62rem;
+  background-image: url("/svg/tech-panel.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.9;
+  transform: translate3d(0, 0, 0);
+
+  ${mediaMaxDesktop1024`
+    width: 40rem;
+    flex-basis: 40rem;
+  `}
+
+  ${mediaMaxMobile`
+    display: none;
   `}
 `;
 

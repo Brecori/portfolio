@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import C from "../constants";
 import useHelpers from "../helpers";
 import * as S from "./styles";
+import { scrollToElement } from "@/lib/smooth-scroll";
 
 export const NavbarMobile: FC = () => {
   const t = useTranslations("navbar");
@@ -16,9 +17,14 @@ export const NavbarMobile: FC = () => {
     setIsMenuOpen(false);
   };
 
+  const handleMenuItemClick = (targetId: string) => {
+    scrollToElement(targetId);
+    closeMenu();
+  };
+
   return (
     <>
-      <S.NavbarContainer $hasScrolled={hasScrolled}>
+      <S.NavbarContainer data-navbar $hasScrolled={hasScrolled}>
         <S.LeftGroup>
           <S.HamburgerButton
             type="button"
@@ -48,21 +54,13 @@ export const NavbarMobile: FC = () => {
 
       <S.MenuDrawer $isOpen={isMenuOpen} aria-hidden={!isMenuOpen}>
         <S.Menu>
-          <S.MenuItem>
-            <a href="#" onClick={closeMenu}>
-              {t("items.home")}
-            </a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="#" onClick={closeMenu}>
-              {t("items.projects")}
-            </a>
-          </S.MenuItem>
-          <S.MenuItem>
-            <a href="#" onClick={closeMenu}>
-              {t("items.contact")}
-            </a>
-          </S.MenuItem>
+          {C.menuItems.map(({ labelKey, targetId }) => (
+            <S.MenuItem key={targetId}>
+              <button type="button" onClick={() => handleMenuItemClick(targetId)}>
+                {t(labelKey)}
+              </button>
+            </S.MenuItem>
+          ))}
         </S.Menu>
       </S.MenuDrawer>
     </>

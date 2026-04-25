@@ -1,7 +1,8 @@
 {
   "items": {
-    "home": "Início",
+    "intro": "Introdução",
     "projects": "Projetos",
+    "trajectory": "Trajetória",
     "contact": "Contato"
   },
   "theme": {

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { FC } from "react";
+import { ScrollDownButton } from "../../../components/ScrollDownButton";
 import useAnimation from "./animation";
 import * as S from "./styles";
 
@@ -22,7 +23,7 @@ export const Header: FC = () => {
   const currentTitle = titles[titleIndex];
 
   return (
-    <S.HeaderContainer>
+    <S.HeaderContainer id="intro">
       <S.LeftGroup
         stagger={0.3}
         duration={2}
@@ -49,6 +50,9 @@ export const Header: FC = () => {
           <S.PdfButton>{t("actions.resume")}</S.PdfButton>
         </S.ButtonsContainer>
       </S.LeftGroup>
+
+      <S.RightVisual aria-hidden="true" />
+      <ScrollDownButton label={t("actions.scrollDown")} />
     </S.HeaderContainer>
   );
 };

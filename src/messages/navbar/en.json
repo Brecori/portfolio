@@ -1,7 +1,8 @@
 {
   "items": {
-    "home": "Home",
+    "intro": "Intro",
     "projects": "Projects",
+    "trajectory": "Trajectory",
     "contact": "Contact"
   },
   "theme": {

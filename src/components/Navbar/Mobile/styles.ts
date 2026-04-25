@@ -122,17 +122,21 @@ export const Menu = styled.ul`
 `;
 
 export const MenuItem = styled.li`
-  color: ${({ theme }) => theme.textSecondary};
-  font-size: 2.6rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition:
-    color ${transitionDuration} ease-in-out,
-    transform ${transitionDuration} ease-in-out;
+  button {
+    color: ${({ theme }) => theme.textSecondary};
+    font-size: 2.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+      color ${transitionDuration} ease-in-out,
+      transform ${transitionDuration} ease-in-out;
+  }
 
   &:hover {
-    color: ${({ theme }) => theme.textPrimary};
-    transform: translateX(0.4rem);
+    button {
+      color: ${({ theme }) => theme.textPrimary};
+      transform: translateX(0.4rem);
+    }
   }
 `;
