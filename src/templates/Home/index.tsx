@@ -12,7 +12,6 @@ export const HomeTemplate: FC = () => {
       <Header />
       <Stacks />
       <Spacer />
-      <Header />
     </S.HomeContainer>
   );
 };

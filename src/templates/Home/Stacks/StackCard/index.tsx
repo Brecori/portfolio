@@ -18,7 +18,7 @@ export const StackCard: FC<StackCardProps> = ({
   title,
 }) => {
   return (
-    <S.Card $featured={featured}>
+    <S.Card $featured={featured} data-cursor-hover>
       <S.CardHeader>
         <S.CardNumber>{number}</S.CardNumber>
         <Icon />
