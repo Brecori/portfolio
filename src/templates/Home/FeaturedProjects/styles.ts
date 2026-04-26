@@ -6,7 +6,7 @@ export const FeaturedProjectsContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: 10rem;
-  padding: 5rem 15rem 15rem;
+  padding: 15rem;
 
   ${mediaMaxDesktop1024`
     gap: 7.5rem;
@@ -69,7 +69,7 @@ export const ProjectCard = styled.a`
   min-height: 100%;
   overflow: hidden;
   border: 0.1rem solid ${({ theme }) => theme.borders};
-  border-radius: 0.4rem;
+  border-radius: 0.2rem;
   background-color: ${({ theme }) => theme.backgroundSecondary};
   box-shadow: 0rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
   transform: scale(1);
