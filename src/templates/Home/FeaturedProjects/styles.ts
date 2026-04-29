@@ -25,88 +25,132 @@ export const ProjectsContent = styled.div`
   gap: 3.2rem;
 `;
 
-export const ProjectsGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: 20rem 20rem 20rem;
-  grid-template-areas:
-    "alpha alpha alpha alpha alpha alpha beta beta beta gamma gamma gamma"
-    "alpha alpha alpha alpha alpha alpha beta beta beta delta delta delta"
-    "epsilon epsilon epsilon epsilon zeta zeta zeta zeta zeta zeta zeta zeta";
-  gap: 2rem;
-
-  ${mediaMaxDesktop1024`
-    grid-template-rows: 18rem 18rem 18rem;
-    gap: 1.6rem;
-  `}
-
-  ${mediaMaxMobile`
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    grid-template-areas:
-      "alpha"
-      "beta"
-      "gamma"
-      "delta"
-      "epsilon"
-      "zeta";
-    gap: 2rem;
-  `}
+export const ProjectsList = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-top: 0.1rem solid ${({ theme }) => theme.techWhite10};
 `;
 
-export const ProjectAnimation = styled(AnimatedContent)<{ $area: string }>`
-  grid-area: ${({ $area }) => $area};
-  min-height: 100%;
+export const ProjectAnimation = styled(AnimatedContent)`
+  min-height: 13.6rem;
 
   > div {
     height: 100%;
   }
+
+  ${mediaMaxDesktop1024`
+    min-height: 12.8rem;
+  `}
+
+  ${mediaMaxMobile`
+    min-height: 32rem;
+  `}
 `;
 
 export const ProjectCard = styled.a`
   position: relative;
-  display: flex;
+  display: grid;
+  align-items: stretch;
   min-height: 100%;
   overflow: hidden;
-  border: 0.1rem solid ${({ theme }) => theme.borders};
-  border-radius: 0.2rem;
-  background-color: ${({ theme }) => theme.backgroundSecondary};
-  box-shadow: 0rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
-  transform: scale(1);
+  border-bottom: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  background-color: transparent;
   transition:
-    border-color 0.45s ease,
-    box-shadow 0.45s ease,
-    transform 0.45s ease;
+    background-color 0.45s ease,
+    min-height 0.45s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      linear-gradient(
+        90deg,
+        ${({ theme }) => theme.codGray} 0%,
+        color-mix(
+            in srgb,
+            ${({ theme }) => theme.codGray} 82%,
+            transparent
+          )
+          38%,
+        color-mix(
+            in srgb,
+            ${({ theme }) => theme.codGray} 36%,
+            transparent
+          )
+          100%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, ${({ theme }) => theme.extremeBlack} 14%, transparent)
+          0%,
+        color-mix(in srgb, ${({ theme }) => theme.extremeBlack} 74%, transparent)
+          100%
+      );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+  }
 
   &::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(16, 16, 16, 0.08) 0%,
-      rgba(16, 16, 16, 0.2) 34%,
-      rgba(16, 16, 16, 0.86) 100%
-    );
-    z-index: 1;
+    z-index: 2;
+    border-left: 0.2rem solid ${({ theme }) => theme.fantasia};
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: center top;
+    transition:
+      opacity 0.45s ease,
+      transform 0.45s ease;
   }
 
-  &:hover {
-    border-color: color-mix(
-      in srgb,
-      ${({ theme }) => theme.primary} 48%,
-      ${({ theme }) => theme.borders}
-    );
-    box-shadow:
-      0rem 1.2rem 3rem rgba(0, 0, 0, 0.24),
-      0rem 0rem 2.4rem
-        color-mix(in srgb, ${({ theme }) => theme.primary} 12%, transparent);
-    transform: scale(1.01);
+  &:hover,
+  &:focus-visible {
+    min-height: 31rem;
+    background-color: ${({ theme }) => theme.codGray};
+  }
+
+  &:hover::before,
+  &:focus-visible::before,
+  &:hover::after,
+  &:focus-visible::after {
+    opacity: 1;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleY(1);
+  }
+
+  &:focus-visible {
+    outline: 0.1rem solid ${({ theme }) => theme.fantasia};
+    outline-offset: -0.1rem;
   }
 
   ${mediaMaxMobile`
     min-height: 32rem;
+    background-color: ${({ theme }) => theme.codGray};
+
+    &::before,
+    &::after {
+      opacity: 1;
+    }
+
+    &::after {
+      transform: scaleY(1);
+    }
   `}
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+
+    &::before,
+    &::after {
+      transition: none;
+    }
+  }
 `;
 
 export const ProjectImage = styled.img`
@@ -115,72 +159,113 @@ export const ProjectImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.72;
-  transform: scale(1);
+  opacity: 0;
+  transform: scale(1.06);
   transition:
     opacity 0.45s ease,
     transform 0.65s ease;
 
-  ${ProjectCard}:hover & {
-    opacity: 0.9;
-    transform: scale(1.04);
+  ${ProjectCard}:hover &,
+  ${ProjectCard}:focus-visible & {
+    opacity: 0.58;
+    transform: scale(1);
+  }
+
+  ${mediaMaxMobile`
+    opacity: 0.48;
+    transform: scale(1);
+  `}
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 `;
 
 export const ProjectInfo = styled.div`
   position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-self: stretch;
-  gap: 1.6rem;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 32rem);
+  align-content: center;
+  align-items: center;
+  column-gap: 5.6rem;
+  row-gap: 1.6rem;
   width: 100%;
-  padding: 2.4rem;
+  padding: 3.2rem 2.4rem;
 
   ${mediaMaxDesktop1024`
     gap: 1.2rem;
-    padding: 2rem;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 28rem);
+    padding: 2.8rem 2rem;
   `}
 
   ${mediaMaxMobile`
-    gap: 1.6rem;
+    grid-template-columns: 1fr;
+    align-content: end;
+    align-items: start;
+    gap: 2.4rem;
     padding: 2.4rem;
   `}
 `;
 
+export const ProjectMain = styled.div`
+  min-width: 0;
+`;
+
 export const ProjectTitle = styled.h3`
-  color: ${({ theme }) => theme.textPrimary};
-  font-size: 3.2rem;
-  font-weight: 600;
+  --project-title-size: 5.8rem;
+  --project-title-hover-size: 3.8rem;
+
+  color: ${({ theme }) => theme.techWhite};
+  font-size: var(--project-title-size);
+  font-weight: 300;
   line-height: 1;
   opacity: 0.78;
-  transition: opacity 0.45s ease;
+  transition:
+    font-size 0.45s ease,
+    opacity 0.45s ease;
 
-  ${ProjectCard}:hover & {
+  ${ProjectCard}:hover &,
+  ${ProjectCard}:focus-visible & {
+    font-size: var(--project-title-hover-size);
     opacity: 1;
   }
 
   ${mediaMaxDesktop1024`
-    font-size: 2.2rem;
+    --project-title-size: 4.6rem;
+    --project-title-hover-size: 3.4rem;
   `}
 
   ${mediaMaxMobile`
-    font-size: 3.2rem;
+    --project-title-size: 3.2rem;
+    --project-title-hover-size: 3.2rem;
+
+    opacity: 1;
   `}
 `;
 
 export const ProjectDescription = styled.p`
   max-width: 58ch;
-  color: ${({ theme }) => theme.textSecondary};
+  color: ${({ theme }) => theme.submarine};
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.45;
-  opacity: 0.72;
-  transition: opacity 0.45s ease;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(0.8rem);
+  transition:
+    margin-top 0.45s ease,
+    max-height 0.55s ease,
+    opacity 0.45s ease,
+    transform 0.45s ease;
 
-  ${ProjectCard}:hover & {
+  ${ProjectCard}:hover &,
+  ${ProjectCard}:focus-visible & {
+    margin-top: 1.6rem;
+    max-height: 12rem;
     opacity: 1;
+    transform: translateY(0);
   }
 
   ${mediaMaxDesktop1024`
@@ -188,26 +273,45 @@ export const ProjectDescription = styled.p`
   `}
 
   ${mediaMaxMobile`
+    margin-top: 1.6rem;
+    max-height: none;
     font-size: 1.6rem;
+    opacity: 1;
+    transform: translateY(0);
   `}
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 `;
 
 export const ProjectStack = styled.span`
-  color: ${({ theme }) => theme.primary};
+  display: block;
+  color: ${({ theme }) => theme.fantasia};
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
-  opacity: 0.62;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(0.8rem);
   transition:
+    margin-top 0.45s ease,
+    max-height 0.45s ease,
     opacity 0.45s ease,
-    text-shadow 0.45s ease;
+    text-shadow 0.45s ease,
+    transform 0.45s ease;
 
-  ${ProjectCard}:hover & {
+  ${ProjectCard}:hover &,
+  ${ProjectCard}:focus-visible & {
+    margin-top: 1.4rem;
+    max-height: 4rem;
     opacity: 1;
+    transform: translateY(0);
     text-shadow: 0rem 0rem 1.4rem
-      color-mix(in srgb, ${({ theme }) => theme.primary} 45%, transparent);
+      color-mix(in srgb, ${({ theme }) => theme.fantasia} 45%, transparent);
   }
 
   ${mediaMaxDesktop1024`
@@ -215,7 +319,94 @@ export const ProjectStack = styled.span`
   `}
 
   ${mediaMaxMobile`
+    margin-top: 1.4rem;
+    max-height: none;
     font-size: 1.2rem;
+    opacity: 1;
+    transform: translateY(0);
+  `}
+`;
+
+export const ProjectSide = styled.div`
+  position: relative;
+  align-self: stretch;
+  min-height: 7.2rem;
+  text-align: right;
+
+  ${mediaMaxMobile`
+    align-self: auto;
+    min-height: auto;
+    text-align: left;
+  `}
+`;
+
+export const ProjectSummary = styled.span`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  color: ${({ theme }) => theme.fantasia};
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  opacity: 0.62;
+  transform: translateY(-50%);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+
+  ${ProjectCard}:hover &,
+  ${ProjectCard}:focus-visible & {
+    opacity: 0;
+    transform: translateY(-70%);
+  }
+
+  ${mediaMaxDesktop1024`
+    font-size: 0.9rem;
+  `}
+
+  ${mediaMaxMobile`
+    display: none;
+  `}
+`;
+
+export const ProjectCta = styled.span`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: ${({ theme }) => theme.fantasia};
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  opacity: 0;
+  transform: translateY(0.8rem);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+
+  svg {
+    flex: 0 0 auto;
+  }
+
+  ${ProjectCard}:hover &,
+  ${ProjectCard}:focus-visible & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  ${mediaMaxDesktop1024`
+    font-size: 1rem;
+  `}
+
+  ${mediaMaxMobile`
+    position: static;
+    font-size: 1.2rem;
+    opacity: 1;
+    transform: translateY(0);
   `}
 `;
 
@@ -226,8 +417,8 @@ export const GithubButtonWrapper = styled.div`
 
 export const GithubButton = styled.a`
   padding: 1.2rem 4.8rem;
-  color: ${({ theme }) => theme.primary};
-  border: 0.2rem solid ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.fantasia};
+  border: 0.2rem solid ${({ theme }) => theme.fantasia};
   border-radius: 0.2rem;
   font-size: 1.6rem;
   font-weight: 500;
@@ -239,10 +430,10 @@ export const GithubButton = styled.a`
     box-shadow 0.3s ease-in-out;
 
   &:hover {
-    color: ${({ theme }) => theme.background};
-    background-color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.extremeBlack};
+    background-color: ${({ theme }) => theme.fantasia};
     transform: translateY(-0.2rem);
-    box-shadow: 0rem 0rem 0.5rem ${({ theme }) => theme.primary};
+    box-shadow: 0rem 0rem 0.5rem ${({ theme }) => theme.fantasia};
   }
 
   ${mediaMaxDesktop1024`

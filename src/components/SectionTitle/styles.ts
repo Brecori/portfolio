@@ -6,14 +6,14 @@ export const Title = styled.h2<{ $isVisible: boolean }>`
   font-weight: 600;
   position: relative;
   width: fit-content;
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.techWhite};
 
   &::after {
     content: "";
     position: absolute;
     width: ${({ $isVisible }) => ($isVisible ? "35%" : "0%")};
     height: 0.6rem;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.fantasia};
     bottom: -1rem;
     left: 0;
     transition: width 0.7s 0.3s ease-out;

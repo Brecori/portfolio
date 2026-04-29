@@ -7,7 +7,7 @@ export const Spacer = styled.div`
   background: linear-gradient(
     90deg,
     transparent 0%,
-    ${({ theme }) => theme.borders} 50%,
+    ${({ theme }) => theme.techWhite10} 50%,
     transparent 100%
   );
 

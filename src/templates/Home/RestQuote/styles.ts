@@ -70,7 +70,7 @@ export const Dots = styled.div`
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.primary};
+    background-color: ${({ theme }) => theme.fantasia};
     opacity: 0.42;
     animation: ${dotFloat} 2.4s ease-in-out infinite;
   }
@@ -105,7 +105,7 @@ export const Dots = styled.div`
 `;
 
 export const Quote = styled.p`
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.techWhite};
   font-size: 8rem;
   font-weight: 500;
   line-height: 0.95;
@@ -127,10 +127,10 @@ export const Highlight = styled.span`
   color: transparent;
   background: linear-gradient(
     90deg,
-    ${({ theme }) => theme.primary} 0%,
-    ${({ theme }) => theme.primary} var(--highlight-progress),
-    ${({ theme }) => theme.textSecondary} var(--highlight-progress),
-    ${({ theme }) => theme.textSecondary} 100%
+    ${({ theme }) => theme.fantasia} 0%,
+    ${({ theme }) => theme.fantasia} var(--highlight-progress),
+    ${({ theme }) => theme.submarine} var(--highlight-progress),
+    ${({ theme }) => theme.submarine} 100%
   );
   background-clip: text;
   -webkit-background-clip: text;

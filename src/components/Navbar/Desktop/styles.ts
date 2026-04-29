@@ -8,8 +8,8 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  background-color: ${({ $hasScrolled }) =>
-    $hasScrolled ? "var(--color-background-secondary)" : "transparent"};
+  background-color: ${({ $hasScrolled, theme }) =>
+    $hasScrolled ? theme.codGray : "transparent"};
   padding: 0 15rem;
   align-items: center;
   position: fixed;
@@ -28,10 +28,10 @@ export const Logo = styled.div`
   justify-self: start;
   font-size: 2.2rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.techWhite};
 
   span {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.fantasia};
   }
 
   ${mediaMaxDesktop1024`
@@ -47,7 +47,7 @@ export const Menu = styled.ul`
 
 export const MenuItem = styled.li`
   button {
-    color: ${({ theme }) => theme.textSecondary};
+    color: ${({ theme }) => theme.submarine};
     font-size: 1.4rem;
     font-weight: 300;
     letter-spacing: 0.08em;
@@ -59,7 +59,7 @@ export const MenuItem = styled.li`
 
   &:hover {
     button {
-      color: ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.fantasia};
       transform: translateY(-0.2rem);
     }
   }
@@ -80,7 +80,7 @@ export const TogglesContainer = styled.div`
 export const LanguageToggleText = styled.span`
   font-size: 1rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.textSecondary};
+  color: ${({ theme }) => theme.submarine};
   transition: color ${transitionDuration} ease-in-out;
   text-transform: uppercase;
 
@@ -97,17 +97,17 @@ export const LanguageToggleButton = styled.button`
   width: 3.5rem;
 
   svg {
-    color: ${({ theme }) => theme.textSecondary};
+    color: ${({ theme }) => theme.submarine};
     transition: color ${transitionDuration} ease-in-out;
   }
 
   &:hover {
     svg {
-      color: ${({ theme }) => theme.textPrimary};
+      color: ${({ theme }) => theme.techWhite};
     }
 
     ${LanguageToggleText} {
-      color: ${({ theme }) => theme.textPrimary};
+      color: ${({ theme }) => theme.techWhite};
     }
   }
 
@@ -117,8 +117,4 @@ export const LanguageToggleButton = styled.button`
       height: 2rem;
     }
   `}
-`;
-
-export const ThemeToggleButton = styled(LanguageToggleButton)`
-  width: 3.5rem;
 `;

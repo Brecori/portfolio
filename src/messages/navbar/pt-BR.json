@@ -5,10 +5,6 @@
     "trajectory": "Trajetória",
     "contact": "Contato"
   },
-  "theme": {
-    "light": "claro",
-    "dark": "escuro"
-  },
   "aria": {
     "openMenu": "Abrir menu de navegação",
     "closeMenu": "Fechar menu de navegação"

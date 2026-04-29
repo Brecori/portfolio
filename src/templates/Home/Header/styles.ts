@@ -72,7 +72,7 @@ export const RightVisual = styled.div`
 export const Title = styled.h1`
   font-size: 8rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.techWhite};
   letter-spacing: -0.05em;
 
   ${mediaMaxDesktop1024`
@@ -86,12 +86,12 @@ export const Title = styled.h1`
 
 export const SpanTitle = styled.span<{ $purple: boolean }>`
   color: ${({ $purple, theme }) =>
-    $purple ? theme.primary : theme.textSecondary};
+    $purple ? theme.fantasia : theme.submarine};
 `;
 
 export const Description = styled.p`
   font-size: 2.2rem;
-  color: ${({ theme }) => theme.textSecondary};
+  color: ${({ theme }) => theme.submarine};
   max-width: 70ch;
   letter-spacing: 0.02em;
   line-height: 1.5;
@@ -123,8 +123,8 @@ export const ButtonsContainer = styled.div`
 
 export const Button = styled.a`
   padding: 1.2rem 4.8rem;
-  color: ${({ theme }) => theme.background};
-  background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.extremeBlack};
+  background-color: ${({ theme }) => theme.fantasia};
   border: 0.2rem solid transparent;
   font-size: 1.6rem;
   text-transform: uppercase;
@@ -138,7 +138,7 @@ export const Button = styled.a`
 
   &:hover {
     transform: translateY(-0.2rem);
-    box-shadow: 0rem 0rem 0.5rem ${({ theme }) => theme.primary};
+    box-shadow: 0rem 0rem 0.5rem ${({ theme }) => theme.fantasia};
   }
 
   ${mediaMaxDesktop1024`
@@ -158,9 +158,9 @@ export const PdfButton = styled.button`
   position: relative;
   overflow: hidden;
   padding: 1.2rem 4.8rem;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.fantasia};
   background-color: transparent;
-  border: 0.2rem solid ${({ theme }) => theme.primary};
+  border: 0.2rem solid ${({ theme }) => theme.fantasia};
   font-size: 1.6rem;
   text-transform: uppercase;
   border-radius: 0.2rem;
@@ -182,8 +182,8 @@ export const PdfButton = styled.button`
       135deg,
       transparent 0%,
       transparent 44%,
-      ${({ theme }) => theme.primary} 44%,
-      ${({ theme }) => theme.primary} 56%,
+      ${({ theme }) => theme.fantasia} 44%,
+      ${({ theme }) => theme.fantasia} 56%,
       transparent 56%,
       transparent 100%
     );

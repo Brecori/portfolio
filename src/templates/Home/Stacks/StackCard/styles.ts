@@ -7,7 +7,7 @@ export const Card = styled.article<{ $featured: boolean }>`
   display: grid;
   gap: ${({ $featured }) => ($featured ? "5rem" : "2.4rem")};
   min-height: 22rem;
-  border: 0.1rem solid ${({ theme }) => theme.borders};
+  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
   border-radius: 0.4rem;
   padding: 2.8rem;
   box-shadow: 0rem 0.2rem 0.8rem rgba(0, 0, 0, 0.2);
@@ -25,13 +25,13 @@ export const Card = styled.article<{ $featured: boolean }>`
   &:hover {
     border-color: color-mix(
       in srgb,
-      ${({ theme }) => theme.primary} 48%,
-      ${({ theme }) => theme.borders}
+      ${({ theme }) => theme.fantasia} 48%,
+      ${({ theme }) => theme.techWhite10}
     );
     box-shadow:
       0rem 1.2rem 3rem rgba(0, 0, 0, 0.24),
       0rem 0rem 2.4rem
-        color-mix(in srgb, ${({ theme }) => theme.primary} 12%, transparent);
+        color-mix(in srgb, ${({ theme }) => theme.fantasia} 12%, transparent);
     transform: translateY(-0.4rem);
   }
 
@@ -56,7 +56,7 @@ export const CardHeader = styled.div`
   svg {
     width: 2.8rem;
     height: 2.8rem;
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.fantasia};
     stroke-width: 1.6;
     opacity: 0.48;
     transition:
@@ -68,7 +68,7 @@ export const CardHeader = styled.div`
       opacity: 1;
       filter: drop-shadow(
         0rem 0rem 1rem
-          color-mix(in srgb, ${({ theme }) => theme.primary} 45%, transparent)
+          color-mix(in srgb, ${({ theme }) => theme.fantasia} 45%, transparent)
       );
       transform: translateY(-0.2rem);
     }
@@ -89,7 +89,7 @@ export const CardHeader = styled.div`
 `;
 
 export const CardNumber = styled.span`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.fantasia};
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1;
@@ -101,7 +101,7 @@ export const CardNumber = styled.span`
   ${Card}:hover & {
     opacity: 1;
     text-shadow: 0rem 0rem 1.4rem
-      color-mix(in srgb, ${({ theme }) => theme.primary} 45%, transparent);
+      color-mix(in srgb, ${({ theme }) => theme.fantasia} 45%, transparent);
   }
 
   ${mediaMaxDesktop1024`
@@ -143,7 +143,7 @@ export const CardContent = styled.div<{ $featured: boolean }>`
 `;
 
 export const CardTitle = styled.h3`
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.techWhite};
   font-size: 4.2rem;
   font-weight: 600;
   line-height: 1;
@@ -189,7 +189,7 @@ export const StackList = styled.ul<{ $featured: boolean }>`
 `;
 
 export const StackItem = styled.li`
-  color: ${({ theme }) => theme.textSecondary};
+  color: ${({ theme }) => theme.submarine};
   font-size: 1.4rem;
   font-weight: 500;
   line-height: 1;
@@ -205,7 +205,7 @@ export const StackItem = styled.li`
   ${Card}:hover & {
     transform: translateY(0);
     opacity: 1;
-    color: ${({ theme }) => theme.textPrimary};
+    color: ${({ theme }) => theme.techWhite};
   }
 
   ${Card}:hover &:nth-last-child(1) {

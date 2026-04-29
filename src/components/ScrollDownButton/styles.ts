@@ -29,7 +29,7 @@ export const Button = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  color: ${({ theme }) => theme.textSecondary};
+  color: ${({ theme }) => theme.submarine};
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -40,11 +40,11 @@ export const Button = styled.button`
   svg {
     width: 3rem;
     height: 3rem;
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.fantasia};
   }
 
   &:hover {
-    color: ${({ theme }) => theme.textPrimary};
+    color: ${({ theme }) => theme.techWhite};
   }
 
   ${mediaMaxMobile`

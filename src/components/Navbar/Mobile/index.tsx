@@ -1,5 +1,4 @@
-import { useThemeContext } from "@/contexts/theme-provider";
-import { LanguagesIcon, MenuIcon, MoonIcon, SunIcon, XIcon } from "lucide-react";
+import { LanguagesIcon, MenuIcon, XIcon } from "lucide-react";
 import { FC, useState } from "react";
 import { useTranslations } from "next-intl";
 import C from "../constants";
@@ -10,7 +9,6 @@ import { scrollToElement } from "@/lib/smooth-scroll";
 export const NavbarMobile: FC = () => {
   const t = useTranslations("navbar");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { mode, toggleTheme } = useThemeContext();
   const { changeLanguage, nextLocale, hasScrolled } = useHelpers();
 
   const closeMenu = () => {
@@ -45,9 +43,6 @@ export const NavbarMobile: FC = () => {
         <S.TogglesContainer>
           <S.IconButton type="button" onClick={() => changeLanguage(nextLocale)}>
             <LanguagesIcon />
-          </S.IconButton>
-          <S.IconButton type="button" onClick={toggleTheme}>
-            {mode === "dark" ? <MoonIcon /> : <SunIcon />}
           </S.IconButton>
         </S.TogglesContainer>
       </S.NavbarContainer>

@@ -8,7 +8,7 @@ export const Glow = styled.div`
   height: 12rem;
   border-radius: 50%;
   pointer-events: none;
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.fantasia};
   opacity: 0.32;
   filter: blur(5rem);
   transform: translate3d(-50%, -50%, 0);
@@ -44,8 +44,8 @@ export const CursorRing = styled.div`
   ${cursorLayerStyles}
   width: 3.2rem;
   height: 3.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.primary};
-  background-color: ${({ theme }) => `${theme.primary}12`};
+  border: 0.1rem solid ${({ theme }) => theme.fantasia};
+  background-color: ${({ theme }) => `${theme.fantasia}12`};
   backdrop-filter: blur(0.1rem);
 `;
 
@@ -53,6 +53,6 @@ export const CursorDot = styled.div`
   ${cursorLayerStyles}
   width: var(--cursor-dot-size, 0.4rem);
   height: var(--cursor-dot-size, 0.4rem);
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.fantasia};
   z-index: 41;
 `;
