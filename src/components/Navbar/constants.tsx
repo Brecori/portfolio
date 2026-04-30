@@ -11,7 +11,7 @@ export default {
     },
     {
       labelKey: "items.projects",
-      targetId: "stacks",
+      targetId: "projects",
     },
     {
       labelKey: "items.trajectory",

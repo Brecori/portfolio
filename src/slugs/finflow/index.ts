@@ -1,0 +1,20 @@
+import type { ProjectContent } from "../props";
+
+export const createFinflowProject = (
+  t: (key: string) => string,
+): ProjectContent => {
+  return {
+    content: t("content"),
+    data: "2024",
+    description: t("description"),
+    githubLink: "https://github.com/",
+    image:
+      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80",
+    productionLink: "#",
+    slug: "finflow",
+    stack: ["React Native", "Expo"],
+    status: "concept",
+    summary: t("summary"),
+    titulo: t("titulo"),
+  };
+};

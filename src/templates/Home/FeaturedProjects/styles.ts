@@ -68,24 +68,23 @@ export const ProjectCard = styled.a`
       linear-gradient(
         90deg,
         ${({ theme }) => theme.codGray} 0%,
-        color-mix(
-            in srgb,
-            ${({ theme }) => theme.codGray} 82%,
-            transparent
-          )
-          38%,
-        color-mix(
-            in srgb,
-            ${({ theme }) => theme.codGray} 36%,
-            transparent
-          )
+        color-mix(in srgb, ${({ theme }) => theme.codGray} 82%, transparent) 38%,
+        color-mix(in srgb, ${({ theme }) => theme.codGray} 36%, transparent)
           100%
       ),
       linear-gradient(
         180deg,
-        color-mix(in srgb, ${({ theme }) => theme.extremeBlack} 14%, transparent)
+        color-mix(
+            in srgb,
+            ${({ theme }) => theme.extremeBlack} 14%,
+            transparent
+          )
           0%,
-        color-mix(in srgb, ${({ theme }) => theme.extremeBlack} 74%, transparent)
+        color-mix(
+            in srgb,
+            ${({ theme }) => theme.extremeBlack} 74%,
+            transparent
+          )
           100%
       );
     opacity: 0;
@@ -346,8 +345,9 @@ export const ProjectSummary = styled.span`
   right: 0;
   color: ${({ theme }) => theme.fantasia};
   font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   line-height: 1.2;
   opacity: 0.62;
   transform: translateY(-50%);
@@ -379,14 +379,15 @@ export const ProjectCta = styled.span`
   gap: 0.8rem;
   color: ${({ theme }) => theme.fantasia};
   font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-weight: 300;
+  letter-spacing: 0.12em;
   line-height: 1;
   opacity: 0;
   transform: translateY(0.8rem);
   transition:
     opacity 0.45s ease,
     transform 0.45s ease;
+  text-transform: uppercase;
 
   svg {
     flex: 0 0 auto;

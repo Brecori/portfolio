@@ -1,0 +1,6 @@
+{
+  "titulo": "Pulse Metrics",
+  "summary": "Metrics dashboard",
+  "description": "A focused dashboard for tracking product metrics, deployment health, and team priorities in one operational view.",
+  "content": "## Overview\n\nPulse Metrics centralizes product, deployment, and priority signals into a compact operational workspace.\n\n## Challenge\n\nTeams needed a faster way to scan product health without switching between disconnected tools.\n\n## Solution\n\nThe interface groups key metrics, release status, and priority context into a dashboard built for daily review.\n\n## Results\n\nThe concept reduces context switching and gives stakeholders a clearer view of what needs attention."
+}

@@ -12,10 +12,44 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const header = (await import(`../messages/header/${locale}.json`)).default;
   const navbar = (await import(`../messages/navbar/${locale}.json`)).default;
   const stacks = (await import(`../messages/stacks/${locale}.json`)).default;
+  const featuredProjects = (
+    await import(`../messages/featured-projects/${locale}.json`)
+  ).default;
+  const pulseMetrics = (
+    await import(`../messages/featured-projects/pulse-metrics/${locale}.json`)
+  ).default;
+  const atlasStorefront = (
+    await import(
+      `../messages/featured-projects/atlas-storefront/${locale}.json`
+    )
+  ).default;
+  const moodLab = (
+    await import(`../messages/featured-projects/mood-lab/${locale}.json`)
+  ).default;
+  const finflow = (
+    await import(`../messages/featured-projects/finflow/${locale}.json`)
+  ).default;
+  const signalLaunch = (
+    await import(`../messages/featured-projects/signal-launch/${locale}.json`)
+  ).default;
 
   return {
     locale,
-    messages: { header, navbar, stacks },
+    messages: {
+      featuredProjects: {
+        ...featuredProjects,
+        projects: {
+          atlasStorefront,
+          finflow,
+          moodLab,
+          pulseMetrics,
+          signalLaunch,
+        },
+      },
+      header,
+      navbar,
+      stacks,
+    },
     // ...
   };
 });

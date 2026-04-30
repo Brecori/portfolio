@@ -1,0 +1,6 @@
+{
+  "titulo": "Pulse Metrics",
+  "summary": "Dashboard de métricas",
+  "description": "Um dashboard focado em acompanhar métricas de produto, saúde de deploys e prioridades do time em uma visão operacional.",
+  "content": "## Visão geral\n\nPulse Metrics centraliza sinais de produto, deploy e prioridades em um espaço operacional compacto.\n\n## Desafio\n\nTimes precisavam de uma forma mais rápida de acompanhar a saúde do produto sem alternar entre ferramentas desconectadas.\n\n## Solução\n\nA interface reúne métricas-chave, status de releases e contexto de prioridades em um dashboard pensado para revisão diária.\n\n## Resultados\n\nO conceito reduz troca de contexto e oferece aos stakeholders uma leitura mais clara do que precisa de atenção."
+}
