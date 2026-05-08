@@ -11,6 +11,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   const header = (await import(`../messages/header/${locale}.json`)).default;
   const navbar = (await import(`../messages/navbar/${locale}.json`)).default;
+  const restQuote = (await import(`../messages/rest-quote/${locale}.json`))
+    .default;
   const stacks = (await import(`../messages/stacks/${locale}.json`)).default;
   const featuredProjects = (
     await import(`../messages/featured-projects/${locale}.json`)
@@ -48,6 +50,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       },
       header,
       navbar,
+      restQuote,
       stacks,
     },
     // ...

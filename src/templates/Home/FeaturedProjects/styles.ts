@@ -56,8 +56,8 @@ export const ProjectCard = styled.a`
   border-bottom: 0.1rem solid ${({ theme }) => theme.techWhite10};
   background-color: transparent;
   transition:
-    background-color 0.45s ease,
-    min-height 0.45s ease;
+    background-color 0.65s ease,
+    min-height 0.65s ease;
 
   &::before {
     content: "";
@@ -88,7 +88,7 @@ export const ProjectCard = styled.a`
           100%
       );
     opacity: 0;
-    transition: opacity 0.45s ease;
+    transition: opacity 0.65s ease;
   }
 
   &::after {
@@ -101,8 +101,8 @@ export const ProjectCard = styled.a`
     transform: scaleY(0);
     transform-origin: center top;
     transition:
-      opacity 0.45s ease,
-      transform 0.45s ease;
+      opacity 0.65s 0.15s ease,
+      transform 0.65s 0.15s ease;
   }
 
   &:hover,
@@ -221,7 +221,7 @@ export const ProjectTitle = styled.h3`
   line-height: 1;
   opacity: 0.78;
   transition:
-    font-size 0.45s ease,
+    font-size 0.45s 0.25s ease,
     opacity 0.45s ease;
 
   ${ProjectCard}:hover &,
@@ -297,11 +297,11 @@ export const ProjectStack = styled.span`
   opacity: 0;
   transform: translateY(0.8rem);
   transition:
-    margin-top 0.45s ease,
-    max-height 0.45s ease,
-    opacity 0.45s ease,
-    text-shadow 0.45s ease,
-    transform 0.45s ease;
+    margin-top 0.65s ease,
+    max-height 0.65s ease,
+    opacity 0.65s ease,
+    text-shadow 0.65s ease,
+    transform 0.65s ease;
 
   ${ProjectCard}:hover &,
   ${ProjectCard}:focus-visible & {
@@ -352,8 +352,8 @@ export const ProjectSummary = styled.span`
   opacity: 0.62;
   transform: translateY(-50%);
   transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
+    opacity 0.65s ease,
+    transform 0.65s ease;
 
   ${ProjectCard}:hover &,
   ${ProjectCard}:focus-visible & {
@@ -385,8 +385,8 @@ export const ProjectCta = styled.span`
   opacity: 0;
   transform: translateY(0.8rem);
   transition:
-    opacity 0.45s ease,
-    transform 0.45s ease;
+    opacity 0.65s ease,
+    transform 0.65s ease;
   text-transform: uppercase;
 
   svg {

@@ -25,19 +25,18 @@ export const RestQuoteContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 74rem;
   overflow: hidden;
   padding: 0 15rem;
-  min-height: 120vh;
+  min-height: 150vh;
 
   ${mediaMaxDesktop1024`
-    min-height: 52rem;
-    padding: 5rem 7.5rem 10rem;
+    min-height: 130vh;
+    padding: 0 7.5rem 0;
   `}
 
   ${mediaMaxMobile`
-    min-height: 48rem;
-    padding: 8rem 2.4rem;
+    min-height: 90vh;
+    padding: 0 2.4rem;
   `}
 `;
 
@@ -72,15 +71,15 @@ export const Dots = styled.div`
     border-radius: 50%;
     background-color: ${({ theme }) => theme.fantasia};
     opacity: 0.42;
-    animation: ${dotFloat} 2.4s ease-in-out infinite;
+    animation: ${dotFloat} 2.1s ease-in-out infinite;
   }
 
   span:nth-child(2) {
-    animation-delay: 0.18s;
+    animation-delay: 0.12s;
   }
 
   span:nth-child(3) {
-    animation-delay: 0.36s;
+    animation-delay: 0.24s;
   }
 
   ${mediaMaxDesktop1024`
@@ -116,7 +115,6 @@ export const Quote = styled.p`
   `}
 
   ${mediaMaxMobile`
-    max-width: 10ch;
     font-size: 4.8rem;
   `}
 `;

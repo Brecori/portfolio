@@ -1,5 +1,8 @@
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+
+gsap.registerPlugin(useGSAP);
 
 export default (titlesLength: number) => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -10,51 +13,69 @@ export default (titlesLength: number) => {
     setCanRotateTitle(true);
   }, []);
 
-  useEffect(() => {
-    if (!canRotateTitle) {
-      return;
-    }
+  useGSAP(
+    (_, contextSafe) => {
+      if (!canRotateTitle) {
+        return;
+      }
 
-    if (titlesLength <= 1) {
-      return;
-    }
+      if (titlesLength <= 1) {
+        return;
+      }
 
-    const titleElement = titleRef.current;
+      const titleElement = titleRef.current;
 
-    const interval = window.setInterval(() => {
       if (!titleElement) {
         return;
       }
 
-      gsap.to(titleElement, {
-        autoAlpha: 0,
-        y: -18,
-        duration: 0.35,
-        ease: "power2.in",
-        onComplete: () => {
-          setTitleIndex((currentIndex) => (currentIndex + 1) % titlesLength);
+      if (!contextSafe) {
+        return;
+      }
 
-          window.requestAnimationFrame(() => {
-            gsap.fromTo(
-              titleElement,
-              { autoAlpha: 0, y: 18 },
-              {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.5,
-                ease: "power2.out",
-              },
+      const rotateTitle = contextSafe(() => {
+        if (!titleElement) {
+          return;
+        }
+
+        gsap.to(titleElement, {
+          autoAlpha: 0,
+          y: -18,
+          duration: 0.35,
+          ease: "power2.in",
+          onComplete: () => {
+            setTitleIndex((currentIndex) => (currentIndex + 1) % titlesLength);
+
+            window.requestAnimationFrame(
+              contextSafe(() => {
+                gsap.fromTo(
+                  titleElement,
+                  { autoAlpha: 0, y: 18 },
+                  {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "power2.out",
+                  },
+                );
+              }),
             );
-          });
-        },
+          },
+        });
       });
-    }, 5000);
 
-    return () => {
-      window.clearInterval(interval);
-      gsap.killTweensOf(titleElement);
-    };
-  }, [canRotateTitle, titlesLength]);
+      const interval = window.setInterval(rotateTitle, 5000);
+
+      return () => {
+        window.clearInterval(interval);
+      };
+    },
+    {
+      dependencies: [canRotateTitle, titlesLength],
+      revertOnUpdate: true,
+      scope: titleRef,
+    },
+  );
 
   return {
     handleInitialAnimationComplete,
