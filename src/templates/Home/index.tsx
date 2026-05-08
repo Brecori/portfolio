@@ -7,6 +7,7 @@ import { Spacer } from "@/components/Spacer";
 import { Stacks } from "./Stacks";
 import { FeaturedProjects } from "./FeaturedProjects";
 import { RestQuote } from "./RestQuote";
+import { Trajectory } from "./Trajectory";
 
 export const HomeTemplate: FC = () => {
   return (
@@ -16,6 +17,8 @@ export const HomeTemplate: FC = () => {
       <Spacer />
       <FeaturedProjects />
       <RestQuote />
+      <Trajectory />
+      <Stacks />
       <Stacks />
     </S.HomeContainer>
   );

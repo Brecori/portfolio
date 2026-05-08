@@ -1,0 +1,53 @@
+{
+  "title": "Trajetória",
+  "years": [
+    {
+      "year": "2025",
+      "items": [
+        {
+          "period": "Atual",
+          "role": "Frontend Developer",
+          "company": "Projeto mockado",
+          "description": "Atuação focada em interfaces performáticas, componentes reutilizáveis e experiências digitais com atenção ao detalhe visual.",
+          "tags": ["React", "Next.js", "Design Systems"]
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "items": [
+        {
+          "period": "Produto digital",
+          "role": "UI Engineer",
+          "company": "Projeto mockado",
+          "description": "Construção de telas responsivas, fluxos de navegação e animações sutis para produtos web com alto padrão de acabamento.",
+          "tags": ["TypeScript", "Styled Components", "GSAP"]
+        }
+      ]
+    },
+    {
+      "year": "2023",
+      "items": [
+        {
+          "period": "Experiência web",
+          "role": "Frontend Developer",
+          "company": "Projeto mockado",
+          "description": "Evolução de páginas institucionais e aplicações com foco em acessibilidade, SEO técnico e consistência entre breakpoints.",
+          "tags": ["JavaScript", "Acessibilidade", "Performance"]
+        }
+      ]
+    },
+    {
+      "year": "2022",
+      "items": [
+        {
+          "period": "Primeiros projetos",
+          "role": "Web Developer",
+          "company": "Projeto mockado",
+          "description": "Base sólida em HTML, CSS e JavaScript, criando layouts responsivos e aprendendo a transformar referências visuais em código.",
+          "tags": ["HTML", "CSS", "JavaScript"]
+        }
+      ]
+    }
+  ]
+}

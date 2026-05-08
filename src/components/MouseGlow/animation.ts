@@ -110,6 +110,7 @@ export default () => {
     };
 
     const handlePointerEnter = () => {
+      delete document.documentElement.dataset.nativeCursor;
       glow.style.opacity = VISIBLE_OPACITY;
       cursorRing.style.opacity = "1";
       cursorDot.style.opacity = "1";
@@ -119,9 +120,18 @@ export default () => {
       isPointerDownRef.current = false;
       isHoveringInteractiveElementRef.current = false;
       setCursorDotSize();
+      document.documentElement.dataset.nativeCursor = "true";
       glow.style.opacity = HIDDEN_OPACITY;
       cursorRing.style.opacity = HIDDEN_OPACITY;
       cursorDot.style.opacity = HIDDEN_OPACITY;
+    };
+
+    const handleWindowBlur = () => {
+      document.documentElement.dataset.nativeCursor = "true";
+    };
+
+    const handleWindowFocus = () => {
+      delete document.documentElement.dataset.nativeCursor;
     };
 
     const handlePointerDown = (event: PointerEvent) => {
@@ -168,6 +178,8 @@ export default () => {
     window.addEventListener("pointercancel", handlePointerUp, {
       passive: true,
     });
+    window.addEventListener("blur", handleWindowBlur);
+    window.addEventListener("focus", handleWindowFocus);
 
     return () => {
       if (animationFrameRef.current !== null) {
@@ -180,6 +192,9 @@ export default () => {
       window.removeEventListener("pointerdown", handlePointerDown);
       window.removeEventListener("pointerup", handlePointerUp);
       window.removeEventListener("pointercancel", handlePointerUp);
+      window.removeEventListener("blur", handleWindowBlur);
+      window.removeEventListener("focus", handleWindowFocus);
+      delete document.documentElement.dataset.nativeCursor;
     };
   }, []);
 

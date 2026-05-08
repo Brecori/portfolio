@@ -98,13 +98,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   @media (pointer: fine) {
-    html,
-    body,
-    a,
-    button,
-    input,
-    textarea,
-    [role="button"] {
+    html:not([data-native-cursor="true"]),
+    html:not([data-native-cursor="true"]) body,
+    html:not([data-native-cursor="true"]) a,
+    html:not([data-native-cursor="true"]) button,
+    html:not([data-native-cursor="true"]) input,
+    html:not([data-native-cursor="true"]) textarea,
+    html:not([data-native-cursor="true"]) [role="button"] {
       cursor: none !important;
     }
   }
