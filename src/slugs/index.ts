@@ -8,19 +8,19 @@ import { useTranslations } from "next-intl";
 
 export const useProjectSlugs = (): ProjectSlugProps => {
   const pulseMetrics = createPulseMetricsProject(
-    useTranslations("featuredProjects.projects.pulseMetrics"),
+    useTranslations("projects.projects.pulseMetrics"),
   );
   const atlasStorefront = createAtlasStorefrontProject(
-    useTranslations("featuredProjects.projects.atlasStorefront"),
+    useTranslations("projects.projects.atlasStorefront"),
   );
   const moodLab = createMoodLabProject(
-    useTranslations("featuredProjects.projects.moodLab"),
+    useTranslations("projects.projects.moodLab"),
   );
   const finflow = createFinflowProject(
-    useTranslations("featuredProjects.projects.finflow"),
+    useTranslations("projects.projects.finflow"),
   );
   const signalLaunch = createSignalLaunchProject(
-    useTranslations("featuredProjects.projects.signalLaunch"),
+    useTranslations("projects.projects.signalLaunch"),
   );
 
   return [pulseMetrics, atlasStorefront, moodLab, finflow, signalLaunch];

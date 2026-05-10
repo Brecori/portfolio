@@ -18,21 +18,12 @@ export const TrajectoryContainer = styled.section`
   ${mediaMaxMobile`
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 8rem;
     padding: 8rem 2.4rem;
   `}
 `;
 
-export const SectionHeader = styled.div`
-  position: sticky;
-  top: 18vh;
-  align-self: start;
-  min-width: 0;
-
-  ${mediaMaxMobile`
-    position: static;
-  `}
-`;
+export const SectionHeader = styled.div``;
 
 export const Timeline = styled.div`
   position: relative;
@@ -66,7 +57,7 @@ export const TimelineContent = styled.div`
 
   ${mediaMaxMobile`
     &::before {
-      left: 2.4rem;
+      left: 0;
     }
   `}
 `;
@@ -91,7 +82,7 @@ export const TimelineMarker = styled.span`
   `}
 
   ${mediaMaxMobile`
-    left: 2.4rem;
+    left: 0;
   `}
 `;
 
@@ -113,7 +104,6 @@ export const YearGroup = styled.div`
   ${mediaMaxMobile`
     grid-template-columns: 1fr;
     min-height: auto;
-    padding-left: 2rem;
   `}
 `;
 
@@ -146,6 +136,7 @@ export const YearLabel = styled.div<{ $active: boolean }>`
     padding: 0 0 1.6rem 2.4rem;
 
     span {
+      opacity: 1;
       font-size: 1.8rem;
     }
   `}
@@ -156,7 +147,7 @@ export const Rail = styled.div`
 
   ${mediaMaxMobile`
     position: absolute;
-    left: 2.4rem;
+    left: 0rem;
     width: 0.1rem;
     height: 100%;
   `}
@@ -175,6 +166,7 @@ export const YearContent = styled.div<{ $active: boolean }>`
 
   ${mediaMaxMobile`
     padding: 0 0 7rem 2.4rem;
+    opacity: 1;
   `}
 `;
 

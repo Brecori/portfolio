@@ -12,16 +12,22 @@ export const GlobalStyles = createGlobalStyle`
 
   ::-webkit-scrollbar {
     width: 5px;
-    color: ${theme.fantasia};
+    background-color: ${theme.extremeBlack};
   }
 
   ::-webkit-scrollbar-thumb {
+    background-color: ${theme.fantasia};
     border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${theme.extremeBlack};
   }
 
   html, body, #__next {
     height: 100%;
-    /* background-color: ${theme.extremeBlack}; */
+    background-color: ${theme.extremeBlack};
+    scrollbar-color: ${theme.fantasia} ${theme.extremeBlack};
   }
 
   body {
@@ -29,16 +35,6 @@ export const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    inset: -50%;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.055;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.15' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-  }
 
   .app-shell {
     position: relative;

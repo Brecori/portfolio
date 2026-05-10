@@ -1,25 +1,5 @@
 import { mediaMaxMobile } from "@/lib/media-query";
-import styled, { keyframes } from "styled-components";
-
-const bounce = keyframes`
-  0%, 100% {
-    transform: translate3d(-50%, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(-50%, 0.8rem, 0);
-  }
-`;
-
-const mobileBounce = keyframes`
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, 0.8rem, 0);
-  }
-`;
+import styled from "styled-components";
 
 export const Button = styled.button`
   position: absolute;
@@ -34,8 +14,10 @@ export const Button = styled.button`
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  animation: ${bounce} 2s ease-in-out infinite;
-  transition: color 0.3s ease-in-out;
+  transition:
+    color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+  transform: translateX(-50%);
 
   svg {
     width: 3rem;
@@ -44,6 +26,7 @@ export const Button = styled.button`
   }
 
   &:hover {
+    transform: translate(-50%, 0.5rem);
     color: ${({ theme }) => theme.techWhite};
   }
 
@@ -52,7 +35,6 @@ export const Button = styled.button`
     align-self: center;
     margin-top: 10rem;
     font-size: 1.4rem;
-    animation-name: ${mobileBounce};
 
     svg {
       width: 3.6rem;

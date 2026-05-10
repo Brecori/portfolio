@@ -17,19 +17,18 @@ export const HeaderContainer = styled.header`
       transparent 30%
     ),
     linear-gradient(
-      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent) 0.1rem,
+      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent)
+        0.1rem,
       transparent 0.1rem
     ),
     linear-gradient(
       90deg,
-      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent) 0.1rem,
+      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent)
+        0.1rem,
       transparent 0.1rem
     ),
     ${({ theme }) => theme.extremeBlack};
-  background-position:
-    center,
-    center,
-    center;
+  background-position: center, center, center;
   background-size:
     100% 100%,
     5.6rem 5.6rem,
@@ -75,6 +74,7 @@ export const HeaderContainer = styled.header`
     flex-direction: column;
     align-items: flex-start;
     padding: 20rem 2.4rem 10rem;
+    min-height: 70vh;
     background-size:
       100% 100%,
       4rem 4rem,
@@ -104,7 +104,7 @@ export const Role = styled.span`
   color: ${({ theme }) => theme.fantasia};
   font-size: 1.35rem;
   font-weight: 800;
-  letter-spacing: 0;
+  letter-spacing: 0.8em;
   line-height: 1;
   text-transform: uppercase;
 
@@ -121,8 +121,8 @@ export const Title = styled.h1`
   font-size: 8rem;
   font-weight: 400;
   color: ${({ theme }) => theme.techWhite};
-  letter-spacing: 0;
-  line-height: 0.95;
+  letter-spacing: 0.04em;
+  line-height: 1;
   text-align: center;
 
   ${mediaMaxDesktop1024`
@@ -140,9 +140,10 @@ export const RotatingPhrase = styled.p`
   color: ${({ theme }) => theme.submarine};
   font-size: 3.2rem;
   font-weight: 500;
-  letter-spacing: 0;
+  letter-spacing: 0.2em;
   line-height: 1.05;
   text-align: center;
+  text-transform: uppercase;
 
   ${mediaMaxDesktop1024`
     min-height: 2.5rem;
@@ -201,8 +202,7 @@ const iconControlStyles = css`
   border: 0.1rem solid transparent;
   border-radius: 0.2rem;
   background:
-    radial-gradient(circle, transparent 0%, transparent 72%),
-    transparent;
+    radial-gradient(circle, transparent 0%, transparent 72%), transparent;
   box-shadow: none;
   scale: 1;
   transition:

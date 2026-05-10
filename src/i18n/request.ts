@@ -16,32 +16,29 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const skills = (await import(`../messages/skills/${locale}.json`)).default;
   const trajectory = (await import(`../messages/trajectory/${locale}.json`))
     .default;
-  const featuredProjects = (
-    await import(`../messages/featured-projects/${locale}.json`)
-  ).default;
+  const projects = (await import(`../messages/projects/${locale}.json`))
+    .default;
   const pulseMetrics = (
-    await import(`../messages/featured-projects/pulse-metrics/${locale}.json`)
+    await import(`../messages/projects/pulse-metrics/${locale}.json`)
   ).default;
   const atlasStorefront = (
-    await import(
-      `../messages/featured-projects/atlas-storefront/${locale}.json`
-    )
+    await import(`../messages/projects/atlas-storefront/${locale}.json`)
   ).default;
   const moodLab = (
-    await import(`../messages/featured-projects/mood-lab/${locale}.json`)
+    await import(`../messages/projects/mood-lab/${locale}.json`)
   ).default;
   const finflow = (
-    await import(`../messages/featured-projects/finflow/${locale}.json`)
+    await import(`../messages/projects/finflow/${locale}.json`)
   ).default;
   const signalLaunch = (
-    await import(`../messages/featured-projects/signal-launch/${locale}.json`)
+    await import(`../messages/projects/signal-launch/${locale}.json`)
   ).default;
 
   return {
     locale,
     messages: {
-      featuredProjects: {
-        ...featuredProjects,
+      projects: {
+        ...projects,
         projects: {
           atlasStorefront,
           finflow,
