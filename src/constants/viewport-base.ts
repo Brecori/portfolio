@@ -11,9 +11,6 @@ export const viewportsBase = {
   tablet: {
     width: 768,
   },
-  isMobileOrTabletVertical: {
-    width: 1280,
-  },
   ipadVertical: {
     width: 1280,
   },

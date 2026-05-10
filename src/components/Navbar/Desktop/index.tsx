@@ -1,6 +1,6 @@
 import { FC } from "react";
 import * as S from "./styles";
-import { LanguagesIcon } from "lucide-react";
+import { TbLanguage } from "react-icons/tb";
 import useHelpers from "../helpers";
 import C from "../constants";
 import { useTranslations } from "next-intl";
@@ -27,7 +27,7 @@ export const NavbarDesktop: FC = () => {
           type="button"
           onClick={() => changeLanguage(nextLocale)}
         >
-          <LanguagesIcon />
+          <TbLanguage />
           <S.LanguageToggleText>{currentLocale}</S.LanguageToggleText>
         </S.LanguageToggleButton>
       </S.TogglesContainer>

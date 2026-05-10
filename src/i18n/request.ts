@@ -13,7 +13,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const navbar = (await import(`../messages/navbar/${locale}.json`)).default;
   const restQuote = (await import(`../messages/rest-quote/${locale}.json`))
     .default;
-  const stacks = (await import(`../messages/stacks/${locale}.json`)).default;
+  const skills = (await import(`../messages/skills/${locale}.json`)).default;
   const trajectory = (await import(`../messages/trajectory/${locale}.json`))
     .default;
   const featuredProjects = (
@@ -53,7 +53,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       header,
       navbar,
       restQuote,
-      stacks,
+      skills,
       trajectory,
     },
     // ...

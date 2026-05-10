@@ -143,7 +143,7 @@ export const YearLabel = styled.div<{ $active: boolean }>`
 
   ${mediaMaxMobile`
     position: static;
-    padding: 0 0 1.6rem;
+    padding: 0 0 1.6rem 2.4rem;
 
     span {
       font-size: 1.8rem;

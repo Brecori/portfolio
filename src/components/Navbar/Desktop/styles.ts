@@ -99,6 +99,8 @@ export const LanguageToggleButton = styled.button`
   svg {
     color: ${({ theme }) => theme.submarine};
     transition: color ${transitionDuration} ease-in-out;
+    width: 2.4rem;
+    height: 2.4rem;
   }
 
   &:hover {

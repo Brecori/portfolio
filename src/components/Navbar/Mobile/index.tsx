@@ -1,4 +1,5 @@
-import { LanguagesIcon, MenuIcon, XIcon } from "lucide-react";
+import { FiMenu, FiX } from "react-icons/fi";
+import { TbLanguage } from "react-icons/tb";
 import { FC, useState } from "react";
 import { useTranslations } from "next-intl";
 import C from "../constants";
@@ -31,10 +32,10 @@ export const NavbarMobile: FC = () => {
             onClick={() => setIsMenuOpen((prev) => !prev)}
           >
             <S.MenuToggleIcon $isOpen={isMenuOpen}>
-              <MenuIcon />
+              <FiMenu />
             </S.MenuToggleIcon>
             <S.CloseToggleIcon $isOpen={isMenuOpen}>
-              <XIcon />
+              <FiX />
             </S.CloseToggleIcon>
           </S.HamburgerButton>
           <S.Logo>{C.title}</S.Logo>
@@ -42,7 +43,7 @@ export const NavbarMobile: FC = () => {
 
         <S.TogglesContainer>
           <S.IconButton type="button" onClick={() => changeLanguage(nextLocale)}>
-            <LanguagesIcon />
+            <TbLanguage />
           </S.IconButton>
         </S.TogglesContainer>
       </S.NavbarContainer>

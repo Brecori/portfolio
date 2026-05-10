@@ -1,0 +1,23 @@
+{
+  "title": "Skills",
+  "selected": "In focus",
+  "orbitLabel": "Orbiting skills",
+  "types": {
+    "mobile": "Mobile",
+    "frontend": "Frontend",
+    "styles": "Styles",
+    "animation": "Animation",
+    "design": "Design"
+  },
+  "items": {
+    "react": "ReactJs",
+    "next": "NextJs",
+    "angular": "AngularJS",
+    "typescript": "Typescript",
+    "styledComponents": "Styled Components",
+    "sass": "Sass",
+    "gsap": "GSAP",
+    "figma": "Figma",
+    "reactNative": "React Native"
+  }
+}

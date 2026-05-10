@@ -1,6 +1,6 @@
 import { FC } from "react";
 import AnimatedContent from "@/components/AnimatedContent";
-import { ArrowUpRight } from "lucide-react";
+import { FiArrowUpRight } from "react-icons/fi";
 import { SectionTitle } from "@/components/SectionTitle";
 import { useProjectSlugs } from "@/slugs";
 import { useTranslations } from "next-intl";
@@ -40,7 +40,7 @@ export const FeaturedProjects: FC = () => {
                       <S.ProjectSummary>{project.summary}</S.ProjectSummary>
                       <S.ProjectCta>
                         {t("actions.seeMore")}
-                        <ArrowUpRight aria-hidden size={16} strokeWidth={2.2} />
+                        <FiArrowUpRight aria-hidden size={16} />
                       </S.ProjectCta>
                     </S.ProjectSide>
                   </S.ProjectInfo>
