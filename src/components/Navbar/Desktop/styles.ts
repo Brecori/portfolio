@@ -9,12 +9,16 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   background-color: ${({ $hasScrolled, theme }) =>
-    $hasScrolled ? theme.codGray : "transparent"};
+    $hasScrolled ? theme.extremeBlack : "transparent"};
   padding: 0 15rem;
   align-items: center;
   position: fixed;
+  border-bottom: 0.1rem solid
+    ${({ theme, $hasScrolled }) =>
+      $hasScrolled ? theme.techWhite10 : "transparent"};
   z-index: 30;
   transition:
+    border-bottom-color ${transitionDuration} ease-in-out,
     background-color ${transitionDuration} ease-in-out,
     height ${transitionDuration} ease-in-out;
 

@@ -21,8 +21,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html, body, #__next {
     height: 100%;
-    background-color: ${theme.extremeBlack};
-    transition: background-color 0.4s ease-in-out;
+    /* background-color: ${theme.extremeBlack}; */
   }
 
   body {

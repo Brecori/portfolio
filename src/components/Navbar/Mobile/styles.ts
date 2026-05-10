@@ -11,6 +11,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   gap: 1.6rem;
   padding: 0 2.4rem;
   background-color: ${({ theme }) => theme.extremeBlack};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.techWhite10};
   position: fixed;
   z-index: 30;
 `;

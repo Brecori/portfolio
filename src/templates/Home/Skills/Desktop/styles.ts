@@ -1,4 +1,4 @@
-import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
+import { mediaMaxDesktop1024 } from "@/lib/media-query";
 import styled, { keyframes } from "styled-components";
 
 const backgroundWordFadeIn = keyframes`
@@ -16,14 +16,10 @@ type OrbitSize = "medium" | "large";
 export const SkillsContainer = styled.section`
   display: flex;
   flex-direction: column;
-  padding: 6rem 15rem 17rem;
+  padding: 10rem 15rem;
 
   ${mediaMaxDesktop1024`
     padding: 5rem 7.5rem 12rem;
-  `}
-
-  ${mediaMaxMobile`
-    padding: 8rem 2.4rem;
   `}
 `;
 
@@ -35,10 +31,6 @@ export const OrbitArea = styled.div`
 
   ${mediaMaxDesktop1024`
     min-height: 74rem;
-  `}
-
-  ${mediaMaxMobile`
-    min-height: 66rem;
   `}
 `;
 
@@ -56,10 +48,6 @@ export const BackgroundWord = styled.span`
   ${mediaMaxDesktop1024`
     font-size: 29rem;
   `}
-
-  ${mediaMaxMobile`
-    font-size: 14rem;
-  `}
 `;
 
 export const OrbitRail = styled.span<{ $size: OrbitSize }>`
@@ -72,10 +60,6 @@ export const OrbitRail = styled.span<{ $size: OrbitSize }>`
 
   ${mediaMaxDesktop1024`
     width: ${({ $size }) => ($size === "large" ? "64rem" : "46rem")};
-  `}
-
-  ${mediaMaxMobile`
-    width: ${({ $size }) => ($size === "large" ? "52rem" : "37rem")};
   `}
 `;
 
@@ -105,10 +89,6 @@ export const CenterCore = styled.div`
 
   ${mediaMaxDesktop1024`
     width: 19rem;
-  `}
-
-  ${mediaMaxMobile`
-    width: 17rem;
   `}
 `;
 
@@ -169,19 +149,12 @@ export const SkillOrbit = styled.div<{ $size: OrbitSize }>`
   ${mediaMaxDesktop1024`
     width: ${({ $size }) => ($size === "large" ? "64rem" : "46rem")};
   `}
-
-  ${mediaMaxMobile`
-    width: ${({ $size }) => ($size === "large" ? "52rem" : "37rem")};
-  `}
 `;
 
-export const SkillPoint = styled.button<{ $isActive: boolean }>`
-  position: absolute;
-  top: 50%;
-  left: 50%;
+export const SkillPointVisual = styled.span<{ $isActive: boolean }>`
   display: grid;
   place-items: center;
-  width: 7.4rem;
+  width: 100%;
   aspect-ratio: 1;
   border: 0.1rem solid
     ${({ $isActive, theme }) =>
@@ -222,9 +195,22 @@ export const SkillPoint = styled.button<{ $isActive: boolean }>`
       opacity 0.68s ease,
       filter 0.68s ease;
   }
+`;
 
-  &:hover,
-  &:focus-visible {
+export const SkillPoint = styled.button<{ $isActive: boolean }>`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 7.4rem;
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  padding: 0;
+
+  &:hover ${SkillPointVisual}, &:focus-visible ${SkillPointVisual} {
     border-color: color-mix(
       in srgb,
       ${({ theme }) => theme.fantasia} 78%,
@@ -241,11 +227,11 @@ export const SkillPoint = styled.button<{ $isActive: boolean }>`
       0 0 2.8rem
         color-mix(in srgb, ${({ theme }) => theme.fantasia} 36%, transparent),
       inset 0 0 1.6rem rgba(245, 245, 245, 0.03);
-    scale: 1.16;
+    scale: ${({ $isActive }) => ($isActive ? 1.14 : 1)};
   }
 
-  &:hover svg,
-  &:focus-visible svg {
+  &:hover ${SkillPointVisual} svg,
+  &:focus-visible ${SkillPointVisual} svg {
     color: ${({ theme }) => theme.fantasia};
     filter: drop-shadow(
       0 0 1rem
@@ -257,28 +243,20 @@ export const SkillPoint = styled.button<{ $isActive: boolean }>`
   ${mediaMaxDesktop1024`
     width: 6.2rem;
 
-    &:hover,
-    &:focus-visible {
-      scale: 1.12;
+    ${SkillPointVisual} {
+      scale: ${({ $isActive }) => ($isActive ? 1.12 : 1)};
     }
 
-    svg {
+    &:hover,
+    &:focus-visible {
+      ${SkillPointVisual} {
+        scale: 1.12;
+      }
+    }
+
+    ${SkillPointVisual} svg {
       width: 2.75rem;
       height: 2.75rem;
-    }
-  `}
-
-  ${mediaMaxMobile`
-    width: 5.2rem;
-
-    &:hover,
-    &:focus-visible {
-      scale: 1.1;
-    }
-
-    svg {
-      width: 2.25rem;
-      height: 2.25rem;
     }
   `}
 `;
@@ -309,8 +287,4 @@ export const SkillTooltip = styled.span`
     opacity: 1;
     transform: translate(-50%, 0);
   }
-
-  ${mediaMaxMobile`
-    display: none;
-  `}
 `;

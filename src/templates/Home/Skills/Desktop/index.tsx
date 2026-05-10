@@ -41,7 +41,9 @@ export const SkillsDesktop: FC = () => {
         ref={setSkillPointRef(orbitIndex)}
         type="button"
       >
-        <Icon aria-hidden="true" />
+        <S.SkillPointVisual $isActive={isActive}>
+          <Icon aria-hidden="true" />
+        </S.SkillPointVisual>
         <S.SkillTooltip>{t(`items.${skill.key}`)}</S.SkillTooltip>
       </S.SkillPoint>
     );

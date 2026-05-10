@@ -5,7 +5,7 @@ import { useCallback, useRef, useState } from "react";
 gsap.registerPlugin(useGSAP);
 
 export default (titlesLength: number) => {
-  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const titleRef = useRef<HTMLParagraphElement | null>(null);
   const [titleIndex, setTitleIndex] = useState(0);
   const [canRotateTitle, setCanRotateTitle] = useState(false);
 
@@ -79,7 +79,6 @@ export default (titlesLength: number) => {
 
   return {
     handleInitialAnimationComplete,
-    isPurpleTitle: titleIndex === 1,
     titleIndex,
     titleRef,
   };

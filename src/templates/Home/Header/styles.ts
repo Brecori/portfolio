@@ -1,16 +1,6 @@
 import AnimatedContent from "@/components/AnimatedContent";
 import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
-import styled, { keyframes } from "styled-components";
-
-const pdfButtonShine = keyframes`
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(120%, 120%, 0);
-  }
-`;
+import styled, { css } from "styled-components";
 
 export const HeaderContainer = styled.header`
   position: relative;
@@ -18,24 +8,85 @@ export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   padding: 0 15rem;
-  justify-content: space-between;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 44%,
+      color-mix(in srgb, ${({ theme }) => theme.fantasia} 10%, transparent) 0%,
+      transparent 30%
+    ),
+    linear-gradient(
+      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent) 0.1rem,
+      transparent 0.1rem
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent) 0.1rem,
+      transparent 0.1rem
+    ),
+    ${({ theme }) => theme.extremeBlack};
+  background-position:
+    center,
+    center,
+    center;
+  background-size:
+    100% 100%,
+    5.6rem 5.6rem,
+    5.6rem 5.6rem;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  &::before {
+    background:
+      linear-gradient(
+        90deg,
+        ${({ theme }) => theme.extremeBlack} 0%,
+        transparent 18%,
+        transparent 82%,
+        ${({ theme }) => theme.extremeBlack} 100%
+      ),
+      linear-gradient(
+        180deg,
+        ${({ theme }) => theme.extremeBlack} 0%,
+        transparent 24%,
+        transparent 76%,
+        ${({ theme }) => theme.extremeBlack} 100%
+      );
+    opacity: 0.78;
+  }
 
   ${mediaMaxDesktop1024`
     min-height: auto;
     padding: 15rem 7.5rem 10rem;
+    background-size:
+      100% 100%,
+      4.8rem 4.8rem,
+      4.8rem 4.8rem;
   `}
 
   ${mediaMaxMobile`
     flex-direction: column;
     align-items: flex-start;
     padding: 20rem 2.4rem 10rem;
+    background-size:
+      100% 100%,
+      4rem 4rem,
+      4rem 4rem;
   `}
 `;
 
 export const LeftGroup = styled(AnimatedContent)`
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  align-items: center;
+  gap: 2.2rem;
   position: relative;
   z-index: 1;
 
@@ -44,28 +95,25 @@ export const LeftGroup = styled(AnimatedContent)`
   `}
 
   ${mediaMaxMobile`
+    align-items: flex-start;
     gap: 3rem;
   `}
 `;
 
-export const RightVisual = styled.div`
-  width: 62rem;
-  aspect-ratio: 1;
-  flex: 0 0 62rem;
-  background-image: url("/svg/tech-panel.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  opacity: 0.9;
-  transform: translate3d(0, 0, 0);
+export const Role = styled.span`
+  color: ${({ theme }) => theme.fantasia};
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: uppercase;
 
   ${mediaMaxDesktop1024`
-    width: 40rem;
-    flex-basis: 40rem;
+    font-size: 1.15rem;
   `}
 
   ${mediaMaxMobile`
-    display: none;
+    font-size: 1.25rem;
   `}
 `;
 
@@ -73,7 +121,9 @@ export const Title = styled.h1`
   font-size: 8rem;
   font-weight: 400;
   color: ${({ theme }) => theme.techWhite};
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
+  line-height: 0.95;
+  text-align: center;
 
   ${mediaMaxDesktop1024`
     font-size: 6rem;
@@ -81,12 +131,29 @@ export const Title = styled.h1`
 
   ${mediaMaxMobile`
     font-size: 5rem;
+    text-align: left;
   `}
 `;
 
-export const SpanTitle = styled.span<{ $purple: boolean }>`
-  color: ${({ $purple, theme }) =>
-    $purple ? theme.fantasia : theme.submarine};
+export const RotatingPhrase = styled.p`
+  min-height: 3.4rem;
+  color: ${({ theme }) => theme.submarine};
+  font-size: 3.2rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.05;
+  text-align: center;
+
+  ${mediaMaxDesktop1024`
+    min-height: 2.5rem;
+    font-size: 2.4rem;
+  `}
+
+  ${mediaMaxMobile`
+    min-height: 2.8rem;
+    font-size: 2.6rem;
+    text-align: left;
+  `}
 `;
 
 export const Description = styled.p`
@@ -95,6 +162,7 @@ export const Description = styled.p`
   max-width: 70ch;
   letter-spacing: 0.02em;
   line-height: 1.5;
+  text-align: center;
 
   ${mediaMaxDesktop1024`
     font-size: 1.2rem;
@@ -103,12 +171,14 @@ export const Description = styled.p`
   ${mediaMaxMobile`
     font-size: 1.8rem;
     max-width: 80%;
+    text-align: left;
   `}
 `;
 
 export const ButtonsContainer = styled.div`
   display: flex;
-  gap: 2rem;
+  justify-content: center;
+  gap: 1.4rem;
   margin-top: 2rem;
 
   ${mediaMaxDesktop1024`
@@ -116,96 +186,122 @@ export const ButtonsContainer = styled.div`
   `}
 
   ${mediaMaxMobile`
-    flex-direction: column;
-    gap: 3rem;
-  `}
-`;
-
-export const Button = styled.a`
-  padding: 1.2rem 4.8rem;
-  color: ${({ theme }) => theme.extremeBlack};
-  background-color: ${({ theme }) => theme.fantasia};
-  border: 0.2rem solid transparent;
-  font-size: 1.6rem;
-  text-transform: uppercase;
-  border-radius: 0.2rem;
-  font-weight: 500;
-  transition:
-    background-color 0.3s ease-in-out,
-    color 0.3s ease-in-out,
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
-
-  &:hover {
-    transform: translateY(-0.2rem);
-    box-shadow: 0rem 0rem 0.5rem ${({ theme }) => theme.fantasia};
-  }
-
-  ${mediaMaxDesktop1024`
-    padding: 0.8rem 2.4rem;
-    font-size: 1.2rem;
-  `}
-
-  ${mediaMaxMobile`
-    padding: 1.6rem 2.4rem;
-    font-size: 2rem;
-    text-align: center;
     width: 100%;
+    gap: 1.6rem;
   `}
 `;
 
-export const PdfButton = styled.button`
+const iconControlStyles = css`
   position: relative;
-  overflow: hidden;
-  padding: 1.2rem 4.8rem;
-  color: ${({ theme }) => theme.fantasia};
-  background-color: transparent;
-  border: 0.2rem solid ${({ theme }) => theme.fantasia};
-  font-size: 1.6rem;
-  text-transform: uppercase;
+  width: 5.6rem;
+  height: 5.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.1rem solid transparent;
   border-radius: 0.2rem;
-  font-weight: 500;
+  background:
+    radial-gradient(circle, transparent 0%, transparent 72%),
+    transparent;
+  box-shadow: none;
+  scale: 1;
   transition:
-    background-color 0.3s ease-in-out,
-    color 0.3s ease-in-out,
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
+    background 0.68s ease,
+    border-color 0.68s ease,
+    box-shadow 0.68s ease,
+    scale 0.68s cubic-bezier(0.2, 0.8, 0.2, 1);
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: -140%;
-    left: -140%;
-    width: 180%;
-    height: 180%;
-    background: linear-gradient(
-      135deg,
-      transparent 0%,
-      transparent 44%,
-      ${({ theme }) => theme.fantasia} 44%,
-      ${({ theme }) => theme.fantasia} 56%,
-      transparent 56%,
-      transparent 100%
-    );
-    transform: translate3d(0, 0, 0);
-    pointer-events: none;
+  svg {
+    width: 2.8rem;
+    height: 2.8rem;
+    color: ${({ theme }) => theme.submarine};
+    opacity: 0.48;
+    transition:
+      color 0.68s ease,
+      opacity 0.68s ease,
+      filter 0.68s ease;
   }
 
-  &:hover {
-    &::before {
-      animation: ${pdfButtonShine} 0.8s ease-out;
-    }
+  &:hover,
+  &:focus-visible {
+    border-color: color-mix(
+      in srgb,
+      ${({ theme }) => theme.fantasia} 78%,
+      ${({ theme }) => theme.techWhite10}
+    );
+    background:
+      radial-gradient(
+        circle,
+        color-mix(in srgb, ${({ theme }) => theme.fantasia} 18%, transparent) 0%,
+        transparent 72%
+      ),
+      ${({ theme }) => theme.codGray};
+    box-shadow:
+      0 0 2.8rem
+        color-mix(in srgb, ${({ theme }) => theme.fantasia} 36%, transparent),
+      inset 0 0 1.6rem rgba(245, 245, 245, 0.03);
+    scale: 1.16;
+  }
+
+  &:hover svg,
+  &:focus-visible svg {
+    color: ${({ theme }) => theme.fantasia};
+    filter: drop-shadow(
+      0 0 1rem
+        color-mix(in srgb, ${({ theme }) => theme.fantasia} 52%, transparent)
+    );
+    opacity: 1;
   }
 
   ${mediaMaxDesktop1024`
-    padding: 0.8rem 2.4rem;
-    font-size: 1.2rem;
+    width: 4.8rem;
+    height: 4.8rem;
+
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
   `}
+`;
+
+export const IconLink = styled.a`
+  ${iconControlStyles}
+`;
+
+export const IconButton = styled.button`
+  ${iconControlStyles}
+`;
+
+export const IconTooltip = styled.span`
+  position: absolute;
+  top: calc(100% + 1rem);
+  left: 50%;
+  width: max-content;
+  max-width: 12rem;
+  padding: 0.7rem 1rem;
+  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  border-radius: 0.4rem;
+  background: ${({ theme }) => theme.codGray};
+  color: ${({ theme }) => theme.techWhite};
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -0.5rem);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+
+  ${IconLink}:hover &,
+  ${IconLink}:focus-visible &,
+  ${IconButton}:hover &,
+  ${IconButton}:focus-visible & {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 
   ${mediaMaxMobile`
-    padding: 1.6rem 2.4rem;
-    font-size: 2rem;
-    text-align: center;
-    width: 100%;
+    display: none;
   `}
 `;
