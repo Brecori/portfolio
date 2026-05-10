@@ -32,7 +32,7 @@ export default () => {
         const yearGroups = Array.from(
           timeline.querySelectorAll<HTMLElement>("[data-trajectory-year]"),
         );
-        const markerTop = window.innerHeight * 0.18;
+        const markerTop = window.innerHeight * 0.4;
         const nextActiveYearIndex = yearGroups.reduce(
           (activeIndex, yearGroup, index) => {
             if (yearGroup.getBoundingClientRect().top <= markerTop) {
@@ -55,7 +55,7 @@ export default () => {
 
       const markerTrigger = ScrollTrigger.create({
         trigger: timeline,
-        start: "top 18%",
+        start: "top 40%",
         end: "bottom 18%",
         scrub: true,
         onUpdate: ({ progress }) => {

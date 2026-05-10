@@ -1,4 +1,5 @@
 import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
+import AnimatedContent from "@/components/AnimatedContent";
 import styled from "styled-components";
 
 export const TrajectoryContainer = styled.section`
@@ -116,6 +117,11 @@ export const YearGroup = styled.div`
   `}
 `;
 
+export const YearAnimation = styled(AnimatedContent)`
+  align-self: start;
+  min-width: 0;
+`;
+
 export const YearLabel = styled.div<{ $active: boolean }>`
   align-self: start;
   padding-top: 1.4rem;
@@ -129,7 +135,7 @@ export const YearLabel = styled.div<{ $active: boolean }>`
     font-weight: 700;
     letter-spacing: 0.08em;
     line-height: 1;
-    opacity: ${({ $active }) => ($active ? 1 : 0.15)};
+    opacity: ${({ $active }) => ($active ? 1 : 0.05)};
     transition:
       color 0.3s ease,
       opacity 0.3s ease;
@@ -160,7 +166,7 @@ export const YearContent = styled.div<{ $active: boolean }>`
   display: grid;
   gap: 2.4rem;
   padding: 0 0 10rem 3.2rem;
-  opacity: ${({ $active }) => ($active ? 1 : 0.3)};
+  opacity: ${({ $active }) => ($active ? 1 : 0.05)};
   transition: opacity 0.3s ease;
 
   ${mediaMaxDesktop1024`

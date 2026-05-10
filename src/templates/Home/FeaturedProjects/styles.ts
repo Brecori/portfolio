@@ -221,7 +221,7 @@ export const ProjectTitle = styled.h3`
   line-height: 1;
   opacity: 0.78;
   transition:
-    font-size 0.45s 0.25s ease,
+    font-size 0.45s ease,
     opacity 0.45s ease;
 
   ${ProjectCard}:hover &,

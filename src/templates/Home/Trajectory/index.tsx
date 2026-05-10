@@ -40,11 +40,13 @@ export const Trajectory: FC = () => {
 
           {years.map((yearGroup, yearIndex) => (
             <S.YearGroup data-trajectory-year key={yearGroup.year}>
-              <S.YearLabel $active={yearIndex === activeYearIndex}>
-                <span>{yearGroup.year}</span>
-              </S.YearLabel>
+              <S.YearAnimation delay={0.12 * yearIndex}>
+                <S.YearLabel $active={yearIndex === activeYearIndex}>
+                  <span>{yearGroup.year}</span>
+                </S.YearLabel>
+              </S.YearAnimation>
 
-            <S.Rail aria-hidden="true" />
+              <S.Rail aria-hidden="true" />
 
               <S.YearContent $active={yearIndex === activeYearIndex}>
                 {yearGroup.items.map((item, itemIndex) => (
