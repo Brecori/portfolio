@@ -8,11 +8,12 @@ import { scrollToElement } from "@/lib/smooth-scroll";
 
 export const NavbarDesktop: FC = () => {
   const t = useTranslations("navbar");
-  const { changeLanguage, currentLocale, nextLocale, hasScrolled } = useHelpers();
+  const { changeLanguage, currentLocale, nextLocale, hasScrolled } =
+    useHelpers();
 
   return (
     <S.NavbarContainer data-navbar $hasScrolled={hasScrolled}>
-      <S.Logo>{C.title}</S.Logo>
+      <S.Logo href="/">{C.title}</S.Logo>
       <S.Menu>
         {C.menuItems.map(({ labelKey, targetId }) => (
           <S.MenuItem key={targetId}>

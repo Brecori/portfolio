@@ -1,5 +1,5 @@
 import { MouseGlow } from "@/components/MouseGlow";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/templates/shared/Navbar";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { AppThemeProvider } from "@/contexts/theme-provider";
 import StyledComponentsRegistry from "@/lib/registry";

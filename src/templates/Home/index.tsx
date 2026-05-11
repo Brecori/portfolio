@@ -9,6 +9,8 @@ import { RestQuote } from "./RestQuote";
 import { Trajectory } from "./Trajectory";
 import { Skills } from "./Skills";
 import { Marquee } from "@/components/Marquee";
+import { Contact } from "./Contact";
+import { Footer } from "../shared/Footer";
 
 export const HomeTemplate: FC = () => {
   return (
@@ -19,11 +21,9 @@ export const HomeTemplate: FC = () => {
       <Projects />
       <RestQuote />
       <Trajectory />
-      <Marquee
-        direction="left"
-        speed={6}
-        phrases={["Next.js", "TypeScript", "UI Systems", "Frontend"]}
-      />
+      <Marquee direction="left" speed={7} />
+      <Contact />
+      <Footer />
     </S.HomeContainer>
   );
 };

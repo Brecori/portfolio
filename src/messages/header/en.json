@@ -1,18 +1,18 @@
 {
-  "titles": [
-    {
-      "main": "Breno Tosi",
-      "highlight": "Frontend Developer"
-    },
-    {
-      "main": "Modern interfaces",
-      "highlight": "Memorable experiences"
-    }
+  "title": {
+    "name": "Breno Tosi",
+    "role": "Frontend Developer"
+  },
+  "rotatingPhrases": [
+    "Modern interfaces",
+    "Memorable experiences"
   ],
   "description": "I build responsive, well-structured interfaces focused on user experience, performance, and attention to detail. I enjoy turning ideas into clear, functional, and visually consistent digital products.",
   "actions": {
     "github": "GitHub",
     "resume": "Resume",
+    "resumeFileName": "resume",
+    "linkedin": "LinkedIn",
     "scrollDown": "Scroll down"
   }
 }

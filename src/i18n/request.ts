@@ -16,6 +16,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const skills = (await import(`../messages/skills/${locale}.json`)).default;
   const trajectory = (await import(`../messages/trajectory/${locale}.json`))
     .default;
+  const contact = (await import(`../messages/contact/${locale}.json`)).default;
+  const footer = (await import(`../messages/footer/${locale}.json`)).default;
   const projects = (await import(`../messages/projects/${locale}.json`))
     .default;
   const pulseMetrics = (
@@ -52,6 +54,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
       restQuote,
       skills,
       trajectory,
+      contact,
+      footer,
     },
     // ...
   };

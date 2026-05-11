@@ -4,8 +4,8 @@ import styled from "styled-components";
 export const Container = styled.section`
   width: 100%;
   overflow: hidden;
-  border-top: 0.1rem solid ${({ theme }) => theme.techWhite10};
-  border-bottom: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  padding-block: 10rem;
+
   background: linear-gradient(
     90deg,
     color-mix(in srgb, ${({ theme }) => theme.extremeBlack} 90%, transparent) 0%,
@@ -41,12 +41,14 @@ export const PhraseGroup = styled.div`
 
 export const Phrase = styled.span`
   flex: 0 0 auto;
-  color: ${({ theme }) => theme.techWhite};
-  font-size: 5.8rem;
-  font-weight: 500;
+  color: ${({ theme }) => theme.techWhite50};
+  font-size: 10rem;
+  font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.24em;
+  font-style: italic;
+  pointer-events: none;
 
   ${mediaMaxMobile`
     font-size: 1.4rem;
@@ -55,9 +57,9 @@ export const Phrase = styled.span`
 
 export const Separator = styled.span`
   flex: 0 0 auto;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 999rem;
-  background-color: ${({ theme }) => theme.fantasia};
-  opacity: 0.72;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  background-color: transparent;
+  border: 0.2rem solid ${({ theme }) => theme.techWhite50};
 `;

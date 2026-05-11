@@ -31,8 +31,8 @@ export const HeaderContainer = styled.header`
   background-position: center, center, center;
   background-size:
     100% 100%,
-    5.6rem 5.6rem,
-    5.6rem 5.6rem;
+    4.4rem 4.4rem,
+    4.4rem 4.4rem;
 
   &::before,
   &::after {
@@ -62,23 +62,30 @@ export const HeaderContainer = styled.header`
   }
 
   ${mediaMaxDesktop1024`
-    min-height: auto;
     padding: 15rem 7.5rem 10rem;
     background-size:
       100% 100%,
-      4.8rem 4.8rem,
-      4.8rem 4.8rem;
+      3.8rem 3.8rem,
+      3.8rem 3.8rem;
+
+    &::after {
+      background-size: 1.4rem 1.4rem;
+    }
   `}
 
   ${mediaMaxMobile`
     flex-direction: column;
-    align-items: flex-start;
-    padding: 20rem 2.4rem 10rem;
-    min-height: 70vh;
+    padding: 35rem 2.4rem 10rem;
+    min-height: 100dvh;
+    justify-content: flex-start;
     background-size:
       100% 100%,
-      4rem 4rem,
-      4rem 4rem;
+      3.2rem 3.2rem,
+      3.2rem 3.2rem;
+
+    &::after {
+      background-size: 1.2rem 1.2rem;
+    }
   `}
 `;
 
@@ -95,8 +102,7 @@ export const LeftGroup = styled(AnimatedContent)`
   `}
 
   ${mediaMaxMobile`
-    align-items: flex-start;
-    gap: 3rem;
+    gap: 4rem;
   `}
 `;
 
@@ -113,7 +119,7 @@ export const Role = styled.span`
   `}
 
   ${mediaMaxMobile`
-    font-size: 1.25rem;
+    font-size: 1.3rem;
   `}
 `;
 
@@ -131,7 +137,6 @@ export const Title = styled.h1`
 
   ${mediaMaxMobile`
     font-size: 5rem;
-    text-align: left;
   `}
 `;
 
@@ -153,7 +158,6 @@ export const RotatingPhrase = styled.p`
   ${mediaMaxMobile`
     min-height: 2.8rem;
     font-size: 2.6rem;
-    text-align: left;
   `}
 `;
 
@@ -171,8 +175,6 @@ export const Description = styled.p`
 
   ${mediaMaxMobile`
     font-size: 1.8rem;
-    max-width: 80%;
-    text-align: left;
   `}
 `;
 
@@ -188,7 +190,7 @@ export const ButtonsContainer = styled.div`
 
   ${mediaMaxMobile`
     width: 100%;
-    gap: 1.6rem;
+    gap: 5rem;
   `}
 `;
 
@@ -262,6 +264,16 @@ const iconControlStyles = css`
       height: 2.4rem;
     }
   `}
+
+  ${mediaMaxMobile`
+    width: 6rem;
+    height: 6rem;
+
+    svg {
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+  `}
 `;
 
 export const IconLink = styled.a`
@@ -302,6 +314,6 @@ export const IconTooltip = styled.span`
   }
 
   ${mediaMaxMobile`
-    display: none;
+    font-size: 1.3rem;
   `}
 `;

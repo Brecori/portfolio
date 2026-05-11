@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/navigation";
 import styled, { css } from "styled-components";
 
 const transitionDuration = "0.4s";
@@ -85,7 +86,7 @@ export const CloseToggleIcon = styled.span<{ $isOpen: boolean }>`
   color: ${({ theme }) => theme.fantasia};
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   font-size: 2.4rem;
   font-weight: 700;
   color: ${({ theme }) => theme.techWhite};

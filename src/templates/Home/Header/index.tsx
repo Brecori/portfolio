@@ -2,32 +2,25 @@
 
 import { useTranslations } from "next-intl";
 import { FC } from "react";
+import { ScrollDownButton } from "@/components/ScrollDownButton";
 import { FiFileText } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
-import { ScrollDownButton } from "../../../components/ScrollDownButton";
 import useAnimation from "./animation";
+import C from "./constants";
 import * as S from "./styles";
-
-type HeaderTitle = {
-  main: string;
-  highlight: string;
-};
 
 export const Header: FC = () => {
   const t = useTranslations("header");
-  const titles = t.raw("titles") as HeaderTitle[];
-  const name = titles[0]?.main ?? "Breno Tosi";
-  const role = titles[0]?.highlight;
-  const rotatingPhrases = titles[1]
-    ? [titles[1].main, titles[1].highlight]
-    : [];
-  const {
-    handleInitialAnimationComplete,
-    titleIndex,
-    titleRef,
-  } = useAnimation(rotatingPhrases.length);
+  const name = t("title.name");
+  const role = t("title.role");
+  const resumeFileName = t("actions.resumeFileName");
+  const rotatingPhrases = t.raw("rotatingPhrases") as string[];
+  const { handleInitialAnimationComplete, titleIndex, titleRef } = useAnimation(
+    rotatingPhrases.length,
+  );
   const currentPhrase = rotatingPhrases[titleIndex];
+  const resumePath = C.getResumePath(resumeFileName);
 
   return (
     <S.HeaderContainer id="intro">
@@ -43,7 +36,7 @@ export const Header: FC = () => {
 
         <S.ButtonsContainer>
           <S.IconLink
-            href="https://github.com/brenotosi"
+            href={C.github}
             target="_blank"
             rel="noreferrer"
             aria-label={t("actions.github")}
@@ -52,23 +45,24 @@ export const Header: FC = () => {
             <SiGithub aria-hidden="true" />
             <S.IconTooltip>{t("actions.github")}</S.IconTooltip>
           </S.IconLink>
-          <S.IconButton
-            type="button"
+          <S.IconLink
+            href={resumePath}
+            download={resumeFileName}
             aria-label={t("actions.resume")}
             data-cursor-hover
           >
             <FiFileText aria-hidden="true" />
             <S.IconTooltip>{t("actions.resume")}</S.IconTooltip>
-          </S.IconButton>
+          </S.IconLink>
           <S.IconLink
-            href="https://www.linkedin.com/in/brenotosi"
+            href={C.linkedin}
             target="_blank"
             rel="noreferrer"
-            aria-label="LinkedIn"
+            aria-label={t("actions.linkedin")}
             data-cursor-hover
           >
             <FaLinkedinIn aria-hidden="true" />
-            <S.IconTooltip>LinkedIn</S.IconTooltip>
+            <S.IconTooltip>{t("actions.linkedin")}</S.IconTooltip>
           </S.IconLink>
         </S.ButtonsContainer>
       </S.LeftGroup>

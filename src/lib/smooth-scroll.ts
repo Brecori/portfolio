@@ -1,9 +1,16 @@
+import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const DEFAULT_SCROLL_DURATION = 1;
 
 const getNavbarHeight = () =>
   document.querySelector<HTMLElement>("[data-navbar]")?.offsetHeight ?? 0;
 
-export const scrollToElement = (elementId: string) => {
+export const scrollToElement = (
+  elementId: string,
+  duration = DEFAULT_SCROLL_DURATION,
+) => {
   const target = document.getElementById(elementId);
 
   if (!target) {
@@ -14,7 +21,13 @@ export const scrollToElement = (elementId: string) => {
   const navbarHeight = getNavbarHeight();
 
   if (smoother) {
-    smoother.scrollTo(target, true, `top ${navbarHeight}px`);
+    gsap.to(smoother, {
+      duration,
+      scrollTop: Math.min(
+        ScrollTrigger.maxScroll(window),
+        smoother.offset(target, `top ${navbarHeight}px`),
+      ),
+    });
     return;
   }
 

@@ -38,11 +38,14 @@ export const NavbarMobile: FC = () => {
               <FiX />
             </S.CloseToggleIcon>
           </S.HamburgerButton>
-          <S.Logo>{C.title}</S.Logo>
+          <S.Logo href="/">{C.title}</S.Logo>
         </S.LeftGroup>
 
         <S.TogglesContainer>
-          <S.IconButton type="button" onClick={() => changeLanguage(nextLocale)}>
+          <S.IconButton
+            type="button"
+            onClick={() => changeLanguage(nextLocale)}
+          >
             <TbLanguage />
           </S.IconButton>
         </S.TogglesContainer>
@@ -52,7 +55,10 @@ export const NavbarMobile: FC = () => {
         <S.Menu>
           {C.menuItems.map(({ labelKey, targetId }) => (
             <S.MenuItem key={targetId}>
-              <button type="button" onClick={() => handleMenuItemClick(targetId)}>
+              <button
+                type="button"
+                onClick={() => handleMenuItemClick(targetId)}
+              >
                 {t(labelKey)}
               </button>
             </S.MenuItem>

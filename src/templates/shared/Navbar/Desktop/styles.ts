@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/navigation";
 import { mediaMaxDesktop1024 } from "@/lib/media-query";
 import styled from "styled-components";
 
@@ -28,7 +29,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   `}
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
   justify-self: start;
   font-size: 2.2rem;
   font-weight: 700;
@@ -39,7 +40,7 @@ export const Logo = styled.div`
   }
 
   ${mediaMaxDesktop1024`
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   `}
 `;
 
@@ -70,7 +71,7 @@ export const MenuItem = styled.li`
 
   ${mediaMaxDesktop1024`
     button {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
   `}
 `;

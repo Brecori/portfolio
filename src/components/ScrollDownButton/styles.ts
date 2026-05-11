@@ -31,10 +31,9 @@ export const Button = styled.button`
   }
 
   ${mediaMaxMobile`
-    position: static;
     align-self: center;
-    margin-top: 10rem;
     font-size: 1.4rem;
+    bottom: 20rem;
 
     svg {
       width: 3.6rem;
