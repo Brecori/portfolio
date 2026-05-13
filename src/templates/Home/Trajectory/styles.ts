@@ -223,27 +223,3 @@ export const CardDescription = styled.p`
   font-weight: 400;
   line-height: 1.55;
 `;
-
-export const TagsList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 2.4rem;
-  padding: 0;
-  list-style: none;
-
-  li {
-    border: 0.1rem solid ${({ theme }) => theme.techWhite10};
-    border-radius: 999rem;
-    padding: 0.8rem 1.2rem;
-    color: ${({ theme }) => theme.techWhite};
-    font-size: 1.2rem;
-    font-weight: 500;
-    line-height: 1;
-    background-color: color-mix(
-      in srgb,
-      ${({ theme }) => theme.techWhite} 4%,
-      transparent
-    );
-  }
-`;

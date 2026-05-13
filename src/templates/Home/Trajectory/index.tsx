@@ -12,7 +12,6 @@ type TrajectoryItem = {
   description: string;
   period: string;
   role: string;
-  tags: string[];
 };
 
 type TrajectoryYear = {
@@ -59,12 +58,6 @@ export const Trajectory: FC = () => {
                       <S.CardTitle>{item.role}</S.CardTitle>
                       <S.CardCompany>{item.company}</S.CardCompany>
                       <S.CardDescription>{item.description}</S.CardDescription>
-
-                      <S.TagsList>
-                        {item.tags.map((tag) => (
-                          <li key={tag}>{tag}</li>
-                        ))}
-                      </S.TagsList>
                     </S.TrajectoryCard>
                   </AnimatedContent>
                 ))}

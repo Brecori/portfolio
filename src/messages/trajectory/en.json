@@ -8,8 +8,7 @@
           "period": "Present",
           "role": "Frontend Developer",
           "company": "Mock project",
-          "description": "Focused on performant interfaces, reusable components, and digital experiences with close attention to visual detail.",
-          "tags": ["React", "Next.js", "Design Systems"]
+          "description": "Focused on performant interfaces, reusable components, and digital experiences with close attention to visual detail."
         }
       ]
     },
@@ -20,8 +19,7 @@
           "period": "Digital product",
           "role": "UI Engineer",
           "company": "Mock project",
-          "description": "Built responsive screens, navigation flows, and subtle animations for polished web products.",
-          "tags": ["TypeScript", "Styled Components", "GSAP"]
+          "description": "Built responsive screens, navigation flows, and subtle animations for polished web products."
         }
       ]
     },
@@ -32,8 +30,7 @@
           "period": "Web experience",
           "role": "Frontend Developer",
           "company": "Mock project",
-          "description": "Improved institutional pages and applications with a focus on accessibility, technical SEO, and breakpoint consistency.",
-          "tags": ["JavaScript", "Accessibility", "Performance"]
+          "description": "Improved institutional pages and applications with a focus on accessibility, technical SEO, and breakpoint consistency."
         }
       ]
     },
@@ -44,8 +41,7 @@
           "period": "First projects",
           "role": "Web Developer",
           "company": "Mock project",
-          "description": "Built a solid foundation in HTML, CSS, and JavaScript while turning visual references into responsive code.",
-          "tags": ["HTML", "CSS", "JavaScript"]
+          "description": "Built a solid foundation in HTML, CSS, and JavaScript while turning visual references into responsive code."
         }
       ]
     }

@@ -1,4 +1,5 @@
 import { MouseGlow } from "@/components/MouseGlow";
+import { PageReadyGate } from "@/components/PageReadyGate";
 import { Navbar } from "@/templates/shared/Navbar";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { AppThemeProvider } from "@/contexts/theme-provider";
@@ -83,7 +84,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: seo.title,
       description: seo.description,
       images: ["/imgs/og/share.png"],
-    },
+    }
   };
 }
 
@@ -102,11 +103,13 @@ export default async function LocaleLayout({ children, params }: Props) {
           <NextIntlClientProvider messages={messages}>
             <AppThemeProvider>
               <GlobalStyles />
-              <MouseGlow />
-              <Navbar />
-              <SmoothScroll>
-                <div className="app-shell">{children}</div>
-              </SmoothScroll>
+              <PageReadyGate>
+                <MouseGlow />
+                <Navbar />
+                <SmoothScroll>
+                  <div className="app-shell">{children}</div>
+                </SmoothScroll>
+              </PageReadyGate>
             </AppThemeProvider>
           </NextIntlClientProvider>
         </StyledComponentsRegistry>
