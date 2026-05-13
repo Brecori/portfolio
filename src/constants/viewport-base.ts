@@ -12,7 +12,7 @@ export const viewportsBase = {
     width: 768,
   },
   ipadVertical: {
-    width: 1280,
+    width: 1024,
   },
   desktop1024: {
     width: 1024,

@@ -1,18 +1,23 @@
-import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
+import {
+  mediaMaxDesktop1024,
+  mediaMaxIpadVertical,
+  mediaMaxMobile,
+} from "@/lib/media-query";
 import AnimatedContent from "@/components/AnimatedContent";
 import styled from "styled-components";
 
 export const TrajectoryContainer = styled.section`
-  display: grid;
-  grid-template-columns: minmax(22rem, 34rem) minmax(0, 1fr);
-  align-items: start;
-  gap: 8rem;
-  padding: 15rem;
+  display: flex;
+  gap: 20rem;
+  padding: 10rem 15rem;
 
   ${mediaMaxDesktop1024`
-    grid-template-columns: minmax(18rem, 26rem) minmax(0, 1fr);
-    gap: 5rem;
+    gap: 8rem;
     padding: 10rem 7.5rem;
+  `}
+
+  ${mediaMaxIpadVertical`
+    gap: 6rem;
   `}
 
   ${mediaMaxMobile`
@@ -130,6 +135,12 @@ export const YearLabel = styled.div<{ $active: boolean }>`
       color 0.3s ease,
       opacity 0.3s ease;
   }
+
+  ${mediaMaxDesktop1024`
+    span {
+      font-size: 2.2rem;
+    }
+  `}
 
   ${mediaMaxMobile`
     position: static;

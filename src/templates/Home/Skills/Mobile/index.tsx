@@ -9,7 +9,7 @@ import * as S from "./styles";
 
 export const SkillsMobile: FC = () => {
   const t = useTranslations("skills");
-  const [activeSkill, setActiveSkill] = useState<Skill>(skills[0]);
+  const [activeSkill, setActiveSkill] = useState<Skill>(skills[2]);
   const activeTypeIndex = skillTypes.indexOf(activeSkill.type);
 
   return (

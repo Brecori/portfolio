@@ -19,7 +19,7 @@ export const SkillsContainer = styled.section`
   padding: 10rem 15rem;
 
   ${mediaMaxDesktop1024`
-    padding: 5rem 7.5rem 12rem;
+    padding: 10rem 7.5rem;
   `}
 `;
 

@@ -1,4 +1,8 @@
-import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
+import {
+  mediaMaxDesktop1024,
+  mediaMaxIpadVertical,
+  mediaMaxMobile,
+} from "@/lib/media-query";
 import styled, { keyframes } from "styled-components";
 
 const dotFloat = keyframes`
@@ -34,8 +38,13 @@ export const RestQuoteContainer = styled.section`
     padding: 0 7.5rem 0;
   `}
 
+  ${mediaMaxIpadVertical`
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 0 7.5rem;
+  `}
+
   ${mediaMaxMobile`
-    min-height: 90vh;
     padding: 0 2.4rem;
   `}
 `;
@@ -89,6 +98,16 @@ export const Dots = styled.div`
     span {
       width: 0.7rem;
       height: 0.7rem;
+    }
+  `}
+
+  ${mediaMaxIpadVertical`
+    height: 4.2rem;
+    gap: 1.2rem;
+
+    span {
+      width: 1.4rem;
+      height: 1.4rem;
     }
   `}
 

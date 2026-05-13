@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import { mediaMaxMobile } from "@/lib/media-query";
 import styled, { css } from "styled-components";
 
 const transitionDuration = "0.4s";
@@ -10,17 +11,25 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   align-items: center;
   justify-content: space-between;
   gap: 1.6rem;
-  padding: 0 2.4rem;
+  padding: 0 7.5rem;
   background-color: ${({ theme }) => theme.extremeBlack};
   border-bottom: 0.1rem solid ${({ theme }) => theme.techWhite10};
   position: fixed;
   z-index: 30;
+
+  ${mediaMaxMobile`
+    padding: 0 2.4rem;
+  `}
 `;
 
 export const LeftGroup = styled.div`
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 4rem;
+
+  ${mediaMaxMobile`
+    gap: 2rem;
+  `}
 `;
 
 const iconButtonStyles = css`
@@ -108,19 +117,27 @@ export const MenuDrawer = styled.aside<{ $isOpen: boolean }>`
   width: 100%;
   height: calc(100% - 10rem);
   bottom: 0;
-  padding: 3.2rem 2.4rem;
+  padding: 7rem 7.5rem;
   display: flex;
   background-color: ${({ theme }) => theme.extremeBlack};
   border-right: 0.1rem solid ${({ theme }) => theme.techWhite10};
   transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   transition: transform ${transitionDuration} ease;
   z-index: 31;
+
+  ${mediaMaxMobile`
+    padding: 3.2rem 2.4rem;
+  `}
 `;
 
 export const Menu = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 5rem;
+
+  ${mediaMaxMobile`
+    gap: 3rem;
+  `}
 `;
 
 export const MenuItem = styled.li`

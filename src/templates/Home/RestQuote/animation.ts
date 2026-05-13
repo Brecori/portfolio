@@ -31,7 +31,7 @@ export default () => {
 
       const media = gsap.matchMedia();
 
-      media.add(`(max-width: ${viewportsBase.mobile.width}px)`, () => {
+      media.add(`(max-width: ${viewportsBase.ipadVertical.width}px)`, () => {
         gsap.set(quote, { y: 0 });
         gsap.set(highlight, { "--highlight-progress": "100%" });
       });

@@ -2,6 +2,7 @@
 
 import AnimatedContent from "@/components/AnimatedContent";
 import { FC } from "react";
+import { IconLink } from "@/components/IconLink";
 import { useTranslations } from "next-intl";
 import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
@@ -44,16 +45,11 @@ export const Contact: FC = () => {
 
               return (
                 <S.ContactItem key={contactKey}>
-                  <S.ContactLink
-                    aria-label={label}
-                    data-cursor-hover
+                  <IconLink
                     href={contactLinks[contactKey]}
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    <Icon aria-hidden="true" />
-                    <S.ContactTooltip>{label}</S.ContactTooltip>
-                  </S.ContactLink>
+                    icon={Icon}
+                    label={label}
+                  />
                 </S.ContactItem>
               );
             })}

@@ -31,8 +31,12 @@ export const Copyright = styled.p`
   line-height: 1;
   text-transform: uppercase;
 
-  ${mediaMaxMobile`
+  ${mediaMaxDesktop1024`
     font-size: 1rem;
+  `}
+
+  ${mediaMaxMobile`
+    font-size: 1.2rem;
     text-align: center;
   `}
 `;
@@ -42,8 +46,9 @@ export const Logo = styled.div`
   font-size: 2.2rem;
   font-weight: 700;
   color: ${({ theme }) => theme.submarine};
+  pointer-events: none;
 
   ${mediaMaxDesktop1024`
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   `}
 `;

@@ -1,10 +1,7 @@
-import { mediaMaxMobile } from "@/lib/media-query";
+import { mediaMaxDesktop1024, mediaMaxIpadVertical, mediaMaxMobile } from "@/lib/media-query";
 import styled from "styled-components";
 
 export const Button = styled.button`
-  position: absolute;
-  left: 50%;
-  bottom: 10rem;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +14,6 @@ export const Button = styled.button`
   transition:
     color 0.3s ease-in-out,
     transform 0.3s ease-in-out;
-  transform: translateX(-50%);
 
   svg {
     width: 3rem;
@@ -26,14 +22,21 @@ export const Button = styled.button`
   }
 
   &:hover {
-    transform: translate(-50%, 0.5rem);
+    transform: translateY(0.5rem);
     color: ${({ theme }) => theme.techWhite};
   }
 
-  ${mediaMaxMobile`
+  ${mediaMaxIpadVertical`
     align-self: center;
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+    }
+  `}
+
+  ${mediaMaxMobile`
     font-size: 1.4rem;
-    bottom: 20rem;
 
     svg {
       width: 3.6rem;
@@ -42,4 +45,18 @@ export const Button = styled.button`
   `}
 `;
 
-export const Label = styled.span``;
+export const Label = styled.span`
+  font-size: 1.4rem;
+
+  ${mediaMaxDesktop1024`
+    font-size: 1rem;
+  `}
+
+  ${mediaMaxIpadVertical`
+    font-size: 1.2rem;
+  `}
+
+  ${mediaMaxMobile`
+    font-size: 1.4rem;
+  `}
+`;

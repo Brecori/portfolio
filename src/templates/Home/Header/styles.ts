@@ -1,6 +1,10 @@
 import AnimatedContent from "@/components/AnimatedContent";
-import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
-import styled, { css } from "styled-components";
+import {
+  mediaMaxDesktop1024,
+  mediaMaxIpadVertical,
+  mediaMaxMobile,
+} from "@/lib/media-query";
+import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   position: relative;
@@ -89,7 +93,7 @@ export const HeaderContainer = styled.header`
   `}
 `;
 
-export const LeftGroup = styled(AnimatedContent)`
+export const MainGroup = styled(AnimatedContent)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,6 +103,10 @@ export const LeftGroup = styled(AnimatedContent)`
 
   ${mediaMaxDesktop1024`
     gap: 2rem;
+  `}
+
+  ${mediaMaxIpadVertical`
+    gap: 3rem;
   `}
 
   ${mediaMaxMobile`
@@ -118,6 +126,10 @@ export const Role = styled.span`
     font-size: 1.15rem;
   `}
 
+  ${mediaMaxIpadVertical`
+    font-size: 1.4rem;
+  `}
+
   ${mediaMaxMobile`
     font-size: 1.3rem;
   `}
@@ -133,6 +145,10 @@ export const Title = styled.h1`
 
   ${mediaMaxDesktop1024`
     font-size: 6rem;
+  `}
+
+  ${mediaMaxIpadVertical`
+    font-size: 5.8rem;
   `}
 
   ${mediaMaxMobile`
@@ -155,6 +171,11 @@ export const RotatingPhrase = styled.p`
     font-size: 2.4rem;
   `}
 
+  ${mediaMaxIpadVertical`
+    min-height: 3rem;
+    font-size: 2.8rem;
+  `}
+
   ${mediaMaxMobile`
     min-height: 2.8rem;
     font-size: 2.6rem;
@@ -173,6 +194,10 @@ export const Description = styled.p`
     font-size: 1.2rem;
   `}
 
+  ${mediaMaxIpadVertical`
+    font-size: 2rem;
+  `}
+
   ${mediaMaxMobile`
     font-size: 1.8rem;
   `}
@@ -188,132 +213,34 @@ export const ButtonsContainer = styled.div`
     margin-top: 1.5rem;
   `}
 
+  ${mediaMaxIpadVertical`
+    width: 100%;
+    margin-top: 4rem;
+    gap: 4rem;
+  `}
+
   ${mediaMaxMobile`
     width: 100%;
+    margin-top: 5rem;
     gap: 5rem;
   `}
 `;
 
-const iconControlStyles = css`
-  position: relative;
-  width: 5.6rem;
-  height: 5.6rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0.1rem solid transparent;
-  border-radius: 0.2rem;
-  background:
-    radial-gradient(circle, transparent 0%, transparent 72%), transparent;
-  box-shadow: none;
-  scale: 1;
-  transition:
-    background 0.68s ease,
-    border-color 0.68s ease,
-    box-shadow 0.68s ease,
-    scale 0.68s cubic-bezier(0.2, 0.8, 0.2, 1);
-
-  svg {
-    width: 2.8rem;
-    height: 2.8rem;
-    color: ${({ theme }) => theme.submarine};
-    opacity: 0.48;
-    transition:
-      color 0.68s ease,
-      opacity 0.68s ease,
-      filter 0.68s ease;
-  }
-
-  &:hover,
-  &:focus-visible {
-    border-color: color-mix(
-      in srgb,
-      ${({ theme }) => theme.fantasia} 78%,
-      ${({ theme }) => theme.techWhite10}
-    );
-    background:
-      radial-gradient(
-        circle,
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 18%, transparent) 0%,
-        transparent 72%
-      ),
-      ${({ theme }) => theme.codGray};
-    box-shadow:
-      0 0 2.8rem
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 36%, transparent),
-      inset 0 0 1.6rem rgba(245, 245, 245, 0.03);
-    scale: 1.16;
-  }
-
-  &:hover svg,
-  &:focus-visible svg {
-    color: ${({ theme }) => theme.fantasia};
-    filter: drop-shadow(
-      0 0 1rem
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 52%, transparent)
-    );
-    opacity: 1;
-  }
+export const ScrollDownButtonContainer = styled(AnimatedContent)`
+  position: absolute;
+  left: 50%;
+  bottom: 10rem;
+  transform: translateX(-50%);
 
   ${mediaMaxDesktop1024`
-    width: 4.8rem;
-    height: 4.8rem;
+    bottom: 5rem;
+  `}
 
-    svg {
-      width: 2.4rem;
-      height: 2.4rem;
-    }
+  ${mediaMaxIpadVertical`
+    bottom: 15rem;
   `}
 
   ${mediaMaxMobile`
-    width: 6rem;
-    height: 6rem;
-
-    svg {
-      width: 3.2rem;
-      height: 3.2rem;
-    }
-  `}
-`;
-
-export const IconLink = styled.a`
-  ${iconControlStyles}
-`;
-
-export const IconButton = styled.button`
-  ${iconControlStyles}
-`;
-
-export const IconTooltip = styled.span`
-  position: absolute;
-  top: calc(100% + 1rem);
-  left: 50%;
-  width: max-content;
-  max-width: 12rem;
-  padding: 0.7rem 1rem;
-  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
-  border-radius: 0.4rem;
-  background: ${({ theme }) => theme.codGray};
-  color: ${({ theme }) => theme.techWhite};
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, -0.5rem);
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
-
-  ${IconLink}:hover &,
-  ${IconLink}:focus-visible &,
-  ${IconButton}:hover &,
-  ${IconButton}:focus-visible & {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-
-  ${mediaMaxMobile`
-    font-size: 1.3rem;
+    bottom: 20rem;
   `}
 `;

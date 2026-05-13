@@ -1,4 +1,4 @@
-import { mediaMaxMobile } from "@/lib/media-query";
+import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
 import styled from "styled-components";
 
 export const Container = styled.section`
@@ -50,8 +50,12 @@ export const Phrase = styled.span`
   font-style: italic;
   pointer-events: none;
 
+  ${mediaMaxDesktop1024`
+    font-size: 9rem;
+  `}
+
   ${mediaMaxMobile`
-    font-size: 1.4rem;
+    font-size: 4rem;
   `}
 `;
 
@@ -62,4 +66,10 @@ export const Separator = styled.span`
   border-radius: 100%;
   background-color: transparent;
   border: 0.2rem solid ${({ theme }) => theme.techWhite50};
+
+  ${mediaMaxMobile`
+    width: 1.2rem;
+    height: 1.2rem;
+    border-width: 0.12rem;
+  `}
 `;

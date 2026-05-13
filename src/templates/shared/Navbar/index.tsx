@@ -9,7 +9,7 @@ export const Navbar: FC = () => {
   return (
     <ResponsiveElement
       content={<NavbarDesktop />}
-      breakpoints={{ mobile: <NavbarMobile /> }}
+      breakpoints={{ ipadVertical: <NavbarMobile /> }}
     />
   );
 };

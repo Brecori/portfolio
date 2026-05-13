@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { FC } from "react";
+import { IconLink } from "@/components/IconLink";
 import { ScrollDownButton } from "@/components/ScrollDownButton";
 import { FiFileText } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -24,7 +25,7 @@ export const Header: FC = () => {
 
   return (
     <S.HeaderContainer id="intro">
-      <S.LeftGroup
+      <S.MainGroup
         stagger={0.3}
         duration={2}
         onAnimationComplete={handleInitialAnimationComplete}
@@ -35,39 +36,28 @@ export const Header: FC = () => {
         <S.Description>{t("description")}</S.Description>
 
         <S.ButtonsContainer>
-          <S.IconLink
+          <IconLink
             href={C.github}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={t("actions.github")}
-            data-cursor-hover
-          >
-            <SiGithub aria-hidden="true" />
-            <S.IconTooltip>{t("actions.github")}</S.IconTooltip>
-          </S.IconLink>
-          <S.IconLink
+            icon={SiGithub}
+            label={t("actions.github")}
+          />
+          <IconLink
             href={resumePath}
             download={resumeFileName}
-            aria-label={t("actions.resume")}
-            data-cursor-hover
-          >
-            <FiFileText aria-hidden="true" />
-            <S.IconTooltip>{t("actions.resume")}</S.IconTooltip>
-          </S.IconLink>
-          <S.IconLink
+            icon={FiFileText}
+            label={t("actions.resume")}
+          />
+          <IconLink
             href={C.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={t("actions.linkedin")}
-            data-cursor-hover
-          >
-            <FaLinkedinIn aria-hidden="true" />
-            <S.IconTooltip>{t("actions.linkedin")}</S.IconTooltip>
-          </S.IconLink>
+            icon={FaLinkedinIn}
+            label={t("actions.linkedin")}
+          />
         </S.ButtonsContainer>
-      </S.LeftGroup>
+      </S.MainGroup>
 
-      <ScrollDownButton label={t("actions.scrollDown")} />
+      <S.ScrollDownButtonContainer delay={1.5} duration={1.5} stagger={0.3}>
+        <ScrollDownButton label={t("actions.scrollDown")} />
+      </S.ScrollDownButtonContainer>
     </S.HeaderContainer>
   );
 };
