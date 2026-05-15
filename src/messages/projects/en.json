@@ -1,6 +1,8 @@
 {
   "title": "Projects",
   "actions": {
-    "openProject": "Open project"
+    "github": "GitHub",
+    "liveProject": "Live project",
+    "selectProject": "Select project"
   }
 }

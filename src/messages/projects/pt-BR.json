@@ -1,6 +1,8 @@
 {
   "title": "Projetos",
   "actions": {
-    "openProject": "Ver mais"
+    "github": "GitHub",
+    "liveProject": "Projeto no ar",
+    "selectProject": "Selecionar projeto"
   }
 }
