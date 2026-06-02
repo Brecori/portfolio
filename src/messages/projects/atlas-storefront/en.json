@@ -1,6 +1,5 @@
 {
   "titulo": "Atlas Storefront",
   "summary": "Commerce flow",
-  "description": "A commerce interface built around fast catalog scanning, refined filtering, and a lean checkout flow.",
-  "content": "## Overview\n\nAtlas Storefront explores a commerce experience built for fast discovery and low-friction checkout.\n\n## Challenge\n\nThe product needed to make browsing, filtering, and purchase decisions feel direct without overwhelming the interface.\n\n## Solution\n\nThe layout prioritizes catalog scanning, clear product states, and a checkout path with fewer competing actions.\n\n## Results\n\nThe concept creates a sharper shopping flow with stronger focus on selection, comparison, and completion."
+  "description": "A commerce interface built around fast catalog scanning, refined filtering, and a lean checkout flow."
 }

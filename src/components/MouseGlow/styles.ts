@@ -14,7 +14,7 @@ export const Glow = styled.div`
   transform: translate3d(-50%, -50%, 0);
   transition: opacity 0.3s ease-in-out;
   will-change: transform;
-  z-index: 20;
+  z-index: 200;
 
   @media (pointer: coarse) {
     display: none;
@@ -33,7 +33,7 @@ const cursorLayerStyles = `
     width 0.18s ease-out,
     height 0.18s ease-out;
   will-change: transform;
-  z-index: 40;
+  z-index: 220;
 
   @media (pointer: coarse) {
     display: none;
@@ -54,5 +54,5 @@ export const CursorDot = styled.div`
   width: var(--cursor-dot-size, 0.4rem);
   height: var(--cursor-dot-size, 0.4rem);
   background-color: ${({ theme }) => theme.fantasia};
-  z-index: 41;
+  z-index: 221;
 `;

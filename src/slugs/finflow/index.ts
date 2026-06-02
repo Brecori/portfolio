@@ -4,7 +4,6 @@ export const createFinflowProject = (
   t: (key: string) => string,
 ): ProjectContent => {
   return {
-    content: t("content"),
     data: "2024",
     description: t("description"),
     githubLink: "https://github.com/",

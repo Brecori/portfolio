@@ -1,6 +1,5 @@
 {
   "titulo": "Finflow",
   "summary": "Finance concept",
-  "description": "A mobile-first finance concept with clean transaction states and quick insights.",
-  "content": "## Overview\n\nFinflow is a mobile-first finance concept focused on transaction clarity and quick financial context.\n\n## Challenge\n\nUsers need to understand account movement quickly without digging through dense statements or unclear categories.\n\n## Solution\n\nThe interface uses clean states, compact summaries, and direct transaction details to support repeated daily use.\n\n## Results\n\nThe concept gives financial activity a calmer structure and makes important changes easier to spot."
+  "description": "A mobile-first finance concept with clean transaction states and quick insights."
 }

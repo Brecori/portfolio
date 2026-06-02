@@ -4,7 +4,6 @@ export const createSignalLaunchProject = (
   t: (key: string) => string,
 ): ProjectContent => {
   return {
-    content: t("content"),
     data: "2025",
     description: t("description"),
     githubLink: "https://github.com/",

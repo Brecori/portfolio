@@ -1,8 +1,15 @@
 {
   "title": "Projects",
+  "deckTitle": "Project deck",
+  "deckDescription": "Selected work presented as distributed cards, with a focused opening for context, visual decisions, and execution.",
   "actions": {
     "github": "GitHub",
+    "closeProject": "Close project",
     "liveProject": "Live project",
     "selectProject": "Select project"
+  },
+  "labels": {
+    "links": "Links",
+    "stack": "Stack"
   }
 }

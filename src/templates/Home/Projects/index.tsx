@@ -1,170 +1,112 @@
 "use client";
 
-import { FC, KeyboardEvent, useMemo, useState } from "react";
-import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { FC, useEffect, useMemo, useState } from "react";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { ProjectModal } from "@/components/ProjectModal";
 import { SectionTitle } from "@/components/SectionTitle";
 import { useProjectSlugs } from "@/slugs";
+import type { ProjectContent } from "@/slugs/props";
 import { useTranslations } from "next-intl";
+import useAnimation from "./animation";
 import * as S from "./styles";
 
-const getRelativeOffset = (index: number, activeIndex: number, total: number) => {
-  const rawOffset = index - activeIndex;
-  const half = Math.floor(total / 2);
-
-  if (rawOffset > half) {
-    return rawOffset - total;
-  }
-
-  if (rawOffset < -half) {
-    return rawOffset + total;
-  }
-
-  return rawOffset;
-};
+const formatProjectIndex = (index: number) => `${index + 1}`.padStart(2, "0");
 
 export const Projects: FC = () => {
   const t = useTranslations("projects");
   const projects = useProjectSlugs();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const { sectionRef, setCardRef } = useAnimation(projects.length);
+  const [activeSlug, setActiveSlug] = useState<ProjectContent["slug"] | null>(
+    null,
+  );
+  const portalTarget = typeof document !== "undefined" ? document.body : null;
 
-  const positionedProjects = useMemo(
-    () =>
-      projects.map((project, index) => ({
-        ...project,
-        offset: getRelativeOffset(index, activeIndex, projects.length),
-      })),
-    [activeIndex, projects],
+  const activeProject = useMemo(
+    () => projects.find((project) => project.slug === activeSlug) ?? null,
+    [activeSlug, projects],
   );
 
-  const handleSelect = (index: number) => {
-    setActiveIndex(index);
-  };
+  useEffect(() => {
+    if (!activeProject) {
+      return;
+    }
 
-  const handlePrevious = () => {
-    setActiveIndex((currentIndex) =>
-      (currentIndex - 1 + projects.length) % projects.length,
-    );
-  };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveSlug(null);
+      }
+    };
 
-  const handleNext = () => {
-    setActiveIndex((currentIndex) => (currentIndex + 1) % projects.length);
+    const smoother = ScrollSmoother.get();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    smoother?.paused(true);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      smoother?.paused(false);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeProject]);
+
+  const handleOpenProject = (project: ProjectContent) => {
+    if (activeSlug) {
+      return;
+    }
+
+    setActiveSlug(project.slug);
   };
 
   return (
-    <S.ProjectsSection id="projects">
-      <S.ProjectsIntro>
-        <SectionTitle>{t("title")}</SectionTitle>
-      </S.ProjectsIntro>
+    <>
+      <S.ProjectsSection id="projects" ref={sectionRef}>
+        <S.ProjectsIntro>
+          <SectionTitle>{t("title")}</SectionTitle>
+        </S.ProjectsIntro>
 
-      <S.SliderSection>
-        <S.SliderViewport>
-          <S.SliderScene aria-label={t("actions.selectProject")} role="list">
-            {positionedProjects.map((project, index) => {
-              const isActive = project.offset === 0;
+        <S.CardsRail aria-label={t("actions.selectProject")}>
+          {projects.map((project, index) => {
+            const isActive = activeSlug === project.slug;
 
-              return (
-                <S.SlideCard
-                  $offset={project.offset}
-                  $isActive={isActive}
-                  aria-label={`${t("actions.selectProject")}: ${project.titulo}`}
-                  data-cursor-hover
-                  key={project.slug}
-                  onClick={() => handleSelect(index)}
-                  onKeyDown={(event: KeyboardEvent<HTMLDivElement>) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      handleSelect(index);
-                    }
-                  }}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <S.SlideImage alt={project.titulo} src={project.image} />
-                  <S.SlideOverlay />
-                  <S.SlideContent $isActive={isActive}>
-                    <S.SlideMeta>
-                      <span>{project.data}</span>
-                      <span>{project.summary}</span>
-                    </S.SlideMeta>
-
-                    <S.SlideTitle>{project.titulo}</S.SlideTitle>
-                    <S.SlideDescription>{project.description}</S.SlideDescription>
-
-                    <S.SlideStack>
-                      {project.stack.map((item) => (
-                        <S.SlideBadge key={item}>{item}</S.SlideBadge>
-                      ))}
-                    </S.SlideStack>
-
-                    <S.SlideLinks>
-                      {project.githubLink && project.githubLink !== "#" ? (
-                        <S.ProjectLink
-                          data-cursor-hover
-                          href={project.githubLink}
-                          rel="noreferrer"
-                          target="_blank"
-                          onClick={(event) => event.stopPropagation()}
-                        >
-                          <FiGithub aria-hidden size={18} />
-                          {t("actions.github")}
-                        </S.ProjectLink>
-                      ) : null}
-
-                      {project.productionLink && project.productionLink !== "#" ? (
-                        <S.ProjectLink
-                          data-cursor-hover
-                          href={project.productionLink}
-                          rel="noreferrer"
-                          target="_blank"
-                          onClick={(event) => event.stopPropagation()}
-                        >
-                          <FiExternalLink aria-hidden size={18} />
-                          {t("actions.liveProject")}
-                        </S.ProjectLink>
-                      ) : null}
-                    </S.SlideLinks>
-                  </S.SlideContent>
-                </S.SlideCard>
-              );
-            })}
-          </S.SliderScene>
-        </S.SliderViewport>
-
-        <S.SliderControls>
-          <S.ControlButton
-            aria-label="Previous project"
-            data-cursor-hover
-            onClick={handlePrevious}
-            type="button"
-          >
-            Prev
-          </S.ControlButton>
-
-          <S.ControlIndexes>
-            {projects.map((project, index) => (
-              <S.IndexButton
-                $isActive={index === activeIndex}
+            return (
+              <S.CardButton
                 aria-label={`${t("actions.selectProject")}: ${project.titulo}`}
                 data-cursor-hover
                 key={project.slug}
-                onClick={() => handleSelect(index)}
+                onClick={() => handleOpenProject(project)}
+                ref={setCardRef(index)}
                 type="button"
               >
-                {index + 1}
-              </S.IndexButton>
-            ))}
-          </S.ControlIndexes>
+                <S.CardSurface $isActive={isActive}>
+                  <S.CardIndex>{formatProjectIndex(index)}</S.CardIndex>
+                  <S.CardImage alt={project.titulo} src={project.image} />
+                  <S.CardGlow />
+                  <S.CardShade />
+                  <S.CardContent>
+                    <S.CardMeta>
+                      <span>{project.data}</span>
+                      <span>{project.status}</span>
+                    </S.CardMeta>
+                    <S.CardTitle>{project.titulo}</S.CardTitle>
+                    <S.CardSummary>{project.summary}</S.CardSummary>
+                  </S.CardContent>
+                </S.CardSurface>
+              </S.CardButton>
+            );
+          })}
+        </S.CardsRail>
 
-          <S.ControlButton
-            aria-label="Next project"
-            data-cursor-hover
-            onClick={handleNext}
-            type="button"
-          >
-            Next
-          </S.ControlButton>
-        </S.SliderControls>
-      </S.SliderSection>
-    </S.ProjectsSection>
+        {activeProject && portalTarget
+          ? (
+              <ProjectModal
+                onClose={() => setActiveSlug(null)}
+                portalTarget={portalTarget}
+                project={activeProject}
+              />
+            )
+          : null}
+      </S.ProjectsSection>
+    </>
   );
 };

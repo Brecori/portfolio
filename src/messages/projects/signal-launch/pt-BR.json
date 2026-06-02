@@ -1,6 +1,5 @@
 {
   "titulo": "Signal Launch",
   "summary": "Validação SaaS",
-  "description": "Uma landing page leve para validar posicionamento SaaS e copy de conversão.",
-  "content": "## Visão geral\n\nSignal Launch é uma experiência de landing page focada em testar posicionamento SaaS antes de uma construção maior.\n\n## Desafio\n\nTimes em fase inicial precisam validar mensagem e intenção de conversão sem investir em um site pesado.\n\n## Solução\n\nA página concentra oferta, pontos de prova e chamadas para ação em um fluxo enxuto e fácil de iterar.\n\n## Resultados\n\nO conceito ajuda a testar mensagens com mais velocidade e aprender melhor com o tráfego inicial."
+  "description": "Uma landing page leve para validar posicionamento SaaS e copy de conversão."
 }

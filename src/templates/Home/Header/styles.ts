@@ -10,86 +10,25 @@ export const HeaderContainer = styled.header`
   position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 15rem;
-  justify-content: center;
   overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 50% 44%,
-      color-mix(in srgb, ${({ theme }) => theme.fantasia} 10%, transparent) 0%,
-      transparent 30%
-    ),
-    linear-gradient(
-      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent)
-        0.1rem,
-      transparent 0.1rem
-    ),
-    linear-gradient(
-      90deg,
-      color-mix(in srgb, ${({ theme }) => theme.techWhite} 4%, transparent)
-        0.1rem,
-      transparent 0.1rem
-    ),
-    ${({ theme }) => theme.extremeBlack};
-  background-position: center, center, center;
-  background-size:
-    100% 100%,
-    4.4rem 4.4rem,
-    4.4rem 4.4rem;
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-  }
-
-  &::before {
-    background:
-      linear-gradient(
-        90deg,
-        ${({ theme }) => theme.extremeBlack} 0%,
-        transparent 18%,
-        transparent 82%,
-        ${({ theme }) => theme.extremeBlack} 100%
-      ),
-      linear-gradient(
-        180deg,
-        ${({ theme }) => theme.extremeBlack} 0%,
-        transparent 24%,
-        transparent 76%,
-        ${({ theme }) => theme.extremeBlack} 100%
-      );
-    opacity: 0.78;
-  }
 
   ${mediaMaxDesktop1024`
-    padding: 15rem 7.5rem 10rem;
-    background-size:
-      100% 100%,
-      3.8rem 3.8rem,
-      3.8rem 3.8rem;
+    padding: 25rem 7.5rem 10rem;
+    justify-content: space-between;
+  `}
 
-    &::after {
-      background-size: 1.4rem 1.4rem;
-    }
+  ${mediaMaxIpadVertical`
+    padding-top: 35rem;
   `}
 
   ${mediaMaxMobile`
     flex-direction: column;
     padding: 35rem 2.4rem 10rem;
     min-height: 100dvh;
-    justify-content: flex-start;
-    background-size:
-      100% 100%,
-      3.2rem 3.2rem,
-      3.2rem 3.2rem;
-
-    &::after {
-      background-size: 1.2rem 1.2rem;
-    }
   `}
 `;
 
@@ -97,6 +36,7 @@ export const MainGroup = styled(AnimatedContent)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 15rem;
   gap: 2.2rem;
   position: relative;
   z-index: 1;
@@ -227,20 +167,9 @@ export const ButtonsContainer = styled.div`
 `;
 
 export const ScrollDownButtonContainer = styled(AnimatedContent)`
-  position: absolute;
-  left: 50%;
-  bottom: 10rem;
-  transform: translateX(-50%);
+  margin-bottom: 10rem;
 
   ${mediaMaxDesktop1024`
-    bottom: 5rem;
-  `}
-
-  ${mediaMaxIpadVertical`
-    bottom: 15rem;
-  `}
-
-  ${mediaMaxMobile`
-    bottom: 20rem;
+    margin-bottom: 0rem;
   `}
 `;

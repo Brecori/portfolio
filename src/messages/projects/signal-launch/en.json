@@ -1,6 +1,5 @@
 {
   "titulo": "Signal Launch",
   "summary": "SaaS validation",
-  "description": "A lightweight landing experience for validating SaaS positioning and conversion copy.",
-  "content": "## Overview\n\nSignal Launch is a focused landing experience for testing SaaS positioning before a larger product build.\n\n## Challenge\n\nEarly teams need to validate messaging and conversion intent without committing to a heavy marketing site.\n\n## Solution\n\nThe page centers the offer, proof points, and calls to action in a lean flow designed for quick iteration.\n\n## Results\n\nThe concept supports faster message testing and clearer learning from early traffic."
+  "description": "A lightweight landing experience for validating SaaS positioning and conversion copy."
 }
