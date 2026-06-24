@@ -1,4 +1,5 @@
 import { mediaMaxMobile } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const Spacer = styled.div`
@@ -7,7 +8,7 @@ export const Spacer = styled.div`
   background: linear-gradient(
     90deg,
     transparent 0%,
-    ${({ theme }) => theme.techWhite10} 50%,
+    ${theme.techWhite10} 50%,
     transparent 100%
   );
 

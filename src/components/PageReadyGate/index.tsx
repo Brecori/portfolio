@@ -9,9 +9,9 @@ type PageReadyGateProps = {
   children: ReactNode;
 };
 
-const MIN_VISIBLE_MS = 700;
-const PROGRESS_INTERVAL_MS = 24;
-const REVEAL_DELAY_MS = 220;
+const MIN_VISIBLE_MS = 350;
+const PROGRESS_INTERVAL_MS = 8;
+const REVEAL_DELAY_MS = 60;
 
 export const PageReadyGate = ({ children }: PageReadyGateProps) => {
   const [isReady, setIsReady] = useState(false);

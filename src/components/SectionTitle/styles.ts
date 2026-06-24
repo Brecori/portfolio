@@ -1,4 +1,5 @@
 import { mediaMaxDesktop1024 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const Title = styled.h2<{ $isVisible: boolean }>`
@@ -6,14 +7,14 @@ export const Title = styled.h2<{ $isVisible: boolean }>`
   font-weight: 600;
   position: relative;
   width: fit-content;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
 
   &::after {
     content: "";
     position: absolute;
     width: ${({ $isVisible }) => ($isVisible ? "35%" : "0%")};
     height: 0.6rem;
-    background-color: ${({ theme }) => theme.fantasia};
+    background-color: ${theme.fantasia};
     bottom: -1rem;
     left: 0;
     transition: width 0.7s 0.3s ease-out;

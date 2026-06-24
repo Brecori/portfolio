@@ -4,6 +4,7 @@ import {
   mediaMaxMobile,
 } from "@/lib/media-query";
 import AnimatedContent from "@/components/AnimatedContent";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const TrajectoryContainer = styled.section`
@@ -51,7 +52,7 @@ export const TimelineContent = styled.div`
     bottom: 0;
     left: calc(14rem + 1.6rem);
     width: 0.1rem;
-    background-color: ${({ theme }) => theme.techWhite10};
+    background-color: ${theme.techWhite10};
   }
 
   ${mediaMaxDesktop1024`
@@ -76,8 +77,8 @@ export const TimelineMarker = styled.span`
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.fantasia};
-  box-shadow: 0 0 2.4rem ${({ theme }) => theme.fantasia};
+  background-color: ${theme.fantasia};
+  box-shadow: 0 0 2.4rem ${theme.fantasia};
   margin-bottom: -1rem;
   will-change: transform;
   margin-left: -0.5rem;
@@ -124,7 +125,7 @@ export const YearLabel = styled.div<{ $active: boolean }>`
 
   span {
     display: block;
-    color: ${({ $active, theme }) =>
+    color: ${({ $active }) =>
       $active ? theme.fantasia : theme.submarine};
     font-size: 2.6rem;
     font-weight: 700;
@@ -187,7 +188,7 @@ export const TrajectoryCard = styled.article`
 `;
 
 export const CardMeta = styled.p`
-  color: ${({ theme }) => theme.fantasia};
+  color: ${theme.fantasia};
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -197,7 +198,7 @@ export const CardMeta = styled.p`
 
 export const CardTitle = styled.h3`
   margin-top: 1.2rem;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: 3.6rem;
   font-weight: 600;
   line-height: 1.05;
@@ -209,7 +210,7 @@ export const CardTitle = styled.h3`
 
 export const CardCompany = styled.p`
   margin-top: 0.8rem;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.5rem;
   font-weight: 500;
   line-height: 1.4;
@@ -218,7 +219,7 @@ export const CardCompany = styled.p`
 export const CardDescription = styled.p`
   max-width: 64rem;
   margin-top: 2.4rem;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.6rem;
   font-weight: 400;
   line-height: 1.55;

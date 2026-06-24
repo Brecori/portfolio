@@ -3,6 +3,7 @@ import {
   mediaMaxIpadVertical,
   mediaMaxMobile,
 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled, { keyframes } from "styled-components";
 
 const dotFloat = keyframes`
@@ -78,7 +79,7 @@ export const Dots = styled.div`
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
-    background-color: ${({ theme }) => theme.fantasia};
+    background-color: ${theme.fantasia};
     opacity: 0.42;
     animation: ${dotFloat} 2.1s ease-in-out infinite;
   }
@@ -123,7 +124,7 @@ export const Dots = styled.div`
 `;
 
 export const Quote = styled.p`
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: 8rem;
   font-weight: 500;
   line-height: 0.95;
@@ -144,10 +145,10 @@ export const Highlight = styled.span`
   color: transparent;
   background: linear-gradient(
     90deg,
-    ${({ theme }) => theme.fantasia} 0%,
-    ${({ theme }) => theme.fantasia} var(--highlight-progress),
-    ${({ theme }) => theme.submarine} var(--highlight-progress),
-    ${({ theme }) => theme.submarine} 100%
+    ${theme.fantasia} 0%,
+    ${theme.fantasia} var(--highlight-progress),
+    ${theme.submarine} var(--highlight-progress),
+    ${theme.submarine} 100%
   );
   background-clip: text;
   -webkit-background-clip: text;

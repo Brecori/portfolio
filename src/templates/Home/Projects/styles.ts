@@ -1,4 +1,5 @@
 import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled, { css } from "styled-components";
 
 export const ProjectsSection = styled.section`
@@ -31,7 +32,7 @@ export const ProjectsIntro = styled.div`
 
 export const ProjectsDeckDescription = styled.p`
   max-width: 54rem;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: clamp(1.8rem, 1.8vw, 2.4rem);
   line-height: 1.45;
 
@@ -117,7 +118,7 @@ export const CardButton = styled.button`
   text-align: left;
 
   &:focus-visible {
-    outline: 0.2rem solid ${({ theme }) => theme.fantasia};
+    outline: 0.2rem solid ${theme.fantasia};
     outline-offset: 0.35rem;
   }
 `;
@@ -131,9 +132,9 @@ export const CardSurface = styled.div<{
   overflow: hidden;
   border-radius: 0.2rem;
   border: 0.1rem solid
-    ${({ theme, $isHighlighted }) =>
+    ${({ $isHighlighted }) =>
       $isHighlighted ? `${theme.fantasia}88` : theme.techWhite10};
-  background: ${({ theme }) => theme.codGray};
+  background: ${theme.codGray};
   box-shadow: ${({ $isHighlighted }) =>
     $isHighlighted
       ? "0 5rem 8rem rgba(0, 0, 0, 0.5)"
@@ -159,7 +160,7 @@ export const CardSurface = styled.div<{
   @media (min-width: 601px) {
     ${CardButton}:hover &,
     ${CardButton}:focus-visible & {
-      border-color: ${({ theme }) => `${theme.fantasia}66`};
+      border-color: ${theme.fantasia}66;
       box-shadow: 0 3.2rem 5.8rem rgba(0, 0, 0, 0.3);
       filter: brightness(1.04);
       transform: translateY(-1.6rem);
@@ -172,7 +173,7 @@ export const CardIndex = styled.span`
   top: 1.2rem;
   left: 1.2rem;
   z-index: 2;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -230,7 +231,7 @@ export const CardContent = styled.div`
 `;
 
 export const CardTitle = styled.h3`
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: clamp(2.2rem, 2vw, 3.2rem);
   font-weight: 400;
   letter-spacing: -0.04em;
@@ -246,7 +247,7 @@ export const CardTitle = styled.h3`
 `;
 
 export const CardSummary = styled.p`
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.08em;

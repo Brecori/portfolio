@@ -1,4 +1,9 @@
-import { mediaMaxDesktop1024, mediaMaxIpadVertical, mediaMaxMobile } from "@/lib/media-query";
+import {
+  mediaMaxDesktop1024,
+  mediaMaxIpadVertical,
+  mediaMaxMobile,
+} from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const Button = styled.button`
@@ -6,7 +11,7 @@ export const Button = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -18,12 +23,12 @@ export const Button = styled.button`
   svg {
     width: 3rem;
     height: 3rem;
-    color: ${({ theme }) => theme.fantasia};
+    color: ${theme.fantasia};
   }
 
   &:hover {
     transform: translateY(0.5rem);
-    color: ${({ theme }) => theme.techWhite};
+    color: ${theme.techWhite};
   }
 
   ${mediaMaxIpadVertical`

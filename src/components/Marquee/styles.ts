@@ -1,4 +1,5 @@
 import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const Container = styled.section`
@@ -32,7 +33,7 @@ export const PhraseGroup = styled.div`
 
 export const Phrase = styled.span`
   flex: 0 0 auto;
-  color: ${({ theme }) => theme.techWhite50};
+  color: ${theme.techWhite50};
   font-size: 10rem;
   font-weight: 700;
   line-height: 1;
@@ -56,7 +57,7 @@ export const Separator = styled.span`
   height: 2rem;
   border-radius: 100%;
   background-color: transparent;
-  border: 0.2rem solid ${({ theme }) => theme.techWhite50};
+  border: 0.2rem solid ${theme.techWhite50};
 
   ${mediaMaxMobile`
     width: 1.2rem;

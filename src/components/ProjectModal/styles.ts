@@ -3,6 +3,7 @@ import {
   mediaMaxIpadVertical,
   mediaMaxMobile,
 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled, { css, keyframes } from "styled-components";
 
 const riseIn = keyframes`
@@ -20,8 +21,8 @@ const riseIn = keyframes`
 const modalTagStyles = css`
   min-height: 4rem;
   padding: 0.9rem 1.4rem;
-  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
-  color: ${({ theme }) => theme.techWhite};
+  border: 0.1rem solid ${theme.techWhite10};
+  color: ${theme.techWhite};
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -59,8 +60,8 @@ export const ModalCard = styled.div`
   max-height: min(88vh, 92rem);
   border-radius: 0.2rem;
   overflow: hidden;
-  background: ${({ theme }) => theme.extremeBlack};
-  border: 0.1rem solid ${({ theme }) => `${theme.techWhite10}`};
+  background: ${theme.extremeBlack};
+  border: 0.1rem solid ${theme.techWhite10};
 
   ${mediaMaxDesktop1024`
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -138,9 +139,9 @@ export const ModalCloseButton = styled.button`
   justify-content: center;
   width: 4rem;
   height: 4rem;
-  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
-  background: ${({ theme }) => theme.extremeBlack};
-  color: ${({ theme }) => theme.techWhite};
+  border: 0.1rem solid ${theme.techWhite10};
+  background: ${theme.extremeBlack};
+  color: ${theme.techWhite};
   transition:
     border-color 0.25s ease,
     transform 0.25s ease;
@@ -148,7 +149,7 @@ export const ModalCloseButton = styled.button`
 
   &:hover,
   &:focus-visible {
-    border-color: ${({ theme }) => theme.fantasia};
+    border-color: ${theme.fantasia};
     transform: rotate(90deg);
   }
 
@@ -184,7 +185,7 @@ export const ModalHeader = styled.div`
 `;
 
 export const ModalSummary = styled.p`
-  color: ${({ theme }) => theme.fantasia};
+  color: ${theme.fantasia};
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -193,7 +194,7 @@ export const ModalSummary = styled.p`
 `;
 
 export const ModalTitle = styled.h3`
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: clamp(3.6rem, 4vw, 6rem);
   font-weight: 400;
   letter-spacing: -0.05em;
@@ -205,7 +206,7 @@ export const ModalTitle = styled.h3`
 `;
 
 export const ModalDescription = styled.p`
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.6rem;
   line-height: 1.7;
 
@@ -239,7 +240,7 @@ export const ModalInfoBlock = styled.div`
 `;
 
 export const ModalInfoLabel = styled.span`
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -270,7 +271,7 @@ export const ProjectLink = styled.a`
   align-items: center;
   gap: 0.8rem;
   ${modalTagStyles}
-  background: ${({ theme }) => theme.extremeBlack};
+  background: ${theme.extremeBlack};
   transition:
     border-color 0.3s ease,
     background-color 0.3s ease,
@@ -279,18 +280,18 @@ export const ProjectLink = styled.a`
 
   &:hover,
   &:focus-visible {
-    border-color: ${({ theme }) => theme.fantasia};
+    border-color: ${theme.fantasia};
     background: color-mix(
       in srgb,
-      ${({ theme }) => theme.fantasia} 14%,
-      ${({ theme }) => theme.extremeBlack}
+      ${theme.fantasia} 14%,
+      ${theme.extremeBlack}
     );
-    color: ${({ theme }) => theme.techWhite};
+    color: ${theme.techWhite};
     transform: scale(1.05);
   }
 
   &:focus-visible {
-    outline: 0.2rem solid ${({ theme }) => theme.fantasia};
+    outline: 0.2rem solid ${theme.fantasia};
     outline-offset: 0.2rem;
   }
 `;

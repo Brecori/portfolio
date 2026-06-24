@@ -1,5 +1,3 @@
-"use client";
-
 import { FC } from "react";
 import { useTranslations } from "next-intl";
 import * as S from "./styles";

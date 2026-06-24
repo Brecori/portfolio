@@ -1,5 +1,3 @@
-"use client";
-
 import { FC } from "react";
 import { IconLinkProps } from "./props";
 import * as S from "./styles";

@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import * as S from "./styles";
 import { TbLanguage } from "react-icons/tb";

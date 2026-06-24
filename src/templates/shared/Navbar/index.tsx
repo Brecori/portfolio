@@ -1,5 +1,3 @@
-"use client";
-
 import { FC } from "react";
 import { ResponsiveElement } from "@/lib/ResponsiveElement";
 import { NavbarDesktop } from "./Desktop";

@@ -4,6 +4,7 @@ import {
   mediaMaxIpadVertical,
   mediaMaxMobile,
 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const ContactSection = styled.section`
@@ -40,7 +41,7 @@ export const ContactInner = styled(AnimatedContent)`
 `;
 
 export const ContactEyebrow = styled.span`
-  color: ${({ theme }) => theme.fantasia};
+  color: ${theme.fantasia};
   font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: 0.8em;
@@ -51,7 +52,7 @@ export const ContactEyebrow = styled.span`
 
 export const ContactTitle = styled.h2`
   min-height: 15rem;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: clamp(5.2rem, 7vw, 10rem);
   font-weight: 400;
   letter-spacing: 0.04em;

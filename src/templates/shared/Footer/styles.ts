@@ -1,4 +1,5 @@
 import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
@@ -8,7 +9,7 @@ export const FooterContainer = styled.footer`
   gap: 2rem;
   min-height: 8rem;
   padding: 0 15rem;
-  border-top: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  border-top: 0.1rem solid ${theme.techWhite10};
 
   ${mediaMaxDesktop1024`
     padding: 0 7.5rem;
@@ -24,7 +25,7 @@ export const FooterContainer = styled.footer`
 `;
 
 export const Copyright = styled.p`
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -45,7 +46,7 @@ export const Logo = styled.div`
   justify-self: end;
   font-size: 2.2rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   pointer-events: none;
 
   ${mediaMaxDesktop1024`

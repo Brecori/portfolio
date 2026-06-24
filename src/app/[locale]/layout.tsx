@@ -2,7 +2,6 @@ import { MouseGlow } from "@/components/MouseGlow";
 import { PageReadyGate } from "@/components/PageReadyGate";
 import { Navbar } from "@/templates/shared/Navbar";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { AppThemeProvider } from "@/contexts/theme-provider";
 import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyles } from "@/styles/global";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -101,16 +100,14 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <StyledComponentsRegistry>
           <NextIntlClientProvider messages={messages}>
-            <AppThemeProvider>
-              <GlobalStyles />
-              <PageReadyGate>
-                <MouseGlow />
-                <Navbar />
-                <SmoothScroll>
-                  <div className="app-shell">{children}</div>
-                </SmoothScroll>
-              </PageReadyGate>
-            </AppThemeProvider>
+            <GlobalStyles />
+            <PageReadyGate>
+              <MouseGlow />
+              <Navbar />
+              <SmoothScroll>
+                <div className="app-shell">{children}</div>
+              </SmoothScroll>
+            </PageReadyGate>
           </NextIntlClientProvider>
         </StyledComponentsRegistry>
       </body>

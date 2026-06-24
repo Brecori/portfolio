@@ -1,5 +1,3 @@
-"use client";
-
 import AnimatedContent from "@/components/AnimatedContent";
 import { FC } from "react";
 import { IconLink } from "@/components/IconLink";

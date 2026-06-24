@@ -1,4 +1,5 @@
 import { mediaMaxDesktop1024 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled, { keyframes } from "styled-components";
 
 const backgroundWordFadeIn = keyframes`
@@ -36,7 +37,7 @@ export const OrbitArea = styled.div`
 
 export const BackgroundWord = styled.span`
   position: absolute;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: 47rem;
   font-weight: 800;
   line-height: 1;
@@ -54,7 +55,7 @@ export const OrbitRail = styled.span<{ $size: OrbitSize }>`
   position: absolute;
   width: ${({ $size }) => ($size === "large" ? "84rem" : "60rem")};
   aspect-ratio: 1;
-  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  border: 0.1rem solid ${theme.techWhite10};
   border-radius: 50%;
   opacity: ${({ $size }) => ($size === "large" ? 0.72 : 0.54)};
 
@@ -71,18 +72,18 @@ export const CenterCore = styled.div`
   width: 22rem;
   aspect-ratio: 1;
   border: 0.15rem solid
-    color-mix(in srgb, ${({ theme }) => theme.submarine} 72%, transparent);
+    color-mix(in srgb, ${theme.submarine} 72%, transparent);
   border-radius: 50%;
   background:
     radial-gradient(
       circle,
-      color-mix(in srgb, ${({ theme }) => theme.fantasia} 20%, transparent),
+      color-mix(in srgb, ${theme.fantasia} 20%, transparent),
       transparent 72%
     ),
-    ${({ theme }) => theme.codGray};
+    ${theme.codGray};
   box-shadow:
     0 0 10rem
-      color-mix(in srgb, ${({ theme }) => theme.fantasia} 25%, transparent),
+      color-mix(in srgb, ${theme.fantasia} 25%, transparent),
     inset 0 0 2.2rem rgba(245, 245, 245, 0.035);
   padding: 2.4rem;
   text-align: center;
@@ -94,7 +95,7 @@ export const CenterCore = styled.div`
 
 export const CenterLabel = styled.span`
   align-self: end;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: 0;
@@ -117,7 +118,7 @@ export const TypeTrack = styled.div<{ $activeIndex: number }>`
 
 export const TypeName = styled.strong`
   height: 2.8rem;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 2.8rem;
@@ -127,7 +128,7 @@ export const TypeName = styled.strong`
 export const SkillName = styled.span`
   align-self: start;
   min-height: 1.6rem;
-  color: ${({ theme }) => theme.fantasia};
+  color: ${theme.fantasia};
   font-size: 1.35rem;
   font-weight: 700;
   line-height: 1.4;
@@ -137,7 +138,7 @@ export const SkillName = styled.span`
     opacity 680ms ease,
     text-shadow 680ms ease;
   text-shadow: 0 0 1.2rem
-    color-mix(in srgb, ${({ theme }) => theme.fantasia} 44%, transparent);
+    color-mix(in srgb, ${theme.fantasia} 44%, transparent);
 `;
 
 export const SkillOrbit = styled.div<{ $size: OrbitSize }>`
@@ -157,7 +158,7 @@ export const SkillPointVisual = styled.span<{ $isActive: boolean }>`
   width: 100%;
   aspect-ratio: 1;
   border: 0.1rem solid
-    ${({ $isActive, theme }) =>
+    ${({ $isActive }) =>
       $isActive
         ? `color-mix(in srgb, ${theme.fantasia} 78%, ${theme.techWhite10})`
         : "transparent"};
@@ -165,15 +166,15 @@ export const SkillPointVisual = styled.span<{ $isActive: boolean }>`
   background:
     radial-gradient(
       circle,
-      ${({ $isActive, theme }) =>
+      ${({ $isActive }) =>
           $isActive
             ? `color-mix(in srgb, ${theme.fantasia} 18%, transparent)`
             : "transparent"}
         0%,
       transparent 72%
     ),
-    ${({ $isActive, theme }) => ($isActive ? theme.codGray : "transparent")};
-  box-shadow: ${({ $isActive, theme }) =>
+    ${({ $isActive }) => ($isActive ? theme.codGray : "transparent")};
+  box-shadow: ${({ $isActive }) =>
     $isActive
       ? `0 0 2.8rem color-mix(in srgb, ${theme.fantasia} 36%, transparent)`
       : "none"};
@@ -187,7 +188,7 @@ export const SkillPointVisual = styled.span<{ $isActive: boolean }>`
   svg {
     width: 3.35rem;
     height: 3.35rem;
-    color: ${({ $isActive, theme }) =>
+    color: ${({ $isActive }) =>
       $isActive ? theme.fantasia : theme.submarine};
     opacity: ${({ $isActive }) => ($isActive ? 1 : 0.48)};
     transition:
@@ -213,29 +214,29 @@ export const SkillPoint = styled.button<{ $isActive: boolean }>`
   &:hover ${SkillPointVisual}, &:focus-visible ${SkillPointVisual} {
     border-color: color-mix(
       in srgb,
-      ${({ theme }) => theme.fantasia} 78%,
-      ${({ theme }) => theme.techWhite10}
+      ${theme.fantasia} 78%,
+      ${theme.techWhite10}
     );
     background:
       radial-gradient(
         circle,
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 18%, transparent) 0%,
+        color-mix(in srgb, ${theme.fantasia} 18%, transparent) 0%,
         transparent 72%
       ),
-      ${({ theme }) => theme.codGray};
+      ${theme.codGray};
     box-shadow:
       0 0 2.8rem
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 36%, transparent),
+        color-mix(in srgb, ${theme.fantasia} 36%, transparent),
       inset 0 0 1.6rem rgba(245, 245, 245, 0.03);
     scale: ${({ $isActive }) => ($isActive ? 1.14 : 1)};
   }
 
   &:hover ${SkillPointVisual} svg,
   &:focus-visible ${SkillPointVisual} svg {
-    color: ${({ theme }) => theme.fantasia};
+    color: ${theme.fantasia};
     filter: drop-shadow(
       0 0 1rem
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 52%, transparent)
+        color-mix(in srgb, ${theme.fantasia} 52%, transparent)
     );
     opacity: 1;
   }
@@ -268,10 +269,10 @@ export const SkillTooltip = styled.span`
   width: max-content;
   max-width: 12rem;
   padding: 0.7rem 1rem;
-  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  border: 0.1rem solid ${theme.techWhite10};
   border-radius: 0.4rem;
-  background: ${({ theme }) => theme.codGray};
-  color: ${({ theme }) => theme.techWhite};
+  background: ${theme.codGray};
+  color: ${theme.techWhite};
   font-size: 1.15rem;
   font-weight: 700;
   line-height: 1;

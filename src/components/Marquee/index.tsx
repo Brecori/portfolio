@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, Fragment } from "react";
 import useAnimation from "./animation";
 import type { MarqueeProps } from "./props";

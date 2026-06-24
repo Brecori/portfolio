@@ -3,6 +3,7 @@ import {
   mediaMaxIpadVertical,
   mediaMaxMobile,
 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled, { css } from "styled-components";
 
 const iconControlStyles = css`
@@ -17,7 +18,7 @@ const iconControlStyles = css`
   background:
     radial-gradient(circle, transparent 0%, transparent 72%), transparent;
   box-shadow: none;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   scale: 1;
   transition:
     background 0.68s ease,
@@ -41,21 +42,21 @@ const iconControlStyles = css`
   &:focus-visible {
     border-color: color-mix(
       in srgb,
-      ${({ theme }) => theme.fantasia} 78%,
-      ${({ theme }) => theme.techWhite10}
+      ${theme.fantasia} 78%,
+      ${theme.techWhite10}
     );
     background:
       radial-gradient(
         circle,
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 18%, transparent) 0%,
+        color-mix(in srgb, ${theme.fantasia} 18%, transparent) 0%,
         transparent 72%
       ),
-      ${({ theme }) => theme.codGray};
+      ${theme.codGray};
     box-shadow:
       0 0 2.8rem
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 36%, transparent),
+        color-mix(in srgb, ${theme.fantasia} 36%, transparent),
       inset 0 0 1.6rem rgba(245, 245, 245, 0.03);
-    color: ${({ theme }) => theme.fantasia};
+    color: ${theme.fantasia};
     scale: 1.16;
   }
 
@@ -63,7 +64,7 @@ const iconControlStyles = css`
   &:focus-visible svg {
     filter: drop-shadow(
       0 0 1rem
-        color-mix(in srgb, ${({ theme }) => theme.fantasia} 52%, transparent)
+        color-mix(in srgb, ${theme.fantasia} 52%, transparent)
     );
     opacity: 1;
   }
@@ -152,10 +153,10 @@ export const Tooltip = styled.span`
   width: max-content;
   max-width: 12rem;
   padding: 0.7rem 1rem;
-  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  border: 0.1rem solid ${theme.techWhite10};
   border-radius: 0.4rem;
-  background: ${({ theme }) => theme.codGray};
-  color: ${({ theme }) => theme.techWhite};
+  background: ${theme.codGray};
+  color: ${theme.techWhite};
   font-size: 1.15rem;
   font-weight: 700;
   line-height: 1;

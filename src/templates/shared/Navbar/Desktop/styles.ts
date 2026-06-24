@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { mediaMaxDesktop1024 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 const transitionDuration = "0.4s";
@@ -9,13 +10,13 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  background-color: ${({ $hasScrolled, theme }) =>
+  background-color: ${({ $hasScrolled }) =>
     $hasScrolled ? theme.darkBlack : "transparent"};
   padding: 0 15rem;
   align-items: center;
   position: fixed;
   border-bottom: 0.1rem solid
-    ${({ theme, $hasScrolled }) =>
+    ${({ $hasScrolled }) =>
       $hasScrolled ? theme.techWhite10 : "transparent"};
   z-index: 30;
   transition:
@@ -33,10 +34,10 @@ export const Logo = styled(Link)`
   justify-self: start;
   font-size: 2.2rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
 
   span {
-    color: ${({ theme }) => theme.fantasia};
+    color: ${theme.fantasia};
   }
 
   ${mediaMaxDesktop1024`
@@ -52,7 +53,7 @@ export const Menu = styled.ul`
 
 export const MenuItem = styled.li`
   button {
-    color: ${({ theme }) => theme.submarine};
+    color: ${theme.submarine};
     font-size: 1.4rem;
     font-weight: 300;
     letter-spacing: 0.08em;
@@ -64,7 +65,7 @@ export const MenuItem = styled.li`
 
   &:hover {
     button {
-      color: ${({ theme }) => theme.fantasia};
+      color: ${theme.fantasia};
       transform: translateY(-0.2rem);
     }
   }
@@ -85,7 +86,7 @@ export const TogglesContainer = styled.div`
 export const LanguageToggleText = styled.span`
   font-size: 1rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   transition: color ${transitionDuration} ease-in-out;
   text-transform: uppercase;
 
@@ -102,7 +103,7 @@ export const LanguageToggleButton = styled.button`
   width: 3.5rem;
 
   svg {
-    color: ${({ theme }) => theme.submarine};
+    color: ${theme.submarine};
     transition: color ${transitionDuration} ease-in-out;
     width: 2.4rem;
     height: 2.4rem;
@@ -110,11 +111,11 @@ export const LanguageToggleButton = styled.button`
 
   &:hover {
     svg {
-      color: ${({ theme }) => theme.techWhite};
+      color: ${theme.techWhite};
     }
 
     ${LanguageToggleText} {
-      color: ${({ theme }) => theme.techWhite};
+      color: ${theme.techWhite};
     }
   }
 

@@ -1,4 +1,5 @@
 import { mediaMaxMobile } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const MobileSkillsContainer = styled.section`
@@ -46,7 +47,7 @@ export const MobileGroup = styled.div`
 `;
 
 export const MobileGroupTitle = styled.h3`
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.7rem;
   font-weight: 700;
   line-height: 1;
@@ -74,13 +75,13 @@ export const MobileSkillButton = styled.button<{ $isActive: boolean }>`
   gap: 1.1rem;
   min-height: 5.8rem;
   border: 0.1rem solid
-    ${({ $isActive, theme }) =>
+    ${({ $isActive }) =>
       $isActive
         ? `color-mix(in srgb, ${theme.fantasia} 52%, ${theme.techWhite10})`
         : theme.techWhite10};
   border-radius: 0.4rem;
   padding: 0 1.8rem;
-  color: ${({ $isActive, theme }) =>
+  color: ${({ $isActive }) =>
     $isActive ? theme.fantasia : theme.submarine};
   font-size: 1.7rem;
   font-weight: 700;
@@ -117,18 +118,18 @@ export const MobileCenterCore = styled.div`
   width: 27rem;
   aspect-ratio: 1;
   border: 0.15rem solid
-    color-mix(in srgb, ${({ theme }) => theme.submarine} 72%, transparent);
+    color-mix(in srgb, ${theme.submarine} 72%, transparent);
   border-radius: 50%;
   background:
     radial-gradient(
       circle,
-      color-mix(in srgb, ${({ theme }) => theme.fantasia} 20%, transparent),
+      color-mix(in srgb, ${theme.fantasia} 20%, transparent),
       transparent 72%
     ),
-    ${({ theme }) => theme.codGray};
+    ${theme.codGray};
   box-shadow:
     0 0 10rem
-      color-mix(in srgb, ${({ theme }) => theme.fantasia} 25%, transparent),
+      color-mix(in srgb, ${theme.fantasia} 25%, transparent),
     inset 0 0 2.2rem rgba(245, 245, 245, 0.035);
   padding: 2.8rem;
   text-align: center;
@@ -141,7 +142,7 @@ export const MobileCenterCore = styled.div`
 
 export const CenterLabel = styled.span`
   align-self: end;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 1.35rem;
   font-weight: 700;
   line-height: 1;
@@ -175,7 +176,7 @@ export const TypeTrack = styled.div<{ $activeIndex: number }>`
 
 export const TypeName = styled.strong`
   height: 3.2rem;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   font-size: 2.55rem;
   font-weight: 700;
   line-height: 3.2rem;
@@ -191,13 +192,13 @@ export const TypeName = styled.strong`
 export const SkillName = styled.span`
   align-self: start;
   min-height: 1.8rem;
-  color: ${({ theme }) => theme.fantasia};
+  color: ${theme.fantasia};
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 1.4;
   opacity: 1;
   text-shadow: 0 0 1.2rem
-    color-mix(in srgb, ${({ theme }) => theme.fantasia} 44%, transparent);
+    color-mix(in srgb, ${theme.fantasia} 44%, transparent);
 
   ${mediaMaxMobile`
     min-height: 1.6rem;

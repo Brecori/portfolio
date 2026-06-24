@@ -8,5 +8,5 @@ export const Root = styled.div`
 export const Content = styled.div<{ $ready: boolean }>`
   opacity: ${({ $ready }) => ($ready ? 1 : 0)};
   visibility: ${({ $ready }) => ($ready ? "visible" : "hidden")};
-  transition: opacity 0.35s ease;
+  transition: opacity 0.15s ease;
 `;

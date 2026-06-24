@@ -4,6 +4,7 @@ import {
   mediaMaxIpadVertical,
   mediaMaxMobile,
 } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
@@ -55,7 +56,7 @@ export const MainGroup = styled(AnimatedContent)`
 `;
 
 export const Role = styled.span`
-  color: ${({ theme }) => theme.fantasia};
+  color: ${theme.fantasia};
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: 0.8em;
@@ -78,7 +79,7 @@ export const Role = styled.span`
 export const Title = styled.h1`
   font-size: 8rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
   letter-spacing: 0.04em;
   line-height: 1;
   text-align: center;
@@ -98,7 +99,7 @@ export const Title = styled.h1`
 
 export const RotatingPhrase = styled.p`
   min-height: 3.4rem;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   font-size: 3.2rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -124,7 +125,7 @@ export const RotatingPhrase = styled.p`
 
 export const Description = styled.p`
   font-size: 2.2rem;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   max-width: 70ch;
   letter-spacing: 0.02em;
   line-height: 1.5;

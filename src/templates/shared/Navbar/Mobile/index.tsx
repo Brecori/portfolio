@@ -1,3 +1,5 @@
+"use client";
+
 import { FiMenu, FiX } from "react-icons/fi";
 import { TbLanguage } from "react-icons/tb";
 import { FC, useState } from "react";

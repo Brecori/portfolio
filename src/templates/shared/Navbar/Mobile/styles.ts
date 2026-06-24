@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
 import { mediaMaxMobile } from "@/lib/media-query";
+import { theme } from "@/styles/theme";
 import styled, { css } from "styled-components";
 
 const transitionDuration = "0.4s";
@@ -12,8 +13,8 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   justify-content: space-between;
   gap: 1.6rem;
   padding: 0 7.5rem;
-  background-color: ${({ theme }) => theme.darkBlack};
-  border-bottom: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  background-color: ${theme.darkBlack};
+  border-bottom: 0.1rem solid ${theme.techWhite10};
   position: fixed;
   z-index: 30;
 
@@ -38,9 +39,9 @@ const iconButtonStyles = css`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  border: 0.1rem solid ${theme.techWhite10};
   border-radius: 100%;
-  color: ${({ theme }) => theme.submarine};
+  color: ${theme.submarine};
   background: transparent;
   transition:
     color ${transitionDuration} ease-in-out,
@@ -53,16 +54,16 @@ const iconButtonStyles = css`
   }
 
   &:hover {
-    color: ${({ theme }) => theme.techWhite};
+    color: ${theme.techWhite};
   }
 `;
 
 export const HamburgerButton = styled.button<{ $isOpen: boolean }>`
   ${iconButtonStyles}
   position: relative;
-  color: ${({ $isOpen, theme }) =>
+  color: ${({ $isOpen }) =>
     $isOpen ? theme.fantasia : theme.submarine};
-  border-color: ${({ $isOpen, theme }) =>
+  border-color: ${({ $isOpen }) =>
     $isOpen ? theme.fantasia : theme.techWhite10};
 `;
 
@@ -92,16 +93,16 @@ export const CloseToggleIcon = styled.span<{ $isOpen: boolean }>`
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   transform: ${({ $isOpen }) =>
     $isOpen ? "rotate(0deg) " : "rotate(-90deg) "};
-  color: ${({ theme }) => theme.fantasia};
+  color: ${theme.fantasia};
 `;
 
 export const Logo = styled(Link)`
   font-size: 2.4rem;
   font-weight: 700;
-  color: ${({ theme }) => theme.techWhite};
+  color: ${theme.techWhite};
 
   span {
-    color: ${({ theme }) => theme.fantasia};
+    color: ${theme.fantasia};
   }
 `;
 
@@ -119,8 +120,8 @@ export const MenuDrawer = styled.aside<{ $isOpen: boolean }>`
   bottom: 0;
   padding: 7rem 7.5rem;
   display: flex;
-  background-color: ${({ theme }) => theme.darkBlack};
-  border-right: 0.1rem solid ${({ theme }) => theme.techWhite10};
+  background-color: ${theme.darkBlack};
+  border-right: 0.1rem solid ${theme.techWhite10};
   transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   transition: transform ${transitionDuration} ease;
   z-index: 31;
@@ -142,7 +143,7 @@ export const Menu = styled.ul`
 
 export const MenuItem = styled.li`
   button {
-    color: ${({ theme }) => theme.submarine};
+    color: ${theme.submarine};
     font-size: 2.6rem;
     font-weight: 500;
     letter-spacing: 0.08em;
@@ -154,7 +155,7 @@ export const MenuItem = styled.li`
 
   &:hover {
     button {
-      color: ${({ theme }) => theme.techWhite};
+      color: ${theme.techWhite};
       transform: translateX(0.4rem);
     }
   }
