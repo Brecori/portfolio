@@ -183,12 +183,9 @@ export const ModalHeader = styled.div`
   `}
 `;
 
-export const ModalEyebrow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  color: ${({ theme }) => theme.submarine};
-  font-size: 1rem;
+export const ModalSummary = styled.p`
+  color: ${({ theme }) => theme.fantasia};
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   line-height: 1.2;

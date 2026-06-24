@@ -8,6 +8,7 @@ export const theme = {
   submarine: "#b9cacb",
   techWhite10: "#f5f5f510",
   techWhite50: "#f5f5f550",
+  darkBlack: "#020202",
 };
 
 // get the color name in https://www.color-name.com

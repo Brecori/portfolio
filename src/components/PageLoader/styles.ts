@@ -1,4 +1,5 @@
 import { theme } from "@/styles/theme";
+import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
 import styled, { css } from "styled-components";
 
 export const Overlay = styled.div<{ $fixed: boolean }>`
@@ -14,65 +15,82 @@ export const Overlay = styled.div<{ $fixed: boolean }>`
           inset: 0;
         `}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${theme.extremeBlack};
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: ${theme.darkBlack};
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  width: min(72rem, calc(100vw - 4.8rem));
-`;
+  gap: 4rem;
 
-export const ProgressHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-`;
-
-export const Status = styled.span`
-  color: ${theme.submarine};
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 0.5em;
-  line-height: 1;
-  text-indent: 0.5em;
-  text-transform: uppercase;
+  ${mediaMaxMobile`
+    gap: 2.4rem;
+  `}
 `;
 
 export const Percentage = styled.span`
-  color: ${theme.fantasia};
-  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16rem, 28vw, 46rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  font-style: italic;
+  line-height: 1;
+  white-space: nowrap;
+  color: ${theme.fantasia}90;
+  user-select: none;
+
+  ${mediaMaxDesktop1024`
+    font-size: clamp(14rem, 32vw, 32rem);
+  `}
+
+  ${mediaMaxMobile`
+    font-size: clamp(10rem, 38vw, 20rem);
+  `}
+`;
+
+export const LogoWrapper = styled.div`
+  position: relative;
+  display: grid;
+  place-items: center;
+`;
+
+const logoStyles = css`
+  grid-area: 1 / 1;
+  color: ${theme.techWhite};
+  font-size: clamp(2.8rem, 4vw, 6rem);
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.04em;
+  white-space: nowrap;
+
+  span {
+    color: ${theme.fantasia};
+  }
+
+  ${mediaMaxMobile`
+    font-size: clamp(2rem, 6vw, 3.4rem);
+  `}
 `;
 
-export const ProgressTrack = styled.div`
-  width: 100%;
-  height: 0.9rem;
-  border-radius: 0.1rem;
-  overflow: hidden;
-  background: color-mix(in srgb, ${theme.submarine} 14%, transparent);
-  box-shadow: inset 0 0 0 0.1rem
-    color-mix(in srgb, ${theme.techWhite10} 80%, transparent);
+export const LogoBase = styled.div`
+  ${logoStyles}
+  color: color-mix(in srgb, ${theme.techWhite} 18%, transparent);
+
+  span {
+    color: color-mix(in srgb, ${theme.fantasia} 24%, transparent);
+  }
 `;
 
-export const ProgressFill = styled.div<{ $progress: number }>`
-  width: ${({ $progress }) => `${$progress}%`};
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    #b86cff 0%,
-    ${theme.fantasia} 55%,
-    #8f4dff 100%
-  );
-  box-shadow: 0 0 2rem color-mix(in srgb, ${theme.fantasia} 42%, transparent);
-  transition: width 0.18s ease-out;
+export const LogoFill = styled.div`
+  ${logoStyles}
+  transition: clip-path 0.18s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 `;

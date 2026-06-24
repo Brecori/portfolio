@@ -4,7 +4,6 @@ export const createSignalLaunchProject = (
   t: (key: string) => string,
 ): ProjectContent => {
   return {
-    data: "2025",
     description: t("description"),
     githubLink: "https://github.com/",
     image:
@@ -12,7 +11,6 @@ export const createSignalLaunchProject = (
     productionLink: "#",
     slug: "signal-launch",
     stack: ["Next.js", "Framer Motion"],
-    status: "concept",
     summary: t("summary"),
     titulo: t("titulo"),
   };

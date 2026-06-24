@@ -47,6 +47,18 @@ export default () => {
   const isPointerDownRef = useRef(false);
 
   useEffect(() => {
+    const shouldDisableMouseGlow = window.matchMedia(
+      "(pointer: coarse), (max-width: 600px)",
+    ).matches;
+
+    if (shouldDisableMouseGlow) {
+      document.documentElement.dataset.nativeCursor = "true";
+
+      return () => {
+        delete document.documentElement.dataset.nativeCursor;
+      };
+    }
+
     const glow = glowRef.current;
     const cursorRing = cursorRingRef.current;
     const cursorDot = cursorDotRef.current;

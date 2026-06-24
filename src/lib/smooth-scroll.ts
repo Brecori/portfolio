@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const DEFAULT_SCROLL_DURATION = 1;
+const DEFAULT_SCROLL_DURATION = 0.7;
 
 const getNavbarHeight = () =>
   document.querySelector<HTMLElement>("[data-navbar]")?.offsetHeight ?? 0;

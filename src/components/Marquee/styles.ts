@@ -5,15 +5,6 @@ export const Container = styled.section`
   width: 100%;
   overflow: hidden;
   padding-block: 10rem;
-
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, ${({ theme }) => theme.extremeBlack} 90%, transparent) 0%,
-    ${({ theme }) => theme.extremeBlack} 10%,
-    ${({ theme }) => theme.extremeBlack} 90%,
-    color-mix(in srgb, ${({ theme }) => theme.extremeBlack} 90%, transparent)
-      100%
-  );
 `;
 
 export const Track = styled.div`

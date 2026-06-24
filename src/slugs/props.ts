@@ -6,14 +6,12 @@ export type ProjectSlug =
   | "signal-launch";
 
 export type ProjectContent = {
-  data: string;
   description: string;
   githubLink?: string;
   image: string;
   productionLink?: string;
   slug: ProjectSlug;
   stack: string[];
-  status: string;
   summary: string;
   titulo: string;
 };

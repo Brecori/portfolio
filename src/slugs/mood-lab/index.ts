@@ -4,7 +4,6 @@ export const createMoodLabProject = (
   t: (key: string) => string,
 ): ProjectContent => {
   return {
-    data: "2024",
     description: t("description"),
     githubLink: "https://github.com/",
     image:
@@ -12,7 +11,6 @@ export const createMoodLabProject = (
     productionLink: "#",
     slug: "mood-lab",
     stack: ["React", "GSAP"],
-    status: "concept",
     summary: t("summary"),
     titulo: t("titulo"),
   };

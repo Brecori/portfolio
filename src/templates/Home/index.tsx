@@ -1,16 +1,32 @@
 "use client";
 
 import { FC } from "react";
+import dynamic from "next/dynamic";
 import * as S from "./styles";
 import { Header } from "./Header";
-import { Spacer } from "@/components/Spacer";
-import { Projects } from "./Projects";
-import { RestQuote } from "./RestQuote";
-import { Trajectory } from "./Trajectory";
 import { Skills } from "./Skills";
-import { Marquee } from "@/components/Marquee";
-import { Contact } from "./Contact";
-import { Footer } from "../shared/Footer";
+
+const Spacer = dynamic(() =>
+  import("@/components/Spacer").then((module) => module.Spacer),
+);
+const Projects = dynamic(() =>
+  import("./Projects").then((module) => module.Projects),
+);
+const RestQuote = dynamic(() =>
+  import("./RestQuote").then((module) => module.RestQuote),
+);
+const Trajectory = dynamic(() =>
+  import("./Trajectory").then((module) => module.Trajectory),
+);
+const Marquee = dynamic(() =>
+  import("@/components/Marquee").then((module) => module.Marquee),
+);
+const Contact = dynamic(() =>
+  import("./Contact").then((module) => module.Contact),
+);
+const Footer = dynamic(() =>
+  import("../shared/Footer").then((module) => module.Footer),
+);
 
 export const HomeTemplate: FC = () => {
   return (

@@ -4,7 +4,6 @@ export const createPulseMetricsProject = (
   t: (key: string) => string,
 ): ProjectContent => {
   return {
-    data: "2024",
     description: t("description"),
     githubLink: "https://github.com/",
     image:
@@ -12,7 +11,6 @@ export const createPulseMetricsProject = (
     productionLink: "#",
     slug: "pulse-metrics",
     stack: ["Next.js", "TypeScript", "Styled Components"],
-    status: "concept",
     summary: t("summary"),
     titulo: t("titulo"),
   };

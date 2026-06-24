@@ -1,12 +1,12 @@
 import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ProjectsSection = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 10rem;
-  padding: 12rem 15rem;
+  padding: 12rem 15rem 0rem;
   overflow: clip;
 
   ${mediaMaxDesktop1024`
@@ -22,48 +22,97 @@ export const ProjectsSection = styled.section`
 export const ProjectsIntro = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-`;
+  gap: 4rem;
 
-export const ProjectsDeckHeading = styled.h3`
-  color: ${({ theme }) => theme.techWhite};
-  font-size: clamp(4rem, 5vw, 7.8rem);
-  font-weight: 400;
-  letter-spacing: -0.05em;
-  line-height: 0.92;
+  ${mediaMaxMobile`
+    gap: 2.8rem;
+  `}
 `;
 
 export const ProjectsDeckDescription = styled.p`
+  max-width: 54rem;
   color: ${({ theme }) => theme.submarine};
-  font-size: 1.8rem;
-  line-height: 1.6;
+  font-size: clamp(1.8rem, 1.8vw, 2.4rem);
+  line-height: 1.45;
 
   ${mediaMaxMobile`
-    font-size: 1.5rem;
+    font-size: 1.7rem;
   `}
 `;
 
 export const CardsRail = styled.div`
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1.6rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  min-height: 58rem;
+  isolation: isolate;
 
   ${mediaMaxDesktop1024`
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: 50rem;
   `}
 
   ${mediaMaxMobile`
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     gap: 2rem;
+    min-height: 46rem;
   `}
+`;
+
+export const CardSlot = styled.div<{
+  $index: number;
+  $isHighlighted: boolean;
+  $offset: number;
+}>`
+  grid-area: 1 / 1;
+  width: clamp(24rem, 23vw, 34rem);
+  opacity: 0;
+  z-index: ${({ $index, $isHighlighted }) =>
+    $isHighlighted ? 20 : $index + 1};
+  --deck-offset: ${({ $offset }) => $offset};
+  --deck-lift: ${({ $offset }) => $offset * $offset * 0.7}rem;
+  --deck-spacing: 20rem;
+  --selected-scale: 1.08;
+  --selected-y: -10rem;
+  transform: translateX(calc(var(--deck-offset) * var(--deck-spacing)));
+  transform-origin: 50% 110%;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+
+  ${({ $isHighlighted }) =>
+    $isHighlighted &&
+    css`
+      transform: translate3d(0, var(--selected-y), 0) rotate(0deg)
+        scale(var(--selected-scale));
+    `}
+
+  ${mediaMaxDesktop1024`
+    width: clamp(22rem, 27vw, 29rem);
+    --deck-spacing: 10rem;
+    --selected-scale: 1.06;
+    --selected-y: -5rem;
+  `}
+
+  ${mediaMaxMobile`
+    grid-area: auto;
+    width: 100%;
+    --deck-offset: 0;
+    --deck-spacing: 0rem;
+    --selected-scale: 1;
+    --selected-y: 0rem;
+  `}
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
+    transition: none;
+  }
 `;
 
 export const CardButton = styled.button`
   position: relative;
   display: block;
   width: 100%;
-  opacity: 0;
   transform-origin: center bottom;
   text-align: left;
 
@@ -73,40 +122,49 @@ export const CardButton = styled.button`
   }
 `;
 
-export const CardSurface = styled.div<{ $isActive: boolean }>`
+export const CardSurface = styled.div<{
+  $hasHighlight: boolean;
+  $isHighlighted: boolean;
+}>`
   position: relative;
   aspect-ratio: 0.72;
   overflow: hidden;
   border-radius: 0.2rem;
   border: 0.1rem solid
-    ${({ theme, $isActive }) =>
-      $isActive ? `${theme.fantasia}88` : theme.techWhite10};
+    ${({ theme, $isHighlighted }) =>
+      $isHighlighted ? `${theme.fantasia}88` : theme.techWhite10};
   background: ${({ theme }) => theme.codGray};
-  box-shadow: ${({ $isActive }) =>
-    $isActive
-      ? "0 4rem 7rem rgba(0, 0, 0, 0.34)"
+  box-shadow: ${({ $isHighlighted }) =>
+    $isHighlighted
+      ? "0 5rem 8rem rgba(0, 0, 0, 0.5)"
       : "0 2.6rem 5rem rgba(0, 0, 0, 0.22)"};
+  filter: ${({ $hasHighlight, $isHighlighted }) =>
+    $hasHighlight && !$isHighlighted
+      ? "brightness(0.48) saturate(0.65)"
+      : "none"};
+  opacity: ${({ $hasHighlight, $isHighlighted }) =>
+    $hasHighlight && !$isHighlighted ? 0.72 : 1};
   transition:
     transform 0.28s ease,
     border-color 0.28s ease,
     box-shadow 0.28s ease,
-    filter 0.28s ease;
+    filter 0.4s ease,
+    opacity 0.4s ease;
   will-change: transform;
-
-  ${CardButton}:hover &,
-  ${CardButton}:focus-visible & {
-    border-color: ${({ theme }) => `${theme.fantasia}66`};
-    box-shadow: 0 3.2rem 5.8rem rgba(0, 0, 0, 0.3);
-    filter: brightness(1.04);
-    transform: translateY(-1.6rem);
-  }
-
-  transform: ${({ $isActive }) =>
-    $isActive ? "translateY(-1.6rem)" : "translateY(0)"};
 
   ${mediaMaxMobile`
     aspect-ratio: 1.72;
   `}
+
+  @media (min-width: 601px) {
+    ${CardButton}:hover &,
+    ${CardButton}:focus-visible & {
+      border-color: ${({ theme }) => `${theme.fantasia}66`};
+      box-shadow: 0 3.2rem 5.8rem rgba(0, 0, 0, 0.3);
+      filter: brightness(1.04);
+      transform: translateY(-1.6rem);
+    }
+  }
 `;
 
 export const CardIndex = styled.span`
@@ -119,6 +177,12 @@ export const CardIndex = styled.span`
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+
+  ${mediaMaxMobile`
+    top: 1.6rem;
+    left: 1.6rem;
+    font-size: 1.4rem;
+  `}
 `;
 
 export const CardImage = styled.img`
@@ -126,24 +190,6 @@ export const CardImage = styled.img`
   height: 100%;
   object-fit: cover;
   filter: saturate(0.85) brightness(0.74);
-`;
-
-export const CardGlow = styled.div`
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      ${({ theme }) => `${theme.fantasia}22`} 0%,
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at 50% 100%,
-      ${({ theme }) => `${theme.fantasia}16`} 0%,
-      transparent 42%
-    );
-  mix-blend-mode: screen;
-  opacity: 0.78;
 `;
 
 export const CardShade = styled.div`
@@ -167,42 +213,51 @@ export const CardShade = styled.div`
 
 export const CardContent = styled.div`
   position: absolute;
-  right: 0;
   bottom: 0;
   left: 0;
   z-index: 2;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.6rem 1.4rem;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1.2rem;
+  max-height: 88%;
+  padding: 1.8rem 1.6rem;
+
+  ${mediaMaxMobile`
+    flex-direction: column;
+    align-items: flex-start;
+  `}
 `;
 
-export const CardMeta = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  color: ${({ theme }) => theme.submarine};
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.2;
-  text-transform: uppercase;
-`;
-
-export const CardTitle = styled.h4`
+export const CardTitle = styled.h3`
   color: ${({ theme }) => theme.techWhite};
   font-size: clamp(2.2rem, 2vw, 3.2rem);
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 0.94;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+
+  ${mediaMaxMobile`
+    font-size: 3.2rem;
+    writing-mode: horizontal-tb;
+    transform: none;
+  `}
 `;
 
 export const CardSummary = styled.p`
   color: ${({ theme }) => theme.submarine};
-  font-size: 1.3rem;
-  line-height: 1.45;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 
   ${mediaMaxMobile`
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    writing-mode: horizontal-tb;
+    transform: none;
   `}
 `;

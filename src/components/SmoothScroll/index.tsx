@@ -19,8 +19,16 @@ export const SmoothScroll = ({ children }: PropsWithChildren) => {
       const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
       ).matches;
+      const shouldUseNativeScroll = window.matchMedia(
+        "(pointer: coarse), (max-width: 600px)",
+      ).matches;
 
-      if (!wrapper || !content || prefersReducedMotion) {
+      if (
+        !wrapper ||
+        !content ||
+        prefersReducedMotion ||
+        shouldUseNativeScroll
+      ) {
         return;
       }
 
@@ -28,7 +36,6 @@ export const SmoothScroll = ({ children }: PropsWithChildren) => {
         wrapper,
         content,
         smooth: 1.5,
-        smoothTouch: 0.2,
         normalizeScroll: true,
       });
 

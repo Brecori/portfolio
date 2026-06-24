@@ -3,5 +3,5 @@ import styled from "styled-components";
 export const HomeContainer = styled.main`
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.extremeBlack};
+  background-color: ${({ theme }) => theme.darkBlack};
 `;

@@ -1,7 +1,8 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { PageLoader } from "@/components/PageLoader";
+import type { PageLoaderHandle } from "@/components/PageLoader/props";
 import * as S from "./styles";
 
 type PageReadyGateProps = {
@@ -9,34 +10,29 @@ type PageReadyGateProps = {
 };
 
 const MIN_VISIBLE_MS = 700;
+const PROGRESS_INTERVAL_MS = 24;
+const REVEAL_DELAY_MS = 220;
 
 export const PageReadyGate = ({ children }: PageReadyGateProps) => {
   const [isReady, setIsReady] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const loaderRef = useRef<PageLoaderHandle | null>(null);
 
   useEffect(() => {
     const start = window.performance.now();
     const previousOverflow = document.body.style.overflow;
+    let displayedProgress = 0;
     let isSettled = false;
     let revealTimeoutId: number | undefined;
     let timeoutId: number | undefined;
+    let completionIntervalId: number | undefined;
     const intervalId = window.setInterval(() => {
-      setProgress((currentProgress) => {
-        if (isSettled || currentProgress >= 94) {
-          return currentProgress;
-        }
+      if (isSettled || displayedProgress >= 94) {
+        return;
+      }
 
-        if (currentProgress < 48) {
-          return currentProgress + 4;
-        }
-
-        if (currentProgress < 76) {
-          return currentProgress + 2;
-        }
-
-        return currentProgress + 1;
-      });
-    }, 48);
+      displayedProgress += 1;
+      loaderRef.current?.setProgress(displayedProgress);
+    }, PROGRESS_INTERVAL_MS);
 
     document.body.style.overflow = "hidden";
 
@@ -47,12 +43,18 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
       const remaining = Math.max(0, MIN_VISIBLE_MS - elapsed);
 
       revealTimeoutId = window.setTimeout(() => {
-        setProgress(100);
+        completionIntervalId = window.setInterval(() => {
+          displayedProgress = Math.min(100, displayedProgress + 1);
+          loaderRef.current?.setProgress(displayedProgress);
 
-        timeoutId = window.setTimeout(() => {
-          document.body.style.overflow = previousOverflow;
-          setIsReady(true);
-        }, 220);
+          if (displayedProgress === 100) {
+            window.clearInterval(completionIntervalId);
+            timeoutId = window.setTimeout(() => {
+              document.body.style.overflow = previousOverflow;
+              setIsReady(true);
+            }, REVEAL_DELAY_MS);
+          }
+        }, PROGRESS_INTERVAL_MS);
       }, remaining);
     };
 
@@ -74,13 +76,17 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
       if (timeoutId) {
         window.clearTimeout(timeoutId);
       }
+
+      if (completionIntervalId) {
+        window.clearInterval(completionIntervalId);
+      }
     };
   }, []);
 
   return (
     <S.Root>
       <S.Content $ready={isReady}>{children}</S.Content>
-      {!isReady && <PageLoader progress={progress} />}
+      {!isReady && <PageLoader ref={loaderRef} />}
     </S.Root>
   );
 };

@@ -26,7 +26,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html, body, #__next {
     height: 100%;
-    background-color: ${theme.extremeBlack};
+    background-color: ${theme.darkBlack};
     scrollbar-color: ${theme.fantasia} ${theme.extremeBlack};
   }
 

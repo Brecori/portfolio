@@ -12,7 +12,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   justify-content: space-between;
   gap: 1.6rem;
   padding: 0 7.5rem;
-  background-color: ${({ theme }) => theme.extremeBlack};
+  background-color: ${({ theme }) => theme.darkBlack};
   border-bottom: 0.1rem solid ${({ theme }) => theme.techWhite10};
   position: fixed;
   z-index: 30;
@@ -119,14 +119,14 @@ export const MenuDrawer = styled.aside<{ $isOpen: boolean }>`
   bottom: 0;
   padding: 7rem 7.5rem;
   display: flex;
-  background-color: ${({ theme }) => theme.extremeBlack};
+  background-color: ${({ theme }) => theme.darkBlack};
   border-right: 0.1rem solid ${({ theme }) => theme.techWhite10};
   transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   transition: transform ${transitionDuration} ease;
   z-index: 31;
 
   ${mediaMaxMobile`
-    padding: 3.2rem 2.4rem;
+    padding: 8rem 2.4rem;
   `}
 `;
 
@@ -136,7 +136,7 @@ export const Menu = styled.ul`
   gap: 5rem;
 
   ${mediaMaxMobile`
-    gap: 3rem;
+    gap: 4rem;
   `}
 `;
 

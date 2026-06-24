@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import { FiExternalLink, FiGithub, FiX } from "react-icons/fi";
+import { FiArrowUpRight, FiGithub, FiX } from "react-icons/fi";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import type { ProjectModalProps } from "./props";
@@ -38,10 +38,7 @@ export const ProjectModal: FC<ProjectModalProps> = ({
           </S.ModalCloseButton>
 
           <S.ModalHeader>
-            <S.ModalEyebrow>
-              <span>{project.data}</span>
-              <span>{project.status}</span>
-            </S.ModalEyebrow>
+            <S.ModalSummary>{project.summary}</S.ModalSummary>
             <S.ModalTitle id={titleId}>{project.titulo}</S.ModalTitle>
             <S.ModalDescription>{project.description}</S.ModalDescription>
           </S.ModalHeader>
@@ -71,14 +68,14 @@ export const ProjectModal: FC<ProjectModalProps> = ({
                   </S.ProjectLink>
                 ) : null}
 
-                {project.productionLink && project.productionLink !== "#" ? (
+                {project.productionLink ? (
                   <S.ProjectLink
                     data-cursor-hover
                     href={project.productionLink}
                     rel="noreferrer"
                     target="_blank"
                   >
-                    <FiExternalLink aria-hidden size={18} />
+                    <FiArrowUpRight aria-hidden size={18} />
                     {t("actions.liveProject")}
                   </S.ProjectLink>
                 ) : null}

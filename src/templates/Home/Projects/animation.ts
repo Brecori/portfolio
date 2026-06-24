@@ -7,10 +7,10 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default (totalCards: number) => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const cardRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const setCardRef = useCallback(
-    (index: number) => (element: HTMLButtonElement | null) => {
+    (index: number) => (element: HTMLDivElement | null) => {
       cardRefs.current[index] = element;
     },
     [],
@@ -19,7 +19,7 @@ export default (totalCards: number) => {
   useGSAP(
     () => {
       const section = sectionRef.current;
-      const cards = cardRefs.current.filter((card): card is HTMLButtonElement =>
+      const cards = cardRefs.current.filter((card): card is HTMLDivElement =>
         Boolean(card),
       );
 
@@ -36,38 +36,39 @@ export default (totalCards: number) => {
         return;
       }
 
-      const middleIndex = (totalCards - 1) / 2;
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: "top 72%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      timeline.fromTo(
+      const targetX = new Map(
+        cards.map((card) => [card, Number(gsap.getProperty(card, "x", "px"))]),
+      );
+      const animation = gsap.fromTo(
         cards,
         {
-          opacity: 0,
-          rotate: (index) => (middleIndex - index) * 6,
-          scale: 0.84,
-          transformOrigin: "50% 100%",
-          y: 60,
+          pointerEvents: "none",
+          transition: "none",
+          x: 0,
+          zIndex: (index) => index + 1,
         },
         {
-          duration: 1.2,
-          ease: "power3.out",
+          duration: 1.5,
+          ease: "power3.inOut",
           opacity: 1,
-          rotate: 0,
-          scale: 1,
-          stagger: 0.25,
-          y: 0,
+          x: (_, card) => targetX.get(card as HTMLDivElement) ?? 0,
+          zIndex: (index) => index + 1,
+          onComplete: () => {
+            gsap.set(cards, {
+              clearProps: "transform,transition,pointer-events,z-index",
+            });
+          },
+          scrollTrigger: {
+            trigger: section,
+            start: "top 72%",
+            once: true,
+          },
         },
       );
 
       return () => {
-        timeline.scrollTrigger?.kill();
-        timeline.kill();
+        animation.scrollTrigger?.kill();
+        animation.kill();
       };
     },
     { dependencies: [totalCards], scope: sectionRef },

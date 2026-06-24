@@ -1,4 +1,7 @@
 export interface PageLoaderProps {
   fixed?: boolean;
-  progress?: number;
+}
+
+export interface PageLoaderHandle {
+  setProgress: (progress: number) => void;
 }

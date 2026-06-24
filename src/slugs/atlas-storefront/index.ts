@@ -4,7 +4,6 @@ export const createAtlasStorefrontProject = (
   t: (key: string) => string,
 ): ProjectContent => {
   return {
-    data: "2024",
     description: t("description"),
     githubLink: "https://github.com/",
     image:
@@ -12,7 +11,6 @@ export const createAtlasStorefrontProject = (
     productionLink: "#",
     slug: "atlas-storefront",
     stack: ["React", "Zustand", "Stripe"],
-    status: "concept",
     summary: t("summary"),
     titulo: t("titulo"),
   };

@@ -10,7 +10,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   background-color: ${({ $hasScrolled, theme }) =>
-    $hasScrolled ? theme.extremeBlack : "transparent"};
+    $hasScrolled ? theme.darkBlack : "transparent"};
   padding: 0 15rem;
   align-items: center;
   position: fixed;
