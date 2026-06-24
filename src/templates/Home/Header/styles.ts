@@ -29,7 +29,7 @@ export const HeaderContainer = styled.header`
   ${mediaMaxMobile`
     flex-direction: column;
     padding: 35rem 2.4rem 10rem;
-    min-height: 100vh;
+    min-height: 100svh;
   `}
 `;
 

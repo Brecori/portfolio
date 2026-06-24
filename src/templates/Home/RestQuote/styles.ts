@@ -41,6 +41,7 @@ export const RestQuoteContainer = styled.section`
 
   ${mediaMaxIpadVertical`
     min-height: 100vh;
+    min-height: 100svh;
     padding: 0 7.5rem;
   `}
 
