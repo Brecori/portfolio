@@ -35,17 +35,18 @@ export const SkillsMobile: FC = () => {
                       const isActive = activeSkill.key === skill.key;
 
                       return (
-                        <S.MobileSkillButton
-                          $isActive={isActive}
-                          aria-pressed={isActive}
-                          data-cursor-hover
-                          key={skill.key}
-                          onClick={() => setActiveSkill(skill)}
-                          type="button"
-                        >
-                          <Icon aria-hidden="true" />
-                          <span>{t(`items.${skill.key}`)}</span>
-                        </S.MobileSkillButton>
+                        <li key={skill.key}>
+                          <S.MobileSkillButton
+                            $isActive={isActive}
+                            aria-pressed={isActive}
+                            data-cursor-hover
+                            onClick={() => setActiveSkill(skill)}
+                            type="button"
+                          >
+                            <Icon aria-hidden="true" />
+                            <span>{t(`items.${skill.key}`)}</span>
+                          </S.MobileSkillButton>
+                        </li>
                       );
                     })}
                   </S.MobileSkillList>

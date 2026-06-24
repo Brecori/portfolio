@@ -44,6 +44,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const currentLocale = locale === "en" ? "en" : "pt-BR";
   const seo = seoByLocale[currentLocale];
   const pathname = currentLocale === "pt-BR" ? "/pt-BR" : "/en";
+  const canonicalUrl = new URL(pathname, siteUrl).toString();
+  const ptBrUrl = new URL("/pt-BR", siteUrl).toString();
+  const enUrl = new URL("/en", siteUrl).toString();
 
   return {
     metadataBase,
@@ -55,16 +58,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     authors: [{ name: "Breno Tosi", url: siteUrl }],
     creator: "Breno Tosi",
     alternates: {
-      canonical: pathname,
+      canonical: canonicalUrl,
       languages: {
-        "pt-BR": "/pt-BR",
-        en: "/en",
+        "pt-BR": ptBrUrl,
+        en: enUrl,
+        "x-default": siteUrl,
       },
     },
     openGraph: {
       title: seo.title,
       description: seo.description,
-      url: pathname,
+      url: canonicalUrl,
       siteName: "Breno Tosi Portfolio",
       images: [
         {
@@ -83,7 +87,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: seo.title,
       description: seo.description,
       images: ["/imgs/og/share.png"],
-    }
+    },
   };
 }
 
