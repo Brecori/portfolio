@@ -15,7 +15,7 @@ export const NavbarDesktop: FC = () => {
 
   return (
     <S.NavbarContainer data-navbar $hasScrolled={hasScrolled}>
-      <S.Logo href="/">{C.title}</S.Logo>
+      <S.Logo href="#">{C.title}</S.Logo>
       <S.Menu>
         {C.menuItems.map(({ labelKey, targetId }) => (
           <S.MenuItem key={targetId}>

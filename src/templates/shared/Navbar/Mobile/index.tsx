@@ -40,7 +40,7 @@ export const NavbarMobile: FC = () => {
               <FiX />
             </S.CloseToggleIcon>
           </S.HamburgerButton>
-          <S.Logo href="/">{C.title}</S.Logo>
+          <S.Logo href="#">{C.title}</S.Logo>
         </S.LeftGroup>
 
         <S.TogglesContainer>

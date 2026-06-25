@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { IconLink } from "@/components/IconLink";
+import { github, linkedin } from "@/constants/contact";
 import { useTranslations } from "next-intl";
 import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
@@ -8,10 +9,10 @@ import * as S from "./styles";
 
 const contactLinks = {
   // Replace placeholders with your preferred contact endpoints.
-  email: "mailto:hello@brenotosi.dev",
-  github: "https://github.com/brenotosi",
-  linkedin: "https://www.linkedin.com/in/brenotosi",
-  whatsapp: "https://wa.me/5511999999999",
+  email: "mailto:brenotosi14gmail.com",
+  github,
+  linkedin,
+  whatsapp: "https://wa.me/5511964295929",
 } as const;
 
 const contactIcons = {

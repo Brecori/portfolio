@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { FC } from "react";
 import { IconLink } from "@/components/IconLink";
 import { ScrollDownButton } from "@/components/ScrollDownButton";
+import { getResumePath, github, linkedin } from "@/constants/contact";
 import { FiFileText } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
@@ -22,7 +23,7 @@ export const Header: FC = () => {
     rotatingPhrases.length,
   );
   const currentPhrase = rotatingPhrases[titleIndex];
-  const resumePath = C.getResumePath(resumeFileName);
+  const resumePath = getResumePath(resumeFileName);
 
   return (
     <S.HeaderContainer id="intro">
@@ -36,10 +37,10 @@ export const Header: FC = () => {
           <S.Title tabIndex={0}>{name}</S.Title>
           <S.TitleImageReveal aria-hidden="true">
             <Image
-              alt=""
-              fill
-              sizes="24rem"
-              src="/imgs/header/breno.jpeg"
+              src={C.perfilImage.src}
+              alt={C.perfilImage.alt}
+              width={350}
+              height={350}
             />
           </S.TitleImageReveal>
         </S.TitleRevealGroup>
@@ -48,7 +49,7 @@ export const Header: FC = () => {
 
         <S.ButtonsContainer>
           <IconLink
-            href={C.github}
+            href={github}
             icon={SiGithub}
             label={t("actions.github")}
           />
@@ -59,7 +60,7 @@ export const Header: FC = () => {
             label={t("actions.resume")}
           />
           <IconLink
-            href={C.linkedin}
+            href={linkedin}
             icon={FaLinkedinIn}
             label={t("actions.linkedin")}
           />

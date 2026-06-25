@@ -1,4 +1,3 @@
-import { Link } from "@/i18n/navigation";
 import { mediaMaxMobile } from "@/lib/media-query";
 import { theme } from "@/styles/theme";
 import styled, { css } from "styled-components";
@@ -96,7 +95,7 @@ export const CloseToggleIcon = styled.span<{ $isOpen: boolean }>`
   color: ${theme.fantasia};
 `;
 
-export const Logo = styled(Link)`
+export const Logo = styled.a`
   font-size: 2.4rem;
   font-weight: 700;
   color: ${theme.techWhite};

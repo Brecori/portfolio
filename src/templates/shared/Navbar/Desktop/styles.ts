@@ -1,4 +1,3 @@
-import { Link } from "@/i18n/navigation";
 import { mediaMaxDesktop1024 } from "@/lib/media-query";
 import { theme } from "@/styles/theme";
 import styled from "styled-components";
@@ -16,8 +15,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   align-items: center;
   position: fixed;
   border-bottom: 0.1rem solid
-    ${({ $hasScrolled }) =>
-      $hasScrolled ? theme.techWhite10 : "transparent"};
+    ${({ $hasScrolled }) => ($hasScrolled ? theme.techWhite10 : "transparent")};
   z-index: 30;
   transition:
     border-bottom-color ${transitionDuration} ease-in-out,
@@ -30,7 +28,7 @@ export const NavbarContainer = styled.nav<{ $hasScrolled: boolean }>`
   `}
 `;
 
-export const Logo = styled(Link)`
+export const Logo = styled.a`
   justify-self: start;
   font-size: 2.2rem;
   font-weight: 700;
