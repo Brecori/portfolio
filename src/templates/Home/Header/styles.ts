@@ -128,9 +128,10 @@ export const TitleImageReveal = styled.div`
   pointer-events: none;
   clip-path: polygon(0 0, 0 0, 0 0);
   transform: translate(-1.2rem, -1.2rem);
+  border-radius: 0.2rem;
   transition:
-    clip-path 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    clip-path 1.25s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
 
   img {
     object-fit: cover;

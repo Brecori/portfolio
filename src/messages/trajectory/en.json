@@ -2,24 +2,24 @@
   "title": "Trajectory",
   "years": [
     {
-      "year": "2025",
+      "year": "2026 - Present",
       "items": [
         {
-          "period": "Present",
-          "role": "Frontend Developer",
-          "company": "Mock project",
-          "description": "Focused on performant interfaces, reusable components, and digital experiences with close attention to visual detail."
+          "period": "March 2026 — Present",
+          "role": "MBA in Software Engineering",
+          "company": "FIAP · São Paulo",
+          "description": "In March 2026, I began an MBA in Software Engineering at FIAP, deepening my knowledge of systems development and the practices behind building more robust software solutions."
         }
       ]
     },
     {
-      "year": "2024",
+      "year": "2023 - Present",
       "items": [
         {
-          "period": "Digital product",
-          "role": "UI Engineer",
-          "company": "Mock project",
-          "description": "Built responsive screens, navigation flows, and subtle animations for polished web products."
+          "period": "December 2023 — Present",
+          "role": "Junior Front-end Developer",
+          "company": "FIAP · Remote",
+          "description": "Since December 2023, I have worked on creating and maintaining creative, interactive landing pages and projects for FIAP students. I also develop technologies, components, and tools for producing undergraduate, graduate, and MBA educational content using React, Next.js, TypeScript, Sass, GSAP, Styled Components, and WordPress."
         }
       ]
     },
@@ -27,21 +27,21 @@
       "year": "2023",
       "items": [
         {
-          "period": "Web experience",
-          "role": "Frontend Developer",
-          "company": "Mock project",
-          "description": "Improved institutional pages and applications with a focus on accessibility, technical SEO, and breakpoint consistency."
+          "period": "March 2023 — November 2023",
+          "role": "Front-end Developer Intern",
+          "company": "FIAP · Remote",
+          "description": "During my internship, I helped produce HTML chapters for undergraduate, graduate, and MBA courses. I also updated the production template using Angular, Sass, and TypeScript, contributing to the development of FIAP's educational content."
         }
       ]
     },
     {
-      "year": "2022",
+      "year": "2022 - 2025",
       "items": [
         {
-          "period": "First projects",
-          "role": "Web Developer",
-          "company": "Mock project",
-          "description": "Built a solid foundation in HTML, CSS, and JavaScript while turning visual references into responsive code."
+          "period": "January 2022 — December 2025",
+          "role": "Bachelor's Degree in Information Systems",
+          "company": "FIAP · São Paulo",
+          "description": "From January 2022 to December 2025, I studied Information Systems at FIAP, building a solid foundation in technology and software development that supported my professional growth as a front-end developer."
         }
       ]
     }

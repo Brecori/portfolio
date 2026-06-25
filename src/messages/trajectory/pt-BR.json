@@ -2,24 +2,24 @@
   "title": "Trajetória",
   "years": [
     {
-      "year": "2025",
+      "year": "2026 - Atual",
       "items": [
         {
-          "period": "Atual",
-          "role": "Frontend Developer",
-          "company": "Projeto mockado",
-          "description": "Atuação focada em interfaces performáticas, componentes reutilizáveis e experiências digitais com atenção ao detalhe visual."
+          "period": "Março de 2026 — Atual",
+          "role": "MBA em Engenharia de Software",
+          "company": "FIAP · São Paulo",
+          "description": "Em março de 2026, iniciei o MBA em Engenharia de Software na FIAP, aprofundando meus conhecimentos em desenvolvimento de sistemas e nas práticas que sustentam a criação de soluções de software mais robustas."
         }
       ]
     },
     {
-      "year": "2024",
+      "year": "2023 - Atual",
       "items": [
         {
-          "period": "Produto digital",
-          "role": "UI Engineer",
-          "company": "Projeto mockado",
-          "description": "Construção de telas responsivas, fluxos de navegação e animações sutis para produtos web com alto padrão de acabamento."
+          "period": "Dezembro de 2023 — Atual",
+          "role": "Desenvolvedor Front-end Júnior",
+          "company": "FIAP · Remoto",
+          "description": "Desde dezembro de 2023, atuo na criação e sustentação de landing pages criativas e interativas e de projetos voltados aos alunos da FIAP. Também desenvolvo tecnologias, componentes e ferramentas para a produção de conteúdos educacionais de graduação, pós-graduação e MBA, utilizando React, Next.js, TypeScript, Sass, GSAP, Styled Components e WordPress."
         }
       ]
     },
@@ -27,21 +27,21 @@
       "year": "2023",
       "items": [
         {
-          "period": "Experiência web",
-          "role": "Frontend Developer",
-          "company": "Projeto mockado",
-          "description": "Evolução de páginas institucionais e aplicações com foco em acessibilidade, SEO técnico e consistência entre breakpoints."
+          "period": "Março de 2023 — Novembro de 2023",
+          "role": "Desenvolvedor Front-end Estagiário",
+          "company": "FIAP · Remoto",
+          "description": "Durante o estágio, auxiliei na produção de capítulos em HTML para cursos de graduação, pós-graduação e MBA. Também realizei ajustes na template de produção utilizando Angular, Sass e TypeScript, contribuindo para a evolução dos conteúdos educacionais."
         }
       ]
     },
     {
-      "year": "2022",
+      "year": "2022 - 2025",
       "items": [
         {
-          "period": "Primeiros projetos",
-          "role": "Web Developer",
-          "company": "Projeto mockado",
-          "description": "Base sólida em HTML, CSS e JavaScript, criando layouts responsivos e aprendendo a transformar referências visuais em código."
+          "period": "Janeiro de 2022 — Dezembro de 2025",
+          "role": "Bacharelado em Sistemas de Informação",
+          "company": "FIAP · São Paulo",
+          "description": "Entre janeiro de 2022 e dezembro de 2025, cursei Sistemas de Informação na FIAP, construindo uma base sólida em tecnologia e desenvolvimento de software que acompanhou minha evolução profissional como desenvolvedor front-end."
         }
       ]
     }

@@ -22,13 +22,13 @@ const metadataBase = new URL(siteUrl);
 const seoByLocale = {
   "pt-BR": {
     description:
-      "Portfólio de Breno Tosi, desenvolvedor frontend focado em interfaces modernas, responsivas, performáticas e visualmente consistentes.",
+      "Conheça o portfólio de Breno Tosi, desenvolvedor frontend especializado em React, Next.js e interfaces responsivas, performáticas e acessíveis.",
     locale: "pt_BR",
     title: "Breno Tosi | Desenvolvedor Frontend",
   },
   en: {
     description:
-      "Portfolio of Breno Tosi, a frontend developer focused on modern, responsive, performant, and visually consistent interfaces.",
+      "Explore Breno Tosi's portfolio, a frontend developer specializing in React, Next.js, and responsive, high-performance, accessible interfaces.",
     locale: "en_US",
     title: "Breno Tosi | Frontend Developer",
   },

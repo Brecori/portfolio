@@ -78,7 +78,7 @@ export const TimelineMarker = styled.span`
   height: 1rem;
   border-radius: 50%;
   background-color: ${theme.fantasia};
-  box-shadow: 0 0 2.4rem ${theme.fantasia};
+  box-shadow: 0 0 2.4rem 0.8rem ${theme.fantasia};
   margin-bottom: -1rem;
   will-change: transform;
   margin-left: -0.5rem;
@@ -125,8 +125,7 @@ export const YearLabel = styled.div<{ $active: boolean }>`
 
   span {
     display: block;
-    color: ${({ $active }) =>
-      $active ? theme.fantasia : theme.submarine};
+    color: ${({ $active }) => ($active ? theme.fantasia : theme.submarine)};
     font-size: 2.6rem;
     font-weight: 700;
     letter-spacing: 0.08em;

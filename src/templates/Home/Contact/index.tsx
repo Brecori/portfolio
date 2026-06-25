@@ -35,7 +35,7 @@ export const Contact: FC = () => {
         <S.ContactEyebrow>{t("eyebrow")}</S.ContactEyebrow>
         <S.ContactTitle>{title}</S.ContactTitle>
 
-        <S.ContactList delay={0.3} stagger={0.2}>
+        <S.ContactList stagger={0.2}>
           {(Object.keys(contactLinks) as ContactKey[]).map((contactKey) => {
             const Icon = contactIcons[contactKey];
             const label = items[contactKey];
