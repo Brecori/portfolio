@@ -25,7 +25,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
 
   ${mediaMaxMobile`
     gap: 2.4rem;
@@ -36,7 +36,7 @@ export const Percentage = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(16rem, 28vw, 46rem);
+  font-size: 56rem;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   font-style: italic;
@@ -44,13 +44,14 @@ export const Percentage = styled.span`
   white-space: nowrap;
   color: ${theme.fantasia}90;
   user-select: none;
+  font-family: var(--font-neue);
 
   ${mediaMaxDesktop1024`
-    font-size: clamp(14rem, 32vw, 32rem);
+    font-size: 32rem;
   `}
 
   ${mediaMaxMobile`
-    font-size: clamp(10rem, 38vw, 20rem);
+    font-size: 20rem;
   `}
 `;
 

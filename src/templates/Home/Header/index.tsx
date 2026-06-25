@@ -7,6 +7,7 @@ import { ScrollDownButton } from "@/components/ScrollDownButton";
 import { FiFileText } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
 import { SiGithub } from "react-icons/si";
+import Image from "next/image";
 import useAnimation from "./animation";
 import C from "./constants";
 import * as S from "./styles";
@@ -31,7 +32,17 @@ export const Header: FC = () => {
         onAnimationComplete={handleInitialAnimationComplete}
       >
         <S.Role>{role}</S.Role>
-        <S.Title>{name}</S.Title>
+        <S.TitleRevealGroup>
+          <S.Title tabIndex={0}>{name}</S.Title>
+          <S.TitleImageReveal aria-hidden="true">
+            <Image
+              alt=""
+              fill
+              sizes="24rem"
+              src="/imgs/header/breno.jpeg"
+            />
+          </S.TitleImageReveal>
+        </S.TitleRevealGroup>
         <S.RotatingPhrase ref={titleRef}>{currentPhrase}</S.RotatingPhrase>
         <S.Description>{t("description")}</S.Description>
 

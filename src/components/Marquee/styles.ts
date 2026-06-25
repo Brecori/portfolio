@@ -34,20 +34,21 @@ export const PhraseGroup = styled.div`
 export const Phrase = styled.span`
   flex: 0 0 auto;
   color: ${theme.techWhite50};
-  font-size: 10rem;
+  font-size: 14rem;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.24em;
   font-style: italic;
   pointer-events: none;
+  font-family: var(--font-neue);
 
   ${mediaMaxDesktop1024`
     font-size: 9rem;
   `}
 
   ${mediaMaxMobile`
-    font-size: 4rem;
+    font-size: 7rem;
   `}
 `;
 

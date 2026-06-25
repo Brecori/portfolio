@@ -51,26 +51,21 @@ export const ContactEyebrow = styled.span`
 `;
 
 export const ContactTitle = styled.h2`
-  min-height: 15rem;
   color: ${theme.techWhite};
-  font-size: clamp(5.2rem, 7vw, 10rem);
+  font-size: 14rem;
   font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 0.92;
   text-transform: uppercase;
-
-  ${mediaMaxDesktop1024`
-    min-height: 10rem;
-  `}
+  font-family: var(--font-neue);
 
   ${mediaMaxMobile`
-    min-height: 12rem;
-    font-size: 4.8rem;
+    font-size: 8rem;
     line-height: 0.98;
   `}
 `;
 
-export const ContactList = styled.ul`
+export const ContactList = styled(AnimatedContent)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,6 +86,6 @@ export const ContactList = styled.ul`
   `}
 `;
 
-export const ContactItem = styled.li`
+export const ContactItem = styled.div`
   display: flex;
 `;

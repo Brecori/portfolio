@@ -11,7 +11,6 @@ import useAnimation from "./animation";
 import * as S from "./styles";
 
 const formatProjectIndex = (index: number) => `${index + 1}`.padStart(2, "0");
-const CARD_TRANSITION_DURATION = 550;
 
 export const Projects: FC = () => {
   const t = useTranslations("projects");
@@ -29,22 +28,6 @@ export const Projects: FC = () => {
     () => projects.find((project) => project.slug === activeSlug) ?? null,
     [activeSlug, projects],
   );
-
-  useEffect(() => {
-    if (!highlightedSlug || activeSlug) {
-      return;
-    }
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const timeout = window.setTimeout(
-      () => setActiveSlug(highlightedSlug),
-      prefersReducedMotion ? 0 : CARD_TRANSITION_DURATION,
-    );
-
-    return () => window.clearTimeout(timeout);
-  }, [activeSlug, highlightedSlug]);
 
   useEffect(() => {
     if (!activeProject) {
@@ -77,6 +60,7 @@ export const Projects: FC = () => {
     }
 
     setHighlightedSlug(project.slug);
+    setActiveSlug(project.slug);
   };
 
   const handleCloseProject = () => {
@@ -102,7 +86,7 @@ export const Projects: FC = () => {
               <S.CardSlot
                 $index={index}
                 $isHighlighted={isHighlighted}
-                $offset={index - (projects.length - 1) / 2}
+                $isReversed={index % 2 !== 0}
                 key={project.slug}
                 ref={setCardRef(index)}
               >
@@ -120,14 +104,17 @@ export const Projects: FC = () => {
                   <S.CardSurface
                     $hasHighlight={highlightedSlug !== null}
                     $isHighlighted={isHighlighted}
+                    $isReversed={index % 2 !== 0}
                   >
-                    <S.CardIndex>{formatProjectIndex(index)}</S.CardIndex>
-                    <S.CardImage alt={project.titulo} src={project.image} />
-                    <S.CardShade />
                     <S.CardContent>
+                      <S.CardIndex>{formatProjectIndex(index)}</S.CardIndex>
                       <S.CardTitle>{project.titulo}</S.CardTitle>
                       <S.CardSummary>{project.summary}</S.CardSummary>
                     </S.CardContent>
+                    <S.CardMedia>
+                      <S.CardImage alt={project.titulo} src={project.image} />
+                      <S.CardShade />
+                    </S.CardMedia>
                   </S.CardSurface>
                 </S.CardButton>
               </S.CardSlot>

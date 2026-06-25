@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { PageLoader } from "@/components/PageLoader";
 import type { PageLoaderHandle } from "@/components/PageLoader/props";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as S from "./styles";
 
 type PageReadyGateProps = {
@@ -52,6 +53,10 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
             timeoutId = window.setTimeout(() => {
               document.body.style.overflow = previousOverflow;
               setIsReady(true);
+
+              window.requestAnimationFrame(() => {
+                ScrollTrigger.refresh();
+              });
             }, REVEAL_DELAY_MS);
           }
         }, PROGRESS_INTERVAL_MS);

@@ -8,6 +8,8 @@ export const Title = styled.h2<{ $isVisible: boolean }>`
   position: relative;
   width: fit-content;
   color: ${theme.techWhite};
+  font-family: var(--font-neue);
+  letter-spacing: 0.15em;
 
   &::after {
     content: "";

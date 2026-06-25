@@ -47,7 +47,8 @@ export const NavbarMobile: FC = () => {
           <S.IconButton
             type="button"
             onClick={() => changeLanguage(nextLocale)}
-            name={nextLocale}
+            name={`Trocar linguagem para ${nextLocale}`}
+            aria-label={`Trocar linguagem para ${nextLocale}`}
           >
             <TbLanguage />
           </S.IconButton>
@@ -57,10 +58,11 @@ export const NavbarMobile: FC = () => {
       <S.MenuDrawer $isOpen={isMenuOpen} aria-hidden={!isMenuOpen}>
         <S.Menu>
           {C.menuItems.map(({ labelKey, targetId }) => (
-            <S.MenuItem key={targetId} tabIndex={isMenuOpen ? 0 : -1}>
+            <S.MenuItem key={targetId}>
               <button
                 type="button"
                 onClick={() => handleMenuItemClick(targetId)}
+                tabIndex={isMenuOpen ? 0 : -1}
               >
                 {t(labelKey)}
               </button>

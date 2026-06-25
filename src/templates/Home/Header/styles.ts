@@ -23,7 +23,7 @@ export const HeaderContainer = styled.header`
   `}
 
   ${mediaMaxIpadVertical`
-    padding-top: 35rem;
+    padding-top: 40rem;
   `}
 
   ${mediaMaxMobile`
@@ -37,7 +37,7 @@ export const MainGroup = styled(AnimatedContent)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 15rem;
+  margin-bottom: 10rem;
   gap: 2.2rem;
   position: relative;
   z-index: 1;
@@ -76,24 +76,81 @@ export const Role = styled.span`
   `}
 `;
 
+export const TitleRevealGroup = styled.div`
+  position: relative;
+`;
+
 export const Title = styled.h1`
-  font-size: 8rem;
+  position: relative;
+  z-index: 2;
+  font-size: 14rem;
   font-weight: 400;
   color: ${theme.techWhite};
   letter-spacing: 0.04em;
   line-height: 1;
   text-align: center;
+  font-family: var(--font-neue);
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    color: ${theme.submarine};
+    transform: translateY(0.6rem);
+
+    ${mediaMaxIpadVertical`
+      transform: none;
+      color: ${theme.techWhite};
+    `}
+  }
 
   ${mediaMaxDesktop1024`
     font-size: 6rem;
   `}
 
   ${mediaMaxIpadVertical`
-    font-size: 5.8rem;
+    font-size: 8rem;
   `}
 
   ${mediaMaxMobile`
-    font-size: 5rem;
+    font-size: 7rem;
+  `}
+`;
+
+export const TitleImageReveal = styled.div`
+  position: absolute;
+  top: -20rem;
+  left: calc(100% + 10rem);
+  z-index: 1;
+  width: 35rem;
+  height: 35rem;
+  overflow: hidden;
+  pointer-events: none;
+  clip-path: polygon(0 0, 0 0, 0 0);
+  transform: translate(-1.2rem, -1.2rem);
+  transition:
+    clip-path 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+
+  img {
+    object-fit: cover;
+    filter: grayscale(1);
+  }
+
+  ${Title}:hover + &,
+  ${Title}:focus-visible + & {
+    clip-path: polygon(0 0, 200% 0, 0 200%);
+    transform: translate(0, 0);
+  }
+
+  ${mediaMaxDesktop1024`
+    width: 22rem;
+    height: 22rem;
+    top: -15rem;
+  `}
+
+  ${mediaMaxIpadVertical`
+    display: none;
   `}
 `;
 

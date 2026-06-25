@@ -1,4 +1,3 @@
-import AnimatedContent from "@/components/AnimatedContent";
 import { FC } from "react";
 import { IconLink } from "@/components/IconLink";
 import { useTranslations } from "next-intl";
@@ -35,24 +34,22 @@ export const Contact: FC = () => {
         <S.ContactEyebrow>{t("eyebrow")}</S.ContactEyebrow>
         <S.ContactTitle>{title}</S.ContactTitle>
 
-        <AnimatedContent delay={0.3}>
-          <S.ContactList>
-            {(Object.keys(contactLinks) as ContactKey[]).map((contactKey) => {
-              const Icon = contactIcons[contactKey];
-              const label = items[contactKey];
+        <S.ContactList delay={0.3} stagger={0.2}>
+          {(Object.keys(contactLinks) as ContactKey[]).map((contactKey) => {
+            const Icon = contactIcons[contactKey];
+            const label = items[contactKey];
 
-              return (
-                <S.ContactItem key={contactKey}>
-                  <IconLink
-                    href={contactLinks[contactKey]}
-                    icon={Icon}
-                    label={label}
-                  />
-                </S.ContactItem>
-              );
-            })}
-          </S.ContactList>
-        </AnimatedContent>
+            return (
+              <S.ContactItem key={contactKey}>
+                <IconLink
+                  href={contactLinks[contactKey]}
+                  icon={Icon}
+                  label={label}
+                />
+              </S.ContactItem>
+            );
+          })}
+        </S.ContactList>
       </S.ContactInner>
     </S.ContactSection>
   );

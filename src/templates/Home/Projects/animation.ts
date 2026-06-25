@@ -18,12 +18,11 @@ export default (totalCards: number) => {
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
       const cards = cardRefs.current.filter((card): card is HTMLDivElement =>
         Boolean(card),
       );
 
-      if (!section || cards.length === 0) {
+      if (!sectionRef.current || cards.length === 0) {
         return;
       }
 
@@ -36,39 +35,44 @@ export default (totalCards: number) => {
         return;
       }
 
-      const targetX = new Map(
-        cards.map((card) => [card, Number(gsap.getProperty(card, "x", "px"))]),
-      );
-      const animation = gsap.fromTo(
-        cards,
-        {
-          pointerEvents: "none",
-          transition: "none",
-          x: 0,
-          zIndex: (index) => index + 1,
-        },
-        {
-          duration: 1.5,
-          ease: "power3.inOut",
-          opacity: 1,
-          x: (_, card) => targetX.get(card as HTMLDivElement) ?? 0,
-          zIndex: (index) => index + 1,
-          onComplete: () => {
-            gsap.set(cards, {
-              clearProps: "transform,transition,pointer-events,z-index",
-            });
+      const animations = cards.map((card, index) =>
+        gsap.fromTo(
+          card,
+          {
+            pointerEvents: "none",
+            transition: "none",
+            x: index % 2 === 0 ? -120 : 120,
+            zIndex: index + 1,
           },
-          scrollTrigger: {
-            trigger: section,
-            start: "top 72%",
-            once: true,
+          {
+            duration: 1.15,
+            ease: "power3.inOut",
+            opacity: 1,
+            x: 0,
+            zIndex: index + 1,
+            onComplete: () => {
+              gsap.set(card, {
+                clearProps: "transform,transition,pointer-events,z-index",
+              });
+            },
+            scrollTrigger: {
+              trigger: card,
+              start: "top 82%",
+              once: true,
+            },
           },
-        },
+        ),
       );
 
       return () => {
-        animation.scrollTrigger?.kill();
-        animation.kill();
+        animations.forEach((animation) => {
+          animation.scrollTrigger?.kill();
+          animation.kill();
+        });
+
+        gsap.set(cards, {
+          clearProps: "transform,transition,pointer-events,z-index",
+        });
       };
     },
     { dependencies: [totalCards], scope: sectionRef },

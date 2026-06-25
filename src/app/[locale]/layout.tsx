@@ -6,7 +6,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { GlobalStyles } from "@/styles/global";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bebas_Neue, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
@@ -37,6 +37,12 @@ const seoByLocale = {
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+});
+
+const bebasNeue = Bebas_Neue({
+  variable: "--font-neue",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -100,7 +106,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} className={`${inter.variable}`}>
+    <html lang={locale} className={`${inter.variable} ${bebasNeue.variable}`}>
       <body>
         <StyledComponentsRegistry>
           <NextIntlClientProvider messages={messages}>
