@@ -130,7 +130,7 @@ export const YearLabel = styled.div<{ $active: boolean }>`
     font-weight: 700;
     letter-spacing: 0.08em;
     line-height: 1;
-    opacity: ${({ $active }) => ($active ? 1 : 0.05)};
+    opacity: ${({ $active }) => ($active ? 1 : 0.15)};
     transition:
       color 0.3s ease,
       opacity 0.3s ease;

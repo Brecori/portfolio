@@ -46,8 +46,8 @@ export const ProjectsDeckDescription = styled.p`
 `;
 
 export const CardsRail = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 8rem;
   width: 100%;
   isolation: isolate;
@@ -67,7 +67,7 @@ export const CardSlot = styled.div<{
   $isReversed: boolean;
 }>`
   width: 132rem;
-  justify-self: ${({ $isReversed }) => ($isReversed ? "end" : "start")};
+  align-self: ${({ $isReversed }) => ($isReversed ? "flex-end" : "flex-start")};
   opacity: 0;
   z-index: ${({ $index, $isHighlighted }) =>
     $isHighlighted ? 20 : $index + 1};
@@ -107,17 +107,12 @@ export const CardSurface = styled.div<{
   $isReversed: boolean;
 }>`
   position: relative;
-  display: grid;
-  grid-template-columns: ${({ $isReversed }) =>
-    $isReversed
-      ? "minmax(0, 3fr) minmax(0, 2fr)"
-      : "minmax(0, 2fr) minmax(0, 3fr)"};
-  grid-template-areas: ${({ $isReversed }) =>
-    $isReversed ? '"media content"' : '"content media"'};
+  display: flex;
+  flex-direction: ${({ $isReversed }) =>
+    $isReversed ? "row-reverse" : "row"};
   height: 42rem;
   overflow: hidden;
   border-radius: 0.2rem;
-  background: ${theme.codGray};
   box-shadow: ${({ $isHighlighted }) =>
     $isHighlighted
       ? "0 5rem 8rem rgba(0, 0, 0, 0.5)"
@@ -138,11 +133,7 @@ export const CardSurface = styled.div<{
   `}
 
   ${mediaMaxMobile`
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(2, 22rem);
-    grid-template-areas:
-      "media"
-      "content";
+    flex-direction: column-reverse;
     height: 44rem;
   `}
 
@@ -172,11 +163,12 @@ export const CardIndex = styled.span`
 
 export const CardMedia = styled.div`
   position: relative;
-  grid-area: media;
+  flex: 3 1 0;
   min-width: 0;
   overflow: hidden;
 
   ${mediaMaxMobile`
+    flex: 1 1 22rem;
     height: 100%;
   `}
 `;
@@ -218,7 +210,7 @@ export const CardShade = styled.div`
 `;
 
 export const CardContent = styled.div`
-  grid-area: content;
+  flex: 2 1 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -227,7 +219,6 @@ export const CardContent = styled.div`
   min-width: 0;
   height: 100%;
   padding: 7rem;
-  background: ${theme.extremeBlack};
   font-family: var(--font-inter);
 
   ${mediaMaxDesktop1024`
@@ -235,8 +226,10 @@ export const CardContent = styled.div`
   `}
 
   ${mediaMaxMobile`
+    flex: 1 1 22rem;
     gap: 1.2rem;
     padding: 2.8rem 2.4rem 3.2rem;
+    background: ${theme.extremeBlack};
   `}
 `;
 

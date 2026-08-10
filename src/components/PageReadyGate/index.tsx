@@ -1,9 +1,7 @@
 "use client";
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { PageLoader } from "@/components/PageLoader";
-import type { PageLoaderHandle } from "@/components/PageLoader/props";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as S from "./styles";
 
 type PageReadyGateProps = {
@@ -11,79 +9,50 @@ type PageReadyGateProps = {
 };
 
 const MIN_VISIBLE_MS = 350;
-const PROGRESS_INTERVAL_MS = 8;
-const REVEAL_DELAY_MS = 60;
+const FADE_OUT_MS = 450;
 
 export const PageReadyGate = ({ children }: PageReadyGateProps) => {
   const [isReady, setIsReady] = useState(false);
-  const loaderRef = useRef<PageLoaderHandle | null>(null);
+  const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    const start = window.performance.now();
+    const startedAt = window.performance.now();
     const previousOverflow = document.body.style.overflow;
-    let displayedProgress = 0;
-    let isSettled = false;
     let revealTimeoutId: number | undefined;
-    let timeoutId: number | undefined;
-    let completionIntervalId: number | undefined;
-    const intervalId = window.setInterval(() => {
-      if (isSettled || displayedProgress >= 94) {
-        return;
-      }
-
-      displayedProgress += 1;
-      loaderRef.current?.setProgress(displayedProgress);
-    }, PROGRESS_INTERVAL_MS);
+    let unmountTimeoutId: number | undefined;
 
     document.body.style.overflow = "hidden";
 
-    const revealPage = () => {
-      isSettled = true;
-
-      const elapsed = window.performance.now() - start;
+    const reveal = () => {
+      const elapsed = window.performance.now() - startedAt;
       const remaining = Math.max(0, MIN_VISIBLE_MS - elapsed);
 
       revealTimeoutId = window.setTimeout(() => {
-        completionIntervalId = window.setInterval(() => {
-          displayedProgress = Math.min(100, displayedProgress + 1);
-          loaderRef.current?.setProgress(displayedProgress);
+        document.body.style.overflow = previousOverflow;
+        setIsReady(true);
 
-          if (displayedProgress === 100) {
-            window.clearInterval(completionIntervalId);
-            timeoutId = window.setTimeout(() => {
-              document.body.style.overflow = previousOverflow;
-              setIsReady(true);
-
-              window.requestAnimationFrame(() => {
-                ScrollTrigger.refresh();
-              });
-            }, REVEAL_DELAY_MS);
-          }
-        }, PROGRESS_INTERVAL_MS);
+        unmountTimeoutId = window.setTimeout(() => {
+          setShowLoader(false);
+        }, FADE_OUT_MS);
       }, remaining);
     };
 
     if (document.readyState === "complete") {
-      revealPage();
+      reveal();
     } else {
-      window.addEventListener("load", revealPage, { once: true });
+      window.addEventListener("load", reveal, { once: true });
     }
 
     return () => {
-      window.removeEventListener("load", revealPage);
+      window.removeEventListener("load", reveal);
       document.body.style.overflow = previousOverflow;
-      window.clearInterval(intervalId);
 
       if (revealTimeoutId) {
         window.clearTimeout(revealTimeoutId);
       }
 
-      if (timeoutId) {
-        window.clearTimeout(timeoutId);
-      }
-
-      if (completionIntervalId) {
-        window.clearInterval(completionIntervalId);
+      if (unmountTimeoutId) {
+        window.clearTimeout(unmountTimeoutId);
       }
     };
   }, []);
@@ -91,7 +60,7 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
   return (
     <S.Root>
       <S.Content $ready={isReady}>{children}</S.Content>
-      {!isReady && <PageLoader ref={loaderRef} />}
+      {showLoader && <PageLoader visible={!isReady} />}
     </S.Root>
   );
 };

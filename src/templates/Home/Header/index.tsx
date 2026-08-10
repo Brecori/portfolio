@@ -41,6 +41,7 @@ export const Header: FC = () => {
               alt={C.perfilImage.alt}
               width={350}
               height={350}
+              loading="eager"
             />
           </S.TitleImageReveal>
         </S.TitleRevealGroup>
@@ -48,11 +49,7 @@ export const Header: FC = () => {
         <S.Description>{t("description")}</S.Description>
 
         <S.ButtonsContainer>
-          <IconLink
-            href={github}
-            icon={SiGithub}
-            label={t("actions.github")}
-          />
+          <IconLink href={github} icon={SiGithub} label={t("actions.github")} />
           <IconLink
             href={resumePath}
             download={resumeFileName}

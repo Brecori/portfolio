@@ -16,10 +16,15 @@ export const HeaderContainer = styled.header`
   align-items: center;
   padding: 0 15rem;
   overflow: hidden;
+  background-image: url("/imgs/header/background.webp");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
 
   ${mediaMaxDesktop1024`
     padding: 25rem 7.5rem 10rem;
     justify-content: space-between;
+    background-image: url("/imgs/header/background-mobile.webp");
   `}
 
   ${mediaMaxIpadVertical`
