@@ -1,18 +1,16 @@
-import { useGSAP } from "@gsap/react";
 import { viewportsBase } from "@/constants/viewport-base";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { useEffect, useRef } from "react";
 
 export default () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const quoteRef = useRef<HTMLDivElement | null>(null);
   const highlightRef = useRef<HTMLSpanElement | null>(null);
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    let active = true;
+    let cleanup: (() => void) | undefined;
+
+    const initialize = async () => {
       const section = sectionRef.current;
       const quote = quoteRef.current;
       const highlight = highlightRef.current;
@@ -25,9 +23,16 @@ export default () => {
       }
 
       if (prefersReducedMotion) {
-        gsap.set(highlight, { "--highlight-progress": "100%" });
+        highlight.style.setProperty("--highlight-progress", "100%");
         return;
       }
+
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+      if (!active) return;
+      gsap.registerPlugin(ScrollTrigger);
 
       const createScrollAnimation = () => {
         const media = gsap.matchMedia();
@@ -102,9 +107,9 @@ export default () => {
       let cleanupScrollAnimation: (() => void) | undefined;
 
       if (!("IntersectionObserver" in window)) {
+        cleanup = () => cleanupScrollAnimation?.();
         cleanupScrollAnimation = createScrollAnimation();
-
-        return () => cleanupScrollAnimation?.();
+        return;
       }
 
       const observer = new IntersectionObserver(
@@ -124,13 +129,18 @@ export default () => {
 
       observer.observe(section);
 
-      return () => {
+      cleanup = () => {
         observer.disconnect();
         cleanupScrollAnimation?.();
       };
-    },
-    { scope: sectionRef },
-  );
+    };
+
+    void initialize();
+    return () => {
+      active = false;
+      cleanup?.();
+    };
+  }, []);
 
   return {
     highlightRef,

@@ -1,9 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef, useState } from "react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { useEffect, useRef, useState } from "react";
 
 export default () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -11,8 +6,11 @@ export default () => {
   const timelineRef = useRef<HTMLDivElement | null>(null);
   const [activeYearIndex, setActiveYearIndex] = useState(0);
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    let active = true;
+    let cleanup: (() => void) | undefined;
+
+    const initialize = async () => {
       const section = sectionRef.current;
       const timeline = timelineRef.current;
 
@@ -27,6 +25,13 @@ export default () => {
       if (!marker) {
         return;
       }
+
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+      if (!active) return;
+      gsap.registerPlugin(ScrollTrigger);
 
       const updateActiveYear = () => {
         const yearGroups = Array.from(
@@ -95,11 +100,11 @@ export default () => {
 
       if (!("IntersectionObserver" in window)) {
         cleanupScrollAnimation = createScrollAnimation();
-
-        return () => {
+        cleanup = () => {
           cleanupScrollAnimation?.();
           gsap.set(marker, { clearProps: "transform" });
         };
+        return;
       }
 
       const observer = new IntersectionObserver(
@@ -119,14 +124,19 @@ export default () => {
 
       observer.observe(section);
 
-      return () => {
+      cleanup = () => {
         observer.disconnect();
         cleanupScrollAnimation?.();
         gsap.set(marker, { clearProps: "transform" });
       };
-    },
-    { scope: sectionRef },
-  );
+    };
+
+    void initialize();
+    return () => {
+      active = false;
+      cleanup?.();
+    };
+  }, []);
 
   return {
     activeYearIndex,

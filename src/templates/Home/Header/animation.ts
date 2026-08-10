@@ -1,8 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { useCallback, useRef, useState } from "react";
-
-gsap.registerPlugin(useGSAP);
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default (titlesLength: number) => {
   const titleRef = useRef<HTMLParagraphElement | null>(null);
@@ -13,8 +9,11 @@ export default (titlesLength: number) => {
     setCanRotateTitle(true);
   }, []);
 
-  useGSAP(
-    (_, contextSafe) => {
+  useEffect(() => {
+    let interval: number | undefined;
+    let active = true;
+
+    const initialize = async () => {
       if (!canRotateTitle) {
         return;
       }
@@ -29,11 +28,10 @@ export default (titlesLength: number) => {
         return;
       }
 
-      if (!contextSafe) {
-        return;
-      }
+      const { default: gsap } = await import("gsap");
+      if (!active) return;
 
-      const rotateTitle = contextSafe(() => {
+      const rotateTitle = () => {
         if (!titleElement) {
           return;
         }
@@ -46,8 +44,7 @@ export default (titlesLength: number) => {
           onComplete: () => {
             setTitleIndex((currentIndex) => (currentIndex + 1) % titlesLength);
 
-            window.requestAnimationFrame(
-              contextSafe(() => {
+            window.requestAnimationFrame(() => {
                 gsap.fromTo(
                   titleElement,
                   { autoAlpha: 0, y: 18 },
@@ -58,24 +55,23 @@ export default (titlesLength: number) => {
                     ease: "power2.out",
                   },
                 );
-              }),
-            );
+            });
           },
         });
-      });
-
-      const interval = window.setInterval(rotateTitle, 5000);
-
-      return () => {
-        window.clearInterval(interval);
       };
-    },
-    {
-      dependencies: [canRotateTitle, titlesLength],
-      revertOnUpdate: true,
-      scope: titleRef,
-    },
-  );
+
+      interval = window.setInterval(rotateTitle, 5000);
+    };
+
+    void initialize();
+
+    return () => {
+      active = false;
+      if (interval) {
+        window.clearInterval(interval);
+      }
+    };
+  }, [canRotateTitle, titlesLength]);
 
   return {
     handleInitialAnimationComplete,

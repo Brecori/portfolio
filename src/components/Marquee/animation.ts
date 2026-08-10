@@ -1,10 +1,6 @@
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
-import gsap from "gsap";
+import { useEffect, useRef } from "react";
 import type { MarqueeProps, MarqueeSpeed } from "./props";
 import C from "./constants";
-
-gsap.registerPlugin(useGSAP);
 
 const clampSpeed = (speed: number): MarqueeSpeed => {
   if (speed < 1) {
@@ -42,8 +38,11 @@ export default ({
   const normalizedSpeed = clampSpeed(speed);
   const duration = getDurationFromSpeed(normalizedSpeed);
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    let active = true;
+    let cleanup: (() => void) | undefined;
+
+    const initialize = async () => {
       if (safePhrases.length === 0) {
         return;
       }
@@ -56,9 +55,11 @@ export default ({
       }
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        gsap.set(track, { clearProps: "transform" });
         return;
       }
+
+      const { default: gsap } = await import("gsap");
+      if (!active) return;
 
       const buildAnimation = () => {
         const distance = firstGroup.offsetWidth;
@@ -87,17 +88,20 @@ export default ({
 
       resizeObserver.observe(firstGroup);
 
-      return () => {
+      cleanup = () => {
         resizeObserver.disconnect();
         gsap.killTweensOf(track);
         gsap.set(track, { clearProps: "transform" });
       };
-    },
-    {
-      dependencies: [direction, duration, safePhrases],
-      scope: containerRef,
-    },
-  );
+    };
+
+    void initialize();
+
+    return () => {
+      active = false;
+      cleanup?.();
+    };
+  }, [direction, duration, safePhrases]);
 
   return {
     containerRef,

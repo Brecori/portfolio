@@ -45,6 +45,7 @@ export default () => {
   const outerAngleRef = useRef(0);
   const isInteractionPausedRef = useRef(false);
   const isPausedRef = useRef(false);
+  const isVisibleRef = useRef(false);
   const nextSkillTimeoutRef = useRef<number | null>(null);
   const activeSkill = skills[activeSkillIndex];
   const activeTypeIndex = skillTypes.indexOf(activeSkill.type);
@@ -60,7 +61,7 @@ export default () => {
     clearNextSkillTimeout();
 
     nextSkillTimeoutRef.current = window.setTimeout(() => {
-      if (!isInteractionPausedRef.current) {
+      if (!isInteractionPausedRef.current && isVisibleRef.current) {
         setActiveSkillIndex((currentIndex) => (currentIndex + 1) % skills.length);
       }
     }, AUTO_CHANGE_INTERVAL);
@@ -105,12 +106,38 @@ export default () => {
   }, [resumeOrbit, scheduleNextSkill]);
 
   useEffect(() => {
-    if (!isInteractionPausedRef.current) {
+    if (!isInteractionPausedRef.current && isVisibleRef.current) {
       scheduleNextSkill();
     }
 
     return clearNextSkillTimeout;
   }, [activeSkillIndex, clearNextSkillTimeout, scheduleNextSkill]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = Boolean(entry?.isIntersecting);
+
+        if (isVisibleRef.current && !isInteractionPausedRef.current) {
+          scheduleNextSkill();
+        } else {
+          clearNextSkillTimeout();
+        }
+      },
+      { threshold: 0.01 },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+      clearNextSkillTimeout();
+    };
+  }, [clearNextSkillTimeout, scheduleNextSkill]);
 
   useGSAP(
     () => {
@@ -162,7 +189,7 @@ export default () => {
       };
 
       const tick = () => {
-        if (!isPausedRef.current) {
+        if (!isPausedRef.current && isVisibleRef.current) {
           const deltaRatio = gsap.ticker.deltaRatio(60) / 60;
 
           orbitConfigs.forEach((orbitConfig) => {

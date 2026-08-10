@@ -1,13 +1,9 @@
-import gsap from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 const DEFAULT_SCROLL_DURATION = 0.7;
 
 const getNavbarHeight = () =>
   document.querySelector<HTMLElement>("[data-navbar]")?.offsetHeight ?? 0;
 
-export const scrollToElement = (
+export const scrollToElement = async (
   elementId: string,
   duration = DEFAULT_SCROLL_DURATION,
 ) => {
@@ -17,8 +13,29 @@ export const scrollToElement = (
     return;
   }
 
-  const smoother = ScrollSmoother.get();
   const navbarHeight = getNavbarHeight();
+
+  const shouldUseNativeScroll = window.matchMedia(
+    "(pointer: coarse), (max-width: 600px)",
+  ).matches;
+
+  if (shouldUseNativeScroll) {
+    const targetTop =
+      target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+
+    window.scrollTo({ top: targetTop, behavior: "smooth" });
+    return;
+  }
+
+  const [{ default: gsap }, { ScrollSmoother }, { ScrollTrigger }] =
+    await Promise.all([
+      import("gsap"),
+      import("gsap/ScrollSmoother"),
+      import("gsap/ScrollTrigger"),
+    ]);
+
+  gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+  const smoother = ScrollSmoother.get();
 
   if (smoother) {
     gsap.to(smoother, {
@@ -31,11 +48,6 @@ export const scrollToElement = (
     return;
   }
 
-  const targetTop =
-    target.getBoundingClientRect().top + window.scrollY - navbarHeight;
-
-  window.scrollTo({
-    top: targetTop,
-    behavior: "smooth",
-  });
+  const targetTop = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+  window.scrollTo({ top: targetTop, behavior: "smooth" });
 };

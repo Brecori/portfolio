@@ -1,9 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useCallback, useRef, useState } from "react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default (
   delay: number = 0,
@@ -17,8 +12,8 @@ export default (
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<HTMLDivElement[]>([]);
   const hasAnimatedRef = useRef(false);
-  const animationRef = useRef<gsap.core.Tween | null>(null);
-  const triggerRef = useRef<ScrollTrigger | null>(null);
+  const animationRef = useRef<{ kill: () => void } | null>(null);
+  const triggerRef = useRef<{ kill: () => void } | null>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
 
   const setItemRefs = useCallback(
@@ -30,17 +25,28 @@ export default (
     [],
   );
 
-  useGSAP(() => {
+  useEffect(() => {
+    let active = true;
+
+    const initialize = async () => {
     if (
       !containerRef.current ||
       itemRefs.current.length === 0 ||
       animationRef.current ||
       (preventReAnimate && hasAnimatedRef.current)
     ) {
-      return;
+        return;
     }
 
-    triggerRef.current = ScrollTrigger.create({
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+
+      if (!active) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      triggerRef.current = ScrollTrigger.create({
       trigger: containerRef.current,
       start: `top ${startPosition}%`,
       once: true,
@@ -80,9 +86,13 @@ export default (
           },
         });
       },
-    });
+      });
+    };
+
+    void initialize();
 
     return () => {
+      active = false;
       if (isMobile !== undefined) {
         hasAnimatedRef.current = false;
         setHasAnimated(false);

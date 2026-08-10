@@ -1,19 +1,16 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PropsWithChildren, useRef } from "react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother);
+import { PropsWithChildren, useEffect, useRef } from "react";
 
 export const SmoothScroll = ({ children }: PropsWithChildren) => {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    let active = true;
+    let cleanup: (() => void) | undefined;
+
+    const initialize = async () => {
       const wrapper = wrapperRef.current;
       const content = contentRef.current;
       const prefersReducedMotion = window.matchMedia(
@@ -32,6 +29,17 @@ export const SmoothScroll = ({ children }: PropsWithChildren) => {
         return;
       }
 
+      const [{ default: gsap }, { ScrollSmoother }, { ScrollTrigger }] =
+        await Promise.all([
+          import("gsap"),
+          import("gsap/ScrollSmoother"),
+          import("gsap/ScrollTrigger"),
+        ]);
+
+      if (!active) return;
+
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
       const smoother = ScrollSmoother.create({
         wrapper,
         content,
@@ -45,13 +53,19 @@ export const SmoothScroll = ({ children }: PropsWithChildren) => {
         ScrollTrigger.refresh();
       });
 
-      return () => {
+      cleanup = () => {
         refresh.kill();
         smoother.kill();
       };
-    },
-    { scope: wrapperRef },
-  );
+    };
+
+    void initialize();
+
+    return () => {
+      active = false;
+      cleanup?.();
+    };
+  }, []);
 
   return (
     <div id="smooth-wrapper" ref={wrapperRef}>

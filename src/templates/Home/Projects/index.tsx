@@ -1,7 +1,6 @@
 "use client";
 
 import { FC, useEffect, useMemo, useState } from "react";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ProjectModal } from "@/components/ProjectModal";
 import { SectionTitle } from "@/components/SectionTitle";
 import { useProjectSlugs } from "@/slugs";
@@ -41,13 +40,24 @@ export const Projects: FC = () => {
       }
     };
 
-    const smoother = ScrollSmoother.get();
     const previousOverflow = document.body.style.overflow;
+    let smoother: { paused: (value: boolean) => void } | undefined;
+    let active = true;
+
     document.body.style.overflow = "hidden";
-    smoother?.paused(true);
+
+    if (!window.matchMedia("(pointer: coarse), (max-width: 600px)").matches) {
+      void import("gsap/ScrollSmoother").then(({ ScrollSmoother }) => {
+        if (!active) return;
+        smoother = ScrollSmoother.get();
+        smoother?.paused(true);
+      });
+    }
+
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      active = false;
       document.body.style.overflow = previousOverflow;
       smoother?.paused(false);
       window.removeEventListener("keydown", handleKeyDown);
@@ -112,7 +122,13 @@ export const Projects: FC = () => {
                       <S.CardSummary>{project.summary}</S.CardSummary>
                     </S.CardContent>
                     <S.CardMedia>
-                      <S.CardImage alt={project.titulo} src={project.image} />
+                      <S.CardImage
+                        alt={project.titulo}
+                        src={project.image}
+                        width={1920}
+                        height={1080}
+                        sizes="(max-width: 1024px) 100vw, (max-width: 1600px) 70vw, 792px"
+                      />
                       <S.CardShade />
                     </S.CardMedia>
                   </S.CardSurface>

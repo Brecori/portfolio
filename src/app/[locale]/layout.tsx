@@ -23,12 +23,16 @@ const seoByLocale = {
   "pt-BR": {
     description:
       "Conheça o portfólio de Breno Tosi, desenvolvedor frontend especializado em React, Next.js e interfaces responsivas, performáticas e acessíveis.",
+    shareDescription:
+      "Portfólio de Breno Tosi, desenvolvedor frontend focado em React, Next.js e interfaces responsivas e acessíveis.",
     locale: "pt_BR",
     title: "Breno Tosi | Desenvolvedor Frontend",
   },
   en: {
     description:
       "Explore Breno Tosi's portfolio, a frontend developer specializing in React, Next.js, and responsive, high-performance, accessible interfaces.",
+    shareDescription:
+      "Breno Tosi's frontend portfolio, featuring React, Next.js and responsive, accessible interfaces.",
     locale: "en_US",
     title: "Breno Tosi | Frontend Developer",
   },
@@ -73,7 +77,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       title: seo.title,
-      description: seo.description,
+      description: seo.shareDescription,
       url: canonicalUrl,
       siteName: "Breno Tosi Portfolio",
       images: [
@@ -91,7 +95,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: "summary_large_image",
       title: seo.title,
-      description: seo.description,
+      description: seo.shareDescription,
       images: ["/imgs/og/share.png"],
     },
   };

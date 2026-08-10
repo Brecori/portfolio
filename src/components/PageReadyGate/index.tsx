@@ -2,7 +2,6 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { PageLoader } from "@/components/PageLoader";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as S from "./styles";
 
 type PageReadyGateProps = {
@@ -36,9 +35,13 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
         document.body.style.overflow = previousOverflow;
         setIsReady(true);
 
-        window.requestAnimationFrame(() => {
-          ScrollTrigger.refresh();
-        });
+        if (!window.matchMedia("(pointer: coarse), (max-width: 600px)").matches) {
+          window.requestAnimationFrame(() => {
+            void import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+              ScrollTrigger.refresh();
+            });
+          });
+        }
 
         unmountTimeoutId = window.setTimeout(() => {
           setShowLoader(false);

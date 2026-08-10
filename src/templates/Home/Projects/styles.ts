@@ -1,5 +1,6 @@
 import { mediaMaxDesktop1024, mediaMaxMobile } from "@/lib/media-query";
 import { theme } from "@/styles/theme";
+import Image from "next/image";
 import styled from "styled-components";
 
 export const ProjectsSection = styled.section`
@@ -173,7 +174,7 @@ export const CardMedia = styled.div`
   `}
 `;
 
-export const CardImage = styled.img`
+export const CardImage = styled(Image)`
   display: block;
   width: 100%;
   height: 100%;

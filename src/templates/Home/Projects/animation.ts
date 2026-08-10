@@ -1,9 +1,4 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useCallback, useRef } from "react";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { useCallback, useEffect, useRef } from "react";
 
 export default (totalCards: number) => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -16,8 +11,11 @@ export default (totalCards: number) => {
     [],
   );
 
-  useGSAP(
-    () => {
+  useEffect(() => {
+    let active = true;
+    let cleanup: (() => void) | undefined;
+
+    const initialize = async () => {
       const cards = cardRefs.current.filter((card): card is HTMLDivElement =>
         Boolean(card),
       );
@@ -25,6 +23,14 @@ export default (totalCards: number) => {
       if (!sectionRef.current || cards.length === 0) {
         return;
       }
+
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+
+      if (!active) return;
+      gsap.registerPlugin(ScrollTrigger);
 
       const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
@@ -64,7 +70,7 @@ export default (totalCards: number) => {
         ),
       );
 
-      return () => {
+      cleanup = () => {
         animations.forEach((animation) => {
           animation.scrollTrigger?.kill();
           animation.kill();
@@ -74,9 +80,15 @@ export default (totalCards: number) => {
           clearProps: "transform,transition,pointer-events,z-index",
         });
       };
-    },
-    { dependencies: [totalCards], scope: sectionRef },
-  );
+    };
+
+    void initialize();
+
+    return () => {
+      active = false;
+      cleanup?.();
+    };
+  }, [totalCards]);
 
   return {
     sectionRef,
