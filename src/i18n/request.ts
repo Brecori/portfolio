@@ -20,6 +20,12 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const footer = (await import(`../messages/footer/${locale}.json`)).default;
   const projects = (await import(`../messages/projects/${locale}.json`))
     .default;
+  const cibeleRodrigues = (
+    await import(`../messages/projects/cibele-rodrigues/${locale}.json`)
+  ).default;
+  const pomodorium = (
+    await import(`../messages/projects/pomodorium/${locale}.json`)
+  ).default;
   const pulseMetrics = (
     await import(`../messages/projects/pulse-metrics/${locale}.json`)
   ).default;
@@ -43,8 +49,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
         ...projects,
         projects: {
           atlasStorefront,
+          cibeleRodrigues,
           finflow,
           moodLab,
+          pomodorium,
           pulseMetrics,
           signalLaunch,
         },

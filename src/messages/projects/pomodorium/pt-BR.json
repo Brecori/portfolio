@@ -1,0 +1,5 @@
+{
+  "titulo": "Pomodorium",
+  "summary": "Timer Pomodoro com foco em produtividade",
+  "description": "Projeto simples de Pomodoro criado para treinar React.js e TypeScript, com controle de ciclos de foco e descanso. A implementação explora hooks, estados reativos e Web Workers para manter o timer consistente mesmo com a interface em segundo plano."
+}

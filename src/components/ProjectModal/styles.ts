@@ -56,24 +56,28 @@ export const ModalCard = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  width: min(150rem, 100%);
-  max-height: min(88vh, 92rem);
+  width: 150rem;
+  height: 48rem;
   border-radius: 0.2rem;
   overflow: hidden;
   background: ${theme.extremeBlack};
   border: 0.1rem solid ${theme.techWhite10};
 
   ${mediaMaxDesktop1024`
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    width: min(112rem, 100%);
-    max-height: min(84vh, 78rem);
+    grid-template-columns: 1fr;
+    width: 55rem;
+    height: 70rem;
   `}
 
   ${mediaMaxIpadVertical`
     position: relative;
-    grid-template-columns: 1fr;
-    width: min(72rem, 100%);
-    max-height: 88vh;
+    width: 80rem;
+    height: 100rem;
+  `}
+
+  ${mediaMaxMobile`
+    width: calc(100% - 4.8rem);
+    height: 70vh;
   `}
 `;
 
@@ -115,17 +119,13 @@ export const ModalBody = styled.div`
 
   ${mediaMaxDesktop1024`
     gap: 2.4rem;
-    padding: 2.4rem;
-  `}
-
-  ${mediaMaxIpadVertical`
     position: static;
     justify-content: flex-start;
   `}
 
   ${mediaMaxMobile`
     gap: 2.4rem;
-    padding: 2rem;
+    padding: 2.4rem;
   `}
 `;
 
@@ -176,10 +176,6 @@ export const ModalHeader = styled.div`
 
   ${mediaMaxDesktop1024`
     gap: 1.2rem;
-    padding-right: 4rem;
-  `}
-
-  ${mediaMaxIpadVertical`
     padding-right: 0;
   `}
 `;
@@ -209,6 +205,7 @@ export const ModalDescription = styled.p`
   color: ${theme.submarine};
   font-size: 1.6rem;
   line-height: 1.7;
+  margin-top: 0.8rem;
 
   ${mediaMaxDesktop1024`
     font-size: 1.45rem;
