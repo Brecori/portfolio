@@ -1,6 +1,6 @@
 export default {
   perfilImage: {
-    src: "/imgs/header/breno.jpeg",
+    src: "/imgs/header/breno.webp",
     alt: "Breno Tosi Barros",
   },
 };

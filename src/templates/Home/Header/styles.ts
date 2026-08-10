@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   padding: 0 15rem;
   overflow: hidden;
@@ -22,18 +22,14 @@ export const HeaderContainer = styled.header`
   background-size: contain;
 
   ${mediaMaxDesktop1024`
-    padding: 25rem 7.5rem 10rem;
-    justify-content: space-between;
+    padding: 0 7.5rem;
+    justify-content: center;
     background-image: url("/imgs/header/background-mobile.webp");
-  `}
-
-  ${mediaMaxIpadVertical`
-    padding-top: 40rem;
   `}
 
   ${mediaMaxMobile`
     flex-direction: column;
-    padding: 35rem 2.4rem 10rem;
+    padding: 0 2.4rem 0;
     min-height: 100svh;
   `}
 `;
@@ -42,7 +38,6 @@ export const MainGroup = styled(AnimatedContent)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10rem;
   gap: 2.2rem;
   position: relative;
   z-index: 1;
@@ -230,10 +225,3 @@ export const ButtonsContainer = styled.div`
   `}
 `;
 
-export const ScrollDownButtonContainer = styled(AnimatedContent)`
-  margin-bottom: 10rem;
-
-  ${mediaMaxDesktop1024`
-    margin-bottom: 0rem;
-  `}
-`;

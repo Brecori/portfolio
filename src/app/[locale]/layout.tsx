@@ -10,19 +10,31 @@ import { Bebas_Neue, Inter } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
+import { siteUrl } from "@/constants/site";
 
 type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
 };
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const metadataBase = new URL(siteUrl);
 
 const seoByLocale = {
   "pt-BR": {
     description:
       "Conheça o portfólio de Breno Tosi, desenvolvedor frontend especializado em React, Next.js e interfaces responsivas, performáticas e acessíveis.",
+    keywords: [
+      "Breno Tosi",
+      "desenvolvedor frontend",
+      "desenvolvedor React",
+      "desenvolvedor Next.js",
+      "portfólio frontend",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "interfaces responsivas",
+      "acessibilidade web",
+    ],
     shareDescription:
       "Portfólio de Breno Tosi, desenvolvedor frontend focado em React, Next.js e interfaces responsivas e acessíveis.",
     locale: "pt_BR",
@@ -31,6 +43,18 @@ const seoByLocale = {
   en: {
     description:
       "Explore Breno Tosi's portfolio, a frontend developer specializing in React, Next.js, and responsive, high-performance, accessible interfaces.",
+    keywords: [
+      "Breno Tosi",
+      "frontend developer",
+      "React developer",
+      "Next.js developer",
+      "frontend portfolio",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "responsive interfaces",
+      "web accessibility",
+    ],
     shareDescription:
       "Breno Tosi's frontend portfolio, featuring React, Next.js and responsive, accessible interfaces.",
     locale: "en_US",
@@ -64,7 +88,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       default: seo.title,
       template: "%s | Breno Tosi",
     },
+
     description: seo.description,
+    keywords: [...seo.keywords],
     authors: [{ name: "Breno Tosi", url: siteUrl }],
     creator: "Breno Tosi",
     alternates: {

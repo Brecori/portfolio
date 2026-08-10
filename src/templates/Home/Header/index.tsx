@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { FC } from "react";
 import { IconLink } from "@/components/IconLink";
-import { ScrollDownButton } from "@/components/ScrollDownButton";
 import { getResumePath, github, linkedin } from "@/constants/contact";
 import { FiFileText } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -12,6 +11,7 @@ import Image from "next/image";
 import useAnimation from "./animation";
 import C from "./constants";
 import * as S from "./styles";
+import { PAGE_LOADER_TOTAL_SECONDS } from "@/constants/page-loader";
 
 export const Header: FC = () => {
   const t = useTranslations("header");
@@ -28,6 +28,7 @@ export const Header: FC = () => {
   return (
     <S.HeaderContainer id="intro">
       <S.MainGroup
+        delay={PAGE_LOADER_TOTAL_SECONDS}
         stagger={0.3}
         duration={2}
         onAnimationComplete={handleInitialAnimationComplete}
@@ -63,10 +64,6 @@ export const Header: FC = () => {
           />
         </S.ButtonsContainer>
       </S.MainGroup>
-
-      <S.ScrollDownButtonContainer delay={1.5} duration={1.5} stagger={0.3}>
-        <ScrollDownButton label={t("actions.scrollDown")} />
-      </S.ScrollDownButtonContainer>
     </S.HeaderContainer>
   );
 };
