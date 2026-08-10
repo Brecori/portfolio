@@ -51,37 +51,77 @@ export default () => {
         );
       };
 
-      updateActiveYear();
+      gsap.set(marker, { y: 0 });
+      setActiveYearIndex(0);
 
-      const markerTrigger = ScrollTrigger.create({
-        trigger: timeline,
-        start: "top 40%",
-        end: "bottom 18%",
-        scrub: true,
-        onUpdate: ({ progress }) => {
-          const travelDistance = Math.max(
-            0,
-            timeline.offsetHeight - marker.offsetHeight,
-          );
+      const createScrollAnimation = () => {
+        const markerTrigger = ScrollTrigger.create({
+          trigger: timeline,
+          start: "top 40%",
+          end: "bottom 18%",
+          scrub: true,
+          invalidateOnRefresh: true,
+          onUpdate: ({ progress }) => {
+            const travelDistance = Math.max(
+              0,
+              timeline.offsetHeight - marker.offsetHeight,
+            );
 
-          gsap.set(marker, { y: progress * travelDistance });
-          updateActiveYear();
+            gsap.set(marker, { y: progress * travelDistance });
+            updateActiveYear();
+          },
+        });
+
+        const activeTrigger = ScrollTrigger.create({
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          onEnter: updateActiveYear,
+          onEnterBack: updateActiveYear,
+          onLeaveBack: () => setActiveYearIndex(0),
+          onUpdate: updateActiveYear,
+          onRefresh: updateActiveYear,
+        });
+
+        ScrollTrigger.refresh();
+
+        return () => {
+          markerTrigger.kill();
+          activeTrigger.kill();
+        };
+      };
+
+      let cleanupScrollAnimation: (() => void) | undefined;
+
+      if (!("IntersectionObserver" in window)) {
+        cleanupScrollAnimation = createScrollAnimation();
+
+        return () => {
+          cleanupScrollAnimation?.();
+          gsap.set(marker, { clearProps: "transform" });
+        };
+      }
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry?.isIntersecting || cleanupScrollAnimation) {
+            return;
+          }
+
+          cleanupScrollAnimation = createScrollAnimation();
+          observer.disconnect();
         },
-      });
+        {
+          rootMargin: "24% 0px 24% 0px",
+          threshold: 0.01,
+        },
+      );
 
-      const activeTrigger = ScrollTrigger.create({
-        trigger: section,
-        start: "top bottom",
-        end: "bottom top",
-        onEnter: updateActiveYear,
-        onEnterBack: updateActiveYear,
-        onLeaveBack: () => setActiveYearIndex(0),
-        onUpdate: updateActiveYear,
-      });
+      observer.observe(section);
 
       return () => {
-        markerTrigger.kill();
-        activeTrigger.kill();
+        observer.disconnect();
+        cleanupScrollAnimation?.();
         gsap.set(marker, { clearProps: "transform" });
       };
     },

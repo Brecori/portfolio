@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useState } from "react";
 import { PageLoader } from "@/components/PageLoader";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as S from "./styles";
 
 type PageReadyGateProps = {
@@ -18,9 +19,12 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
   useEffect(() => {
     const startedAt = window.performance.now();
     const previousOverflow = document.body.style.overflow;
+    const previousScrollRestoration = window.history.scrollRestoration;
     let revealTimeoutId: number | undefined;
     let unmountTimeoutId: number | undefined;
 
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
 
     const reveal = () => {
@@ -28,8 +32,13 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
       const remaining = Math.max(0, MIN_VISIBLE_MS - elapsed);
 
       revealTimeoutId = window.setTimeout(() => {
+        window.scrollTo(0, 0);
         document.body.style.overflow = previousOverflow;
         setIsReady(true);
+
+        window.requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+        });
 
         unmountTimeoutId = window.setTimeout(() => {
           setShowLoader(false);
@@ -45,6 +54,7 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
 
     return () => {
       window.removeEventListener("load", reveal);
+      window.history.scrollRestoration = previousScrollRestoration;
       document.body.style.overflow = previousOverflow;
 
       if (revealTimeoutId) {
@@ -59,7 +69,7 @@ export const PageReadyGate = ({ children }: PageReadyGateProps) => {
 
   return (
     <S.Root>
-      <S.Content $ready={isReady}>{children}</S.Content>
+      <S.Content $ready={isReady}>{isReady ? children : null}</S.Content>
       {showLoader && <PageLoader visible={!isReady} />}
     </S.Root>
   );

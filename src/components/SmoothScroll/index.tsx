@@ -39,7 +39,16 @@ export const SmoothScroll = ({ children }: PropsWithChildren) => {
         normalizeScroll: true,
       });
 
-      return () => smoother.kill();
+      smoother.scrollTop(0);
+
+      const refresh = gsap.delayedCall(0.1, () => {
+        ScrollTrigger.refresh();
+      });
+
+      return () => {
+        refresh.kill();
+        smoother.kill();
+      };
     },
     { scope: wrapperRef },
   );
