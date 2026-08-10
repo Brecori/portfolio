@@ -1,0 +1,5 @@
+{
+  "titulo": "Pantry 42",
+  "summary": "Blog de receitas intergalácticas",
+  "description": "Blog de receitas intergalácticas feito em homenagem a O Guia do Mochileiro das Galáxias. O projeto está em desenvolvimento e serve como estudo de Next.js, explorando sistema de blog, cache, autenticação, backend, Server Components e boas práticas de estrutura e performance."
+}

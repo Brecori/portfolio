@@ -26,6 +26,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const pomodorium = (
     await import(`../messages/projects/pomodorium/${locale}.json`)
   ).default;
+  const pantry42 = (
+    await import(`../messages/projects/pantry-42/${locale}.json`)
+  ).default;
   const pulseMetrics = (
     await import(`../messages/projects/pulse-metrics/${locale}.json`)
   ).default;
@@ -52,6 +55,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
           cibeleRodrigues,
           finflow,
           moodLab,
+          pantry42,
           pomodorium,
           pulseMetrics,
           signalLaunch,

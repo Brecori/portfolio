@@ -16,6 +16,7 @@
     "typescript": "Typescript",
     "styledComponents": "Styled Components",
     "sass": "Sass",
+    "tailwind": "Tailwind CSS",
     "gsap": "GSAP",
     "figma": "Figma",
     "reactNative": "React Native"

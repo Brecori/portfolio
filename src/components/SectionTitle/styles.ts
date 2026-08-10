@@ -9,7 +9,6 @@ export const Title = styled.h2<{ $isVisible: boolean }>`
   width: fit-content;
   color: ${theme.techWhite};
   font-family: var(--font-neue);
-  letter-spacing: 0.15em;
 
   &::after {
     content: "";

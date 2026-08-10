@@ -1,0 +1,5 @@
+{
+  "titulo": "Pantry 42",
+  "summary": "Intergalactic recipe blog",
+  "description": "An intergalactic recipe blog made as a tribute to The Hitchhiker's Guide to the Galaxy. The project is still in development and works as a Next.js study, exploring a blog system, caching, authentication, backend logic, Server Components, and structure and performance best practices."
+}

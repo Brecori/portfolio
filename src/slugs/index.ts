@@ -2,6 +2,7 @@ import { createCibeleRodriguesProject } from "./cibele-rodrigues";
 import { createAtlasStorefrontProject } from "./atlas-storefront";
 import { createFinflowProject } from "./finflow";
 import { createMoodLabProject } from "./mood-lab";
+import { createPantry42Project } from "./pantry-42";
 import { createPomodoriumProject } from "./pomodorium";
 import { createPulseMetricsProject } from "./pulse-metrics";
 import { createSignalLaunchProject } from "./signal-launch";
@@ -14,6 +15,9 @@ export const useProjectSlugs = (): ProjectSlugProps => {
   );
   const pomodorium = createPomodoriumProject(
     useTranslations("projects.projects.pomodorium"),
+  );
+  const pantry42 = createPantry42Project(
+    useTranslations("projects.projects.pantry42"),
   );
   const pulseMetrics = createPulseMetricsProject(
     useTranslations("projects.projects.pulseMetrics"),
@@ -34,6 +38,7 @@ export const useProjectSlugs = (): ProjectSlugProps => {
   return [
     cibeleRodrigues,
     pomodorium,
+    pantry42,
     pulseMetrics,
     atlasStorefront,
     moodLab,

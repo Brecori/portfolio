@@ -6,6 +6,7 @@ import {
   SiReact,
   SiSass,
   SiStyledcomponents,
+  SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
 import type { IconType } from "react-icons";
@@ -35,6 +36,11 @@ export const skills = [
     key: "sass",
     type: "styles",
     icon: SiSass,
+  },
+  {
+    key: "tailwind",
+    type: "styles",
+    icon: SiTailwindcss,
   },
 
   {
